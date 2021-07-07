@@ -20,6 +20,14 @@ public class Room {
 
 	}
 
+	//登録用
+	public Room(String name, String address, String seats) {
+		this.name = name;
+		this.address = address;
+		this.seats = seats;
+	}
+
+
 	public Room(Integer code, String name, String address, String seats) {
 		this.code = code;
 		this.name = name;

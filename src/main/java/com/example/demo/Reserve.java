@@ -35,6 +35,14 @@ public class Reserve {
 
 	}
 
+	//登録用
+	public Reserve(Integer userscode, String reservetime, Integer roomcode, String seat ) {
+		this.userscode = userscode;
+		this.time = LocalDateTime.now();
+		this.reservetime = reservetime;
+		this.roomcode = roomcode;
+		this.seat = seat;
+	}
 	public Reserve(Integer code, Integer userscode, String time, String reservetime, Integer roomcode, String seat ) {
 		this.code = code;
 		this.userscode = userscode;
