@@ -29,4 +29,14 @@ public class RoomController {
 		mv.setViewName("roomlist");
 		return mv;
 	}
+
+	/**
+	 * 情報入力画面を表示
+	 */
+	@RequestMapping(value="/info")
+	public ModelAndView info(ModelAndView mv) {
+
+		mv.setViewName("info");
+		return mv;
+	}
 }

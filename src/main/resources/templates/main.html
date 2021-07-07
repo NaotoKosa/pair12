@@ -1,10 +1,20 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>SWAOROID</title>
 </head>
 <body>
+<h1>メイン画面</h1>
+<span th:text="'（'+${session.name}+' さんがログイン中）'"></span>
 
+<br>
+
+<input type="submit" value="会議室の選択">
+<input type="submit" value="予約状況・利用履歴">
+
+<br>
+
+<a href="">ログアウト</a>
 </body>
 </html>
