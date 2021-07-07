@@ -1,5 +1,32 @@
 package com.example.demo;
 
+import java.util.List;
+
+import javax.servlet.http.HttpSession;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.servlet.ModelAndView;
+
+@Controller
 public class RoomController {
 
+	@Autowired
+	HttpSession session;
+
+	@Autowired
+	RoomRepository roomRepository;
+
+	/**
+	 * 全会議室を表示
+	 */
+	@RequestMapping(value="/room")
+	public ModelAndView room(ModelAndView mv) {
+		List<Room> roomList = roomRepository.findAll();
+		mv.addObject("room", roomList);
+
+		mv.setViewName("roomlist");
+		return mv;
+	}
 }
