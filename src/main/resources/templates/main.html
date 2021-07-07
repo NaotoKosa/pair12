@@ -9,10 +9,12 @@
 <span th:text="'（'+${session.name}+' さんがログイン中）'"></span>
 
 <br>
-
+<form action="/room" method="get">
 <input type="submit" value="会議室の選択">
+</form>
+<form action="/reservation" method="get">
 <input type="submit" value="予約状況・利用履歴">
-
+</form>
 <br>
 
 <a href="/">ログアウト</a>
