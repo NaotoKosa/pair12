@@ -2,9 +2,21 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>SWAROID</title>
 </head>
 <body>
-
+	<h1>会議室</h1>
+	<table border="0">
+		<tr>
+			<th>登録日</th>
+			<th>予約詳細</th>
+			<th></th>
+		</tr>
+		<tr th:each=":${}">
+			<td th:text="${}"></td>
+			<td th:text="${}"></td>
+			<td><input type="submit" value="${}"></td>
+		</tr>
+	</table>
 </body>
 </html>

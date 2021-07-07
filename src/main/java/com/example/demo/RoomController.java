@@ -39,4 +39,16 @@ public class RoomController {
 		mv.setViewName("info");
 		return mv;
 	}
+
+	/**
+	 * 座席選択画面を表示
+	 */
+	@RequestMapping(value="/seat")
+	public ModelAndView seat(ModelAndView mv) {
+
+		mv.setViewName("seat");
+		return mv;
+	}
+
+
 }
