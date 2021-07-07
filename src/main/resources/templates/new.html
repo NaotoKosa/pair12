@@ -1,10 +1,23 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>新規会員登録</title>
 </head>
 <body>
-
+<h1>座席管理アプリ「SUWAROID」</h1>
+<h2>新規会員登録</h2>
+<br>
+<span th:text="${RESULT}" style="color:red"></span><br>
+<form action="/new" method="post">
+名前：<input type="text" name="name" th:value="${name}"><br>
+メールアドレス：<input type="text" name="email" th:value="${email}"><span th:text="${message1}" style="color:red"></span><br>
+電話番号:<input type="text" name="tel" th:value="${tel}"><br>
+パスワード：<input type="password" name="password"><span th:text="${message2}" style="color:red"></span><br>
+	<input type="submit" value="登録">
+</form>
+<br>
+<span th:text="${message}" style="color:red"></span><br>
+<a href="/">ログイン画面へ</a>
 </body>
 </html>
