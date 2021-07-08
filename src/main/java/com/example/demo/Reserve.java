@@ -23,7 +23,7 @@ public class Reserve {
 	@Column(name="userscode")
 	private Integer userscode;
 
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+
 	private Date ymd;
 
 	@Column(name="reservedate")
@@ -57,7 +57,7 @@ public class Reserve {
 	}
 	public Reserve(Integer userscode,String reservedate, String start, String finish, String room, String seat) {
 		this.userscode = userscode;
-		this.ymd = ymd;
+
 		this.reservedate = reservedate;
 		this.start = start;
 		this.finish = finish;
@@ -77,13 +77,7 @@ public class Reserve {
 	}
 
 
-	public static DateTimeFormatter getFmt() {
-		return fmt;
-	}
 
-	public static void setFmt(DateTimeFormatter fmt) {
-		Reserve.fmt = fmt;
-	}
 
 	public Integer getCode() {
 		return code;

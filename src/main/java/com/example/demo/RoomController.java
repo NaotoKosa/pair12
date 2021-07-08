@@ -1,5 +1,8 @@
 package com.example.demo;
 
+import java.sql.Date;
+import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
@@ -139,8 +142,14 @@ public class RoomController {
 		String room = (String) session.getAttribute("roomname");
 		String seat = (String) session.getAttribute("seat");
 
+		//今日（予約日）の日付を取得
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+        String str = sdf.format(timestamp);
+		Date today = Date.valueOf(str);
 
-		Reserve reserve = new Reserve(userscode,date,start,finish,room,seat);//引数に予約情報を格納
+
+		Reserve reserve = new Reserve(userscode,today,date,start,finish,room,seat);//引数に予約情報を格納
 
 
 		//予約実行　データベースに登録
