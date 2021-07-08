@@ -7,8 +7,8 @@
 </head>
 <body>
 <h1>確認画面</h1>
-
-
+<form action="/infoconfirm" method="get">
+<div>
 <div class="forest_1">
 <input type="radio" name="forest" value="1" id="1" th:checked="${session.forest == 1}" disabled>
 <label for="1" class="label"></label>
@@ -60,6 +60,27 @@
 </div>
 
 <div class="table_1">table</div>
+</div>
 
+<table>
+<tr>
+	<th th:text="会議室"></th>
+	<th th:text="予約日"></th>
+	<th th:text="START"></th>
+	<th th:text="FINISH"></th>
+</tr>
+<tr th:each="reserve:${session.reserve}">
+	<td th:text="${reserve.roomcode}"></td>
+	<td th:text="${reserve.date}"></td>
+	<td th:text="${reserve.start}"></td>
+	<td th:text="${reserve.finish}"></td>
+</tr>
+</table>
+
+
+<div class="ok">
+<input type="submit" value="確認">
+</div>
+</form>
 </body>
 </html>

@@ -91,7 +91,7 @@ public class RoomController {
 			mv.setViewName("seat");
 		} else {
 		session.setAttribute("forest", forest);
-		mv.setViewName("infocheck");
+		mv.setViewName("infoCheck");
 		}
 		return mv;
 	}
@@ -102,7 +102,7 @@ public class RoomController {
 	@RequestMapping(value="/infoconfirm")
 	public ModelAndView infoconfirm(ModelAndView mv) {
 
-		mv.setViewName("infoconfirm");
+		mv.setViewName("infoConfirm");
 		return mv;
 	}
 
