@@ -8,6 +8,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -45,8 +46,10 @@ public class RoomController {
 		if (!room.isEmpty()) {
 			Room r = room.get();
 			Integer roomcode = r.getCode();
+			String roomname = r.getName();
 
-			session.setAttribute("reserve", roomcode);
+			session.setAttribute("roomcode", roomcode);
+			session.setAttribute("roomname", roomname);
 		}
 
 
@@ -64,14 +67,22 @@ public class RoomController {
 			@RequestParam("finish")String finish) {
 
 		//予約情報をセッションに格納
-		session.setAttribute("reserve", date);
-		session.setAttribute("reserve", start);
-		session.setAttribute("reserve", finish);
+		session.setAttribute("date", date);
+		session.setAttribute("start", start);
+		session.setAttribute("finish", finish);
 
 		//座席選択画面にも予約日時を表示させる
 		mv.addObject("date",date);
 		mv.addObject("start",start);
 		mv.addObject("finish",finish);
+
+		//座席選択画面へ
+		mv.setViewName("seat");
+		return mv;
+	}
+
+	@RequestMapping(value="/seat", method = RequestMethod.POST)
+	public ModelAndView seat(ModelAndView mv) {
 
 		//座席選択画面へ
 		mv.setViewName("seat");

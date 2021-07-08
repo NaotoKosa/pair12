@@ -99,5 +99,19 @@ border-radius: 100px; /* 角丸を指定する */
 	position:  absolute;        /* 要素の配置方法を指定 */
     padding:  0px;             /* 余白指定 */
     left: 420px;                /* 左からの位置指定 */
+    top: 350px;                  /* 上からの位置指定 */
+}
+.table {
+	position:  absolute;        /* 要素の配置方法を指定 */
+    padding:  0px;             /* 余白指定 */
+    left: 300px;                /* 左からの位置指定 */
+    top: 220px;                  /* 上からの位置指定 */
+    text-align: center;
+}
+.check {
+	position:  absolute;        /* 要素の配置方法を指定 */
+    padding:  0px;             /* 余白指定 */
+    left: 340px;                /* 左からの位置指定 */
     top: 300px;                  /* 上からの位置指定 */
+    text-align: center;
 }
