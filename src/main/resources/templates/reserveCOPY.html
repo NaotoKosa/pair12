@@ -14,20 +14,16 @@
 			<th>登録日</th>
 			<th>会議室</th>
 			<th>座席</th>
-			<th>予約日</th>
-			<th>開始時間</th>
-			<th>終了時間</th>
+			<th>予約日時</th>
 
 			<th></th>
 		</tr>
 		<tr th:each="list:${reserveList}">
 			<td th:text="${list.code}"></td>
 			<td th:text="${list.ymd}"></td>
-			<td th:text="${list.room}"></td>
+			<td th:text="${list.roomcode}"></td>
 			<td th:text="${list.seat}"></td>
-			<td th:text="${list.date}"></td>
-			<td th:text="${list.start}"></td>
-			<td th:text="${list.finish}"></td>
+			<td th:text="${list.reservetime}"></td>
 			<td>
 			<input type="hidden" name="list.code" th:value="${list.code}">
 			<input type="submit" th:value="キャンセル">

@@ -7,6 +7,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 @Controller
@@ -28,10 +29,25 @@ public class ReserveController {
 		List<Reserve> reserveList = reserveRepository.findAll();
 		mv.addObject("reserveList", reserveList);
 
-
+		
 
 
 		mv.setViewName("reserve");
 		return mv;
 	}
+
+
+	//予約キャンセル
+	@RequestMapping(value="/cancel")
+	public ModelAndView cancel(ModelAndView mv,
+			@RequestParam("list.code")int code) {
+
+	    //deleteById(code);
+		List<Reserve> reserveList = reserveRepository.findAll();
+		mv.addObject("reserveList", reserveList);
+
+		mv.setViewName("reserve");
+		return mv;
+	}
+
 }

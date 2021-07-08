@@ -1,6 +1,6 @@
 package com.example.demo;
 
-import java.time.LocalDateTime;
+import java.sql.Date;
 import java.time.format.DateTimeFormatter;
 
 import javax.persistence.Column;
@@ -23,12 +23,21 @@ public class Reserve {
 	@Column(name="users_code")
 	private Integer userscode;
 
-	private LocalDateTime time;
-	private String reservetime;
+	private Date ymd;
 
-	@Column(name="room_code")
-	private Integer roomcode;
+	@Column(name="reservedate")
+	private String reservedate;
 
+	@Column(name="start")
+	private String start;
+
+	@Column(name="finish")
+	private String finish;
+
+	@Column(name="room")
+	private String room;
+
+	@Column(name="seat")
 	private String seat;
 
 	public Reserve() {
@@ -36,22 +45,33 @@ public class Reserve {
 	}
 
 	//登録用
-	public Reserve(Integer userscode, String reservetime, Integer roomcode, String seat ) {
+	public Reserve(Integer userscode,Date ymd, String reservedate, String start, String finish, String room, String seat) {
 		this.userscode = userscode;
-		this.time = LocalDateTime.now();
-		this.reservetime = reservetime;
-		this.roomcode = roomcode;
+		this.ymd = ymd;
+		this.reservedate = reservedate;
+		this.start = start;
+		this.finish = finish;
+		this.room = room;
 		this.seat = seat;
 	}
-	public Reserve(Integer code, Integer userscode, String time, String reservetime, Integer roomcode, String seat ) {
+	public Reserve(Integer code, Integer userscode,Date ymd,String reservedate, String start, String finish, String room, String seat ) {
 		this.code = code;
 		this.userscode = userscode;
-		this.time = LocalDateTime.now();
-		this.reservetime = reservetime;
-		this.roomcode = roomcode;
+		this.ymd = ymd;
+		this.reservedate = reservedate;
+		this.start = start;
+		this.finish = finish;
+		this.room = room;
 		this.seat = seat;
 	}
 
+	public static DateTimeFormatter getFmt() {
+		return fmt;
+	}
+
+	public static void setFmt(DateTimeFormatter fmt) {
+		Reserve.fmt = fmt;
+	}
 
 	public Integer getCode() {
 		return code;
@@ -69,28 +89,44 @@ public class Reserve {
 		this.userscode = userscode;
 	}
 
-	public String getTime() {
-		return time.format(fmt);
+	public Date getYmd() {
+		return ymd;
 	}
 
-	public void setTime(LocalDateTime time) {
-		this.time = time;
+	public void setYmd(Date ymd) {
+		this.ymd = ymd;
 	}
 
-	public String getReservetime() {
-		return reservetime;
+	public String getDate() {
+		return reservedate;
 	}
 
-	public void setReservetime(String reservetime) {
-		this.reservetime = reservetime;
+	public void setDate(String date) {
+		this.reservedate = date;
 	}
 
-	public Integer getRoomcode() {
-		return roomcode;
+	public String getStart() {
+		return start;
 	}
 
-	public void setRoomcode(Integer roomcode) {
-		this.roomcode = roomcode;
+	public void setStart(String start) {
+		this.start = start;
+	}
+
+	public String getFinish() {
+		return finish;
+	}
+
+	public void setFinish(String finish) {
+		this.finish = finish;
+	}
+
+	public String getRoom() {
+		return room;
+	}
+
+	public void setRoom(String room) {
+		this.room = room;
 	}
 
 	public String getSeat() {
@@ -100,6 +136,5 @@ public class Reserve {
 	public void setSeat(String seat) {
 		this.seat = seat;
 	}
-
 
 }
