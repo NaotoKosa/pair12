@@ -29,9 +29,6 @@ public class ReserveController {
 		List<Reserve> reserveList = reserveRepository.findAll();
 		mv.addObject("reserveList", reserveList);
 
-		
-
-
 		mv.setViewName("reserve");
 		return mv;
 	}
@@ -42,7 +39,7 @@ public class ReserveController {
 	public ModelAndView cancel(ModelAndView mv,
 			@RequestParam("list.code")int code) {
 
-	    //deleteById(code);
+		reserveRepository.deleteById(code);
 		List<Reserve> reserveList = reserveRepository.findAll();
 		mv.addObject("reserveList", reserveList);
 

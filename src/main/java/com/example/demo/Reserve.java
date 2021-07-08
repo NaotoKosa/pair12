@@ -20,7 +20,7 @@ public class Reserve {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer code;
 
-	@Column(name="users_code")
+	@Column(name="userscode")
 	private Integer userscode;
 
 	private Date ymd;
@@ -54,6 +54,15 @@ public class Reserve {
 		this.room = room;
 		this.seat = seat;
 	}
+	public Reserve(Integer userscode,String reservedate, String start, String finish, String room, String seat) {
+		this.userscode = userscode;
+		this.reservedate = reservedate;
+		this.start = start;
+		this.finish = finish;
+		this.room = room;
+		this.seat = seat;
+	}
+
 	public Reserve(Integer code, Integer userscode,Date ymd,String reservedate, String start, String finish, String room, String seat ) {
 		this.code = code;
 		this.userscode = userscode;
@@ -64,6 +73,7 @@ public class Reserve {
 		this.room = room;
 		this.seat = seat;
 	}
+
 
 	public static DateTimeFormatter getFmt() {
 		return fmt;

@@ -6,7 +6,7 @@
 </head>
 <body>
 	<h1>予約一覧</h1>
-	<form action="/cancel" method="get">
+
 	<table border="1">
 
 		<tr>
@@ -21,6 +21,7 @@
 			<th></th>
 		</tr>
 		<tr th:each="list:${reserveList}">
+		<form action="/cancel" method="get">
 			<td th:text="${list.code}"></td>
 			<td th:text="${list.ymd}"></td>
 			<td th:text="${list.room}"></td>
@@ -32,9 +33,11 @@
 			<input type="hidden" name="list.code" th:value="${list.code}">
 			<input type="submit" th:value="キャンセル">
 			</td>
+		</form>
 		</tr>
 
 	</table>
-	</form>
+<br>
+<a href="/main">メイン画面</a>
 </body>
 </html>
