@@ -88,6 +88,7 @@ public class RoomController {
 	) {
 		session.setAttribute("forest", forest);
 
+
 		mv.setViewName("infocheck");
 		return mv;
 	}
