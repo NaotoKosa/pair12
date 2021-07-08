@@ -83,13 +83,16 @@ public class RoomController {
 	 */
 	@RequestMapping(value="/infocheck")
 	public ModelAndView infocheck(
-			@RequestParam("forest") Integer forest,
+			@RequestParam(name="forest", defaultValue="0") Integer forest,
 			ModelAndView mv
 	) {
+		if(forest == 0) {
+			mv.addObject("ERROR", "座席を選択してください。");
+			mv.setViewName("seat");
+		} else {
 		session.setAttribute("forest", forest);
-
-
 		mv.setViewName("infocheck");
+		}
 		return mv;
 	}
 

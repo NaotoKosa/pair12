@@ -3,6 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="forest.style.css">
+<style>
+.label {
+cursor: pointer; /* マウスカーソルの形（リンクカーソル）を指定する */
+}
+.label:hover {
+background-color: #E2EDF9; /* マウスオーバー時の背景色を指定する */
+}
+</style>
 <title>SWAOROID</title>
 </head>
 <body>
@@ -10,6 +18,7 @@
 <form action="/infocheck" method="get">
 
 <span th:replace="forest"></span>
+<span th:text="${ERROR}"></span>
 
 <div class="ok">
 <input type="submit" value="確認">
