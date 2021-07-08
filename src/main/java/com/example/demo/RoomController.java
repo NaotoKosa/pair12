@@ -118,7 +118,7 @@ public class RoomController {
 			@RequestParam(name="seat", defaultValue="0") String seat,
 			ModelAndView mv
 	) {
-		if(seat.equals(0)) {
+		if(seat.equals("0")) {
 			mv.addObject("ERROR", "座席を選択してください。");
 			mv.setViewName("seat");
 		} else {
