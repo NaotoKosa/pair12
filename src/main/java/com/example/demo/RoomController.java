@@ -50,7 +50,7 @@ public class RoomController {
 		}
 
 
-		mv.setViewName("seat");
+		mv.setViewName("info");
 		return mv;
 	}
 
