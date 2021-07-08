@@ -1,1 +1,108 @@
 @charset "UTF-8";
+input[type=radio] {
+display: none; /* ラジオボタンを非表示にする */
+}
+
+input[type="radio"]:checked + label {
+background: #31A9EE;/* マウス選択時の背景色を指定する */
+color: #ffffff; /* マウス選択時のフォント色を指定する */
+}
+
+.label:hover {
+background-color: #E2EDF9; /* マウスオーバー時の背景色を指定する */
+}
+
+.label {
+display: block; /* ブロックレベル要素化する */
+float: left; /* 要素の左寄せ・回り込を指定する */
+margin: 0px; /* ボックス外側の余白を指定する */
+width: 30px; /* ボックスの横幅を指定する */
+height: 30px; /* ボックスの高さを指定する */
+padding-left: 0px; /* ボックス内左側の余白を指定する */
+padding-right: 0px; /* ボックス内御右側の余白を指定する */
+color: #b20000; /* フォントの色を指定 */
+text-align: center; /* テキストのセンタリングを指定する */
+line-height: 45px; /* 行の高さを指定する */
+cursor: pointer; /* マウスカーソルの形（リンクカーソル）を指定する */
+border: 2px solid #006DD9;/* ボックスの境界線を実線で指定する */
+border-radius: 100px; /* 角丸を指定する */
+}
+
+
+
+.absolute_1 {
+    position:  absolute;        /* 要素の配置方法を指定 */
+    padding:  0px;             /* 余白指定 */
+    left:  100px;                /* 左からの位置指定 */
+    top: 100px;                  /* 上からの位置指定 */
+}
+.absolute_2 {
+    position:  absolute;        /* 要素の配置方法を指定 */
+    padding:  0px;             /* 余白指定 */
+    left: 180px;                /* 左からの位置指定 */
+    top: 100px;                  /* 上からの位置指定 */
+}
+.absolute_3 {
+    position:  absolute;        /* 要素の配置方法を指定 */
+    padding:  0px;             /* 余白指定 */
+    left: 260px;                /* 左からの位置指定 */
+    top: 100px;                  /* 上からの位置指定 */
+}
+.absolute_4 {
+    position:  absolute;        /* 要素の配置方法を指定 */
+    padding:  0px;             /* 余白指定 */
+    left: 340px;                /* 左からの位置指定 */
+    top: 100px;                  /* 上からの位置指定 */
+}
+.absolute_5 {
+    position:  absolute;        /* 要素の配置方法を指定 */
+    padding:  0px;             /* 余白指定 */
+    left: 420px;                /* 左からの位置指定 */
+    top: 100px;                  /* 上からの位置指定 */
+}
+.absolute_6 {
+    position:  absolute;        /* 要素の配置方法を指定 */
+    padding:  0px;             /* 余白指定 */
+    left: 180px;                /* 左からの位置指定 */
+    top: 100px;                  /* 上からの位置指定 */
+}
+.absolute_7 {
+    position:  absolute;        /* 要素の配置方法を指定 */
+    padding:  0px;             /* 余白指定 */
+    left: 500px;                /* 左からの位置指定 */
+    top: 100px;                  /* 上からの位置指定 */
+}
+.absolute_8 {
+    position:  absolute;        /* 要素の配置方法を指定 */
+    padding:  0px;             /* 余白指定 */
+    left: 580px;                /* 左からの位置指定 */
+    top: 100px;                  /* 上からの位置指定 */
+}
+.absolute_9 {
+    position:  absolute;        /* 要素の配置方法を指定 */
+    padding:  0px;             /* 余白指定 */
+    left: 660px;                /* 左からの位置指定 */
+    top: 100px;                  /* 上からの位置指定 */
+}
+.absolute_10 {
+    position:  absolute;        /* 要素の配置方法を指定 */
+    padding:  0px;             /* 余白指定 */
+    left: 740px;                /* 左からの位置指定 */
+    top: 100px;                  /* 上からの位置指定 */
+}
+.table_1 {
+	position:  absolute;        /* 要素の配置方法を指定 */
+    padding:  0px;             /* 余白指定 */
+    left: 90px;                /* 左からの位置指定 */
+    top: 150px;                  /* 上からの位置指定 */
+    background-color:  #ccc;
+    width:  700px;              /* 幅指定 */
+    height: 45px;               /* 高さ指定 */
+    text-align: center;
+}
+.ok {
+	position:  absolute;        /* 要素の配置方法を指定 */
+    padding:  0px;             /* 余白指定 */
+    left: 420px;                /* 左からの位置指定 */
+    top: 300px;                  /* 上からの位置指定 */
+}

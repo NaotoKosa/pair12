@@ -33,7 +33,7 @@ public class RoomController {
 	}
 
 	/**
-	 * 座席選択画面を表示
+	 * 日時選択画面を表示
 	 */
 	@RequestMapping(value="/info")
 	public ModelAndView info(
@@ -55,12 +55,22 @@ public class RoomController {
 	}
 
 	/**
-	 *
+	 *座席確認画面を表示
 	 */
 	@RequestMapping(value="/seat")
 	public ModelAndView seat(ModelAndView mv) {
 
 		mv.setViewName("seat");
+		return mv;
+	}
+
+	/**
+	 *予約確認画面を表示
+	 */
+	@RequestMapping(value="/infocheck")
+	public ModelAndView infocheck(ModelAndView mv) {
+
+		mv.setViewName("infocheck");
 		return mv;
 	}
 
