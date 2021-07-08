@@ -4,7 +4,7 @@ display: none; /* ラジオボタンを非表示にする */
 }
 
 input[type="radio"]:checked + label {
-background: #00d000;/* マウス選択時の背景色を指定する */
+background: #31A9EE;/* マウス選択時の背景色を指定する */
 color: #ffffff; /* マウス選択時のフォント色を指定する */
 }
 
@@ -19,7 +19,7 @@ padding-right: 0px; /* ボックス内御右側の余白を指定する */
 color: #b20000; /* フォントの色を指定 */
 text-align: center; /* テキストのセンタリングを指定する */
 line-height: 45px; /* 行の高さを指定する */
-border: 2px solid #008000;/* ボックスの境界線を実線で指定する */
+border: 2px solid #006DD9;/* ボックスの境界線を実線で指定する */
 border-radius: 100px; /* 角丸を指定する */
 }
 

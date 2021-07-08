@@ -2,13 +2,14 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="forest.style.css">
+<link th:if="${session.roomcode == 1}" rel="stylesheet" href="forest.style.css">
+<link th:if="${session.roomcode == 2}" rel="stylesheet" href="ocean.style.css">
 <style>
 .label {
 cursor: pointer; /* マウスカーソルの形（リンクカーソル）を指定する */
 }
 .label:hover {
-background-color: #E2EDF9; /* マウスオーバー時の背景色を指定する */
+background-color: rgb(129, 129, 129); /* マウスオーバー時の背景色を指定する */
 }
 </style>
 <title>SWAOROID</title>
@@ -17,7 +18,9 @@ background-color: #E2EDF9; /* マウスオーバー時の背景色を指定す�
 <h1>座席表</h1>
 <form action="/infocheck" method="get">
 
-<span th:replace="forest"></span>
+<span th:if="${session.roomcode == 1}" th:replace="forest"></span>
+<span th:if="${session.roomcode == 2}" th:replace="ocean"></span>
+
 <span th:text="${ERROR}"></span>
 
 <div class="ok">
