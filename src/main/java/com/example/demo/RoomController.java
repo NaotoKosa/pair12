@@ -74,5 +74,15 @@ public class RoomController {
 		return mv;
 	}
 
+	/**
+	 *予約確認画面を表示
+	 */
+	@RequestMapping(value="/infoconfirm")
+	public ModelAndView infoconfirm(ModelAndView mv) {
+
+		mv.setViewName("infoconfirm");
+		return mv;
+	}
+
 
 }
