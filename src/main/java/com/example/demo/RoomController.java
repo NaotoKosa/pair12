@@ -46,7 +46,7 @@ public class RoomController {
 			Room r = room.get();
 			Integer roomcode = r.getCode();
 
-			session.setAttribute("roomcode", roomcode);
+			session.setAttribute("reserve", roomcode);
 		}
 
 
@@ -58,8 +58,22 @@ public class RoomController {
 	 *座席確認画面を表示
 	 */
 	@RequestMapping(value="/seat")
-	public ModelAndView seat(ModelAndView mv) {
+	public ModelAndView seat(ModelAndView mv,
+			@RequestParam("date")String date,
+			@RequestParam("start")String start,
+			@RequestParam("finish")String finish) {
 
+		//予約情報をセッションに格納
+		session.setAttribute("reserve", date);
+		session.setAttribute("reserve", start);
+		session.setAttribute("reserve", finish);
+
+		//座席選択画面にも予約日時を表示させる
+		mv.addObject("date",date);
+		mv.addObject("start",start);
+		mv.addObject("finish",finish);
+
+		//座席選択画面へ
 		mv.setViewName("seat");
 		return mv;
 	}
