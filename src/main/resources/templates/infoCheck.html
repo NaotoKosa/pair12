@@ -65,12 +65,14 @@
 <table border="1" class="table">
 <tr>
 	<th th:text="会議室"></th>
+	<th th:text="座席"></th>
 	<th th:text="予約日"></th>
 	<th th:text="START"></th>
 	<th th:text="FINISH"></th>
 </tr>
 <tr>
 	<td th:text="${session.roomname}"></td>
+	<td th:text="${session.forest}"></td>
 	<td th:text="${session.date}"></td>
 	<td th:text="${session.start}"></td>
 	<td th:text="${session.finish}"></td>
