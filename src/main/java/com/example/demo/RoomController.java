@@ -1,5 +1,6 @@
 package com.example.demo;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 
@@ -62,10 +63,23 @@ public class RoomController {
 	 */
 	@RequestMapping(value="/seat")
 	public ModelAndView seat(ModelAndView mv,
-			@RequestParam("date")String date,
+			@RequestParam(name="date", defaultValue="1000-01-01")String date,
 			@RequestParam("start")String start,
 			@RequestParam("finish")String finish) {
 
+		LocalDate dat = LocalDate.parse(date);
+		LocalDate todaysDate = LocalDate.now();
+		boolean past = todaysDate.isAfter(dat);
+		int future = todaysDate.compareTo(dat);
+		System.out.println(future);
+
+		if (date.equals("1000-01-01")) {
+			mv.addObject("ERROR", "日付けを選択してください。");
+			mv.setViewName("info");
+		} else if(past==true) {
+			mv.addObject("ERROR", "過去は選択できません。");
+			mv.setViewName("info");
+		} else {
 		//予約情報をセッションに格納
 		session.setAttribute("date", date);
 		session.setAttribute("start", start);
@@ -78,6 +92,7 @@ public class RoomController {
 
 		//座席選択画面へ
 		mv.setViewName("seat");
+		}
 		return mv;
 	}
 
@@ -112,6 +127,7 @@ public class RoomController {
 	 */
 	@RequestMapping(value="/infoconfirm")
 	public ModelAndView infoconfirm(ModelAndView mv) {
+
 
 		mv.setViewName("infoConfirm");
 		return mv;
