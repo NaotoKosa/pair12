@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -13,11 +15,20 @@ public class ReserveController {
 	@Autowired
 	HttpSession session;
 
+	@Autowired
+	ReserveRepository reserveRepository;
+
 	/**
-	 * 座席選択画面を表示
+	 * 予約一覧を表示
 	 */
-	@RequestMapping(value="/reserve")
+	@RequestMapping(value="/reservation")
 	public ModelAndView reserve(ModelAndView mv) {
+
+	//予約データベース（reserve）からデータを取得
+		List<Reserve> reserveList = reserveRepository.findAll();
+		mv.addObject("reserveList", reserveList);
+
+
 
 		mv.setViewName("reserve");
 		return mv;
