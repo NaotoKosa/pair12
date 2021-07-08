@@ -30,61 +30,61 @@ border-radius: 100px; /* 角丸を指定する */
 
 
 
-.absolute_1 {
+.forest_1 {
     position:  absolute;        /* 要素の配置方法を指定 */
     padding:  0px;             /* 余白指定 */
     left:  100px;                /* 左からの位置指定 */
     top: 100px;                  /* 上からの位置指定 */
 }
-.absolute_2 {
+.forest_2 {
     position:  absolute;        /* 要素の配置方法を指定 */
     padding:  0px;             /* 余白指定 */
     left: 180px;                /* 左からの位置指定 */
     top: 100px;                  /* 上からの位置指定 */
 }
-.absolute_3 {
+.forest_3 {
     position:  absolute;        /* 要素の配置方法を指定 */
     padding:  0px;             /* 余白指定 */
     left: 260px;                /* 左からの位置指定 */
     top: 100px;                  /* 上からの位置指定 */
 }
-.absolute_4 {
+.forest_4 {
     position:  absolute;        /* 要素の配置方法を指定 */
     padding:  0px;             /* 余白指定 */
     left: 340px;                /* 左からの位置指定 */
     top: 100px;                  /* 上からの位置指定 */
 }
-.absolute_5 {
+.forest_5 {
     position:  absolute;        /* 要素の配置方法を指定 */
     padding:  0px;             /* 余白指定 */
     left: 420px;                /* 左からの位置指定 */
     top: 100px;                  /* 上からの位置指定 */
 }
-.absolute_6 {
+.forest_6 {
     position:  absolute;        /* 要素の配置方法を指定 */
     padding:  0px;             /* 余白指定 */
     left: 180px;                /* 左からの位置指定 */
     top: 100px;                  /* 上からの位置指定 */
 }
-.absolute_7 {
+.forest_7 {
     position:  absolute;        /* 要素の配置方法を指定 */
     padding:  0px;             /* 余白指定 */
     left: 500px;                /* 左からの位置指定 */
     top: 100px;                  /* 上からの位置指定 */
 }
-.absolute_8 {
+.forest_8 {
     position:  absolute;        /* 要素の配置方法を指定 */
     padding:  0px;             /* 余白指定 */
     left: 580px;                /* 左からの位置指定 */
     top: 100px;                  /* 上からの位置指定 */
 }
-.absolute_9 {
+.forest_9 {
     position:  absolute;        /* 要素の配置方法を指定 */
     padding:  0px;             /* 余白指定 */
     left: 660px;                /* 左からの位置指定 */
     top: 100px;                  /* 上からの位置指定 */
 }
-.absolute_10 {
+.forest_10 {
     position:  absolute;        /* 要素の配置方法を指定 */
     padding:  0px;             /* 余白指定 */
     left: 740px;                /* 左からの位置指定 */

@@ -68,7 +68,11 @@ public class RoomController {
 	 *予約確認画面を表示
 	 */
 	@RequestMapping(value="/infocheck")
-	public ModelAndView infocheck(ModelAndView mv) {
+	public ModelAndView infocheck(
+			@RequestParam("forest") Integer forest,
+			ModelAndView mv
+	) {
+		session.setAttribute("forest", forest);
 
 		mv.setViewName("infocheck");
 		return mv;
