@@ -22,6 +22,9 @@ public class RoomController {
 	@Autowired
 	RoomRepository roomRepository;
 
+	@Autowired
+	ReserveRepository reserveRepository;
+
 	/**
 	 * 全会議室を表示
 	 */
@@ -109,14 +112,14 @@ public class RoomController {
 	 */
 	@RequestMapping(value="/infocheck")
 	public ModelAndView infocheck(
-			@RequestParam(name="forest", defaultValue="0") Integer forest,
+			@RequestParam(name="seat", defaultValue="0") String seat,
 			ModelAndView mv
 	) {
-		if(forest == 0) {
+		if(seat.equals(0)) {
 			mv.addObject("ERROR", "座席を選択してください。");
 			mv.setViewName("seat");
 		} else {
-		session.setAttribute("forest", forest);
+		session.setAttribute("seat", seat);
 		mv.setViewName("infoCheck");
 		}
 		return mv;
@@ -127,6 +130,21 @@ public class RoomController {
 	 */
 	@RequestMapping(value="/infoconfirm")
 	public ModelAndView infoconfirm(ModelAndView mv) {
+
+		User user = (User) session.getAttribute("user");
+		int userscode = user.getCode();
+		String date = (String) session.getAttribute("date");
+		String start = (String) session.getAttribute("start");
+		String finish = (String) session.getAttribute("finish");
+		String room = (String) session.getAttribute("roomname");
+		String seat = (String) session.getAttribute("seat");
+
+
+		Reserve reserve = new Reserve(userscode,date,start,finish,room,seat);//引数に予約情報を格納
+
+
+		//予約実行　データベースに登録
+		reserveRepository.saveAndFlush(reserve);
 
 
 		mv.setViewName("infoConfirm");

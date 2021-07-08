@@ -26,7 +26,11 @@ public class ReserveController {
 	public ModelAndView reserve(ModelAndView mv) {
 
 	//予約データベース（reserve）からデータを取得
-		List<Reserve> reserveList = reserveRepository.findAll();
+		User user = (User) session.getAttribute("user");
+		int id = user.getCode();
+
+		//Optional<Reserve> reserveList = reserveRepository.findById(id);
+		List<Reserve>reserveList =  reserveRepository.findAll();
 		mv.addObject("reserveList", reserveList);
 
 		mv.setViewName("reserve");
