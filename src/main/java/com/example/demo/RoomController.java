@@ -36,7 +36,7 @@ public class RoomController {
 	/**
 	 * 全会議室を表示
 	 */
-	@RequestMapping(value="/room")
+	@RequestMapping(value = "/room")
 	public ModelAndView room(ModelAndView mv) {
 		List<Room> roomList = roomRepository.findAll();
 		mv.addObject("room", roomList);
@@ -48,11 +48,10 @@ public class RoomController {
 	/**
 	 * 日時選択画面を表示
 	 */
-	@RequestMapping(value="/info")
+	@RequestMapping(value = "/info")
 	public ModelAndView info(
 			@RequestParam("CODE") Integer code,
-			ModelAndView mv
-	) {
+			ModelAndView mv) {
 		Optional<Room> room = roomRepository.findById(code);
 
 		if (!room.isEmpty()) {
@@ -63,7 +62,6 @@ public class RoomController {
 			session.setAttribute("roomcode", roomcode);
 			session.setAttribute("roomname", roomname);
 		}
-
 
 		mv.setViewName("info");
 		return mv;
@@ -92,46 +90,9 @@ public class RoomController {
 			mv.setViewName("info");
 		} else {
 
-		//予約情報をセッションに格納
-		session.setAttribute("date", date);
-		session.setAttribute("start", start);
-		session.setAttribute("finish", finish);
-
-		//座席選択画面にも予約日時を表示させる
-		mv.addObject("date",date);
-		mv.addObject("start",start);
-		mv.addObject("finish",finish);
-
-		//座席選択画面へ
-		mv.setViewName("seat");
-		}
-		return mv;
-	}
-
-	@RequestMapping(value="/seat", method = RequestMethod.POST)
-	public ModelAndView seat(ModelAndView mv) {
-
-		//座席選択画面へ
-		mv.setViewName("seat");
-		return mv;
-	}
-
-	/**
-	 *予約確認画面を表示
-	 */
-	@RequestMapping(value="/infocheck")
-	public ModelAndView infocheck(
-			@RequestParam(name="seat", defaultValue="0") String seat,
-			ModelAndView mv
-	) {
-		if(seat.equals("0")) {
-			mv.addObject("ERROR", "座席を選択してください。");
-			mv.setViewName("seat");
-		} else {
-
-			String date = (String) session.getAttribute("date");
-			String start = (String) session.getAttribute("start");
-			String finish = (String) session.getAttribute("finish");
+//			String date = (String) session.getAttribute("date");
+//			String start = (String) session.getAttribute("start");
+//			String finish = (String) session.getAttribute("finish");
 			String room = (String) session.getAttribute("roomname");
 
 
@@ -147,7 +108,8 @@ public class RoomController {
 			}
 
 
-String sql = "SELECT * FROM reserve WHERE reservedate = ? and (start = ? or finish = ? or start < ? and finish > ?) and room = ? and seat = ?";//重複チェック
+//String sql = "SELECT * FROM reserve WHERE reservedate = ? and (start = ? or finish = ? or start < ? and finish > ?) and room = ? and seat = ?";//重複チェック
+			String sql = "SELECT * FROM reserve WHERE reservedate = ? and (start = ? or finish = ? or start < ? and finish > ?) and room = ?";//重複チェック
 
 			try (
 				//データベースへの接続
@@ -162,17 +124,85 @@ String sql = "SELECT * FROM reserve WHERE reservedate = ? and (start = ? or fini
 				ps.setString(4,finish);
 				ps.setString(5,start);
 				ps.setString(6,room);
-				ps.setString(7,seat);
+			//	ps.setString(7,seat);
 				//SQL文の実行
 				//SELECT文を実行する
 				ResultSet rs = ps.executeQuery();
 
-				if (rs.next() == true) {        //データがあったら実行
-					mv.addObject("ERROR","この席はすでに予約が入っています。");
-					mv.setViewName("seat");
-				}else {
+				boolean s1 = false;
+				boolean s2 = false;
+				boolean s3 = false;
+				boolean s4 = false;
+				boolean s5 = false;
+				boolean s6 = false;
+				boolean s7 = false;
+				boolean s8 = false;
+				boolean s9 = false;
+				boolean s10 = false;
 
-					mv.setViewName("infoCheck");
+			if (rs.next() == true) {//データがあったら(同じ時間に予約が入っていたら)実行
+
+				while(rs.next() == true) {
+						if(rs.getString("seat").equals("1")) {
+							s1 = true;
+						}else if(rs.getString("seat").equals("2")) {
+							s2 = true;
+						}else if(rs.getString("seat").equals("3")) {
+							s3 = true;
+						}else if(rs.getString("seat").equals("4")) {
+							s4 = true;
+						}else if(rs.getString("seat").equals("5")) {
+							s5 = true;
+						}else if(rs.getString("seat").equals("6")) {
+							s6 = true;
+						}else if(rs.getString("seat").equals("7")) {
+							s7 = true;
+						}else if(rs.getString("seat").equals("8")) {
+							s8 = true;
+						}else if(rs.getString("seat").equals("9")) {
+							s9 = true;
+						}else if(rs.getString("seat").equals("10")) {
+							s10 = true;
+						}
+				}
+
+				mv.addObject("s1",s1);
+				mv.addObject("s1",s1);
+				mv.addObject("s1",s1);
+				mv.addObject("s1",s1);
+				mv.addObject("s1",s1);
+				mv.addObject("s1",s1);
+				mv.addObject("s1",s1);
+				mv.addObject("s1",s1);
+				mv.addObject("s1",s1);
+				mv.addObject("s1",s1);
+				mv.addObject("s1",s1);
+
+//				if (rs.next() == true) {        //データがあったら(同じ時間に予約が入っていたら)実行
+//
+//					List<String> list = new ArrayList();
+//					list.add(rs.getString("seat"));//reserveテーブルのseat列の値（席番号）をStringで取得
+//
+//					while(rs.next() == true) {
+//						list.add(rs.getString("seat"));//reserveテーブルのseat列の値（席番号）をStringで取得
+//
+//					}
+//					mv.addObject("s",list);
+
+//					for(String l:list) {
+//
+//						String s = "seat"+l;
+//
+//						session.setAttribute("s", );
+//					}
+
+//					session.setAttribute("seat", reserved);
+
+					mv.setViewName("seat");
+
+				}else {//同じ時間帯に予約が入っていなければそのまま座席選択画面に遷移
+
+					mv.setViewName("seat");
 				}
 
 			} catch (SQLException e) {
@@ -180,7 +210,107 @@ String sql = "SELECT * FROM reserve WHERE reservedate = ? and (start = ? or fini
 			}
 
 
-		session.setAttribute("seat", seat);
+		//予約情報をセッションに格納
+		session.setAttribute("date", date);
+		session.setAttribute("start", start);
+		session.setAttribute("finish", finish);
+
+		//座席選択画面にも予約日時を表示させる
+		mv.addObject("date",date);
+		mv.addObject("start",start);
+		mv.addObject("finish",finish);
+
+		//座席選択画面へ
+		mv.setViewName("seat");
+		}return mv;
+
+	}
+
+	@RequestMapping(value = "/seat", method = RequestMethod.POST)
+	public ModelAndView seat(ModelAndView mv) {
+
+		//座席選択画面へ
+		mv.setViewName("seat");
+		return mv;
+	}
+
+	/**
+	 *予約確認画面を表示
+	 */
+	@SuppressWarnings("null")
+	@RequestMapping(value = "/infocheck")
+	public ModelAndView infocheck(
+			@RequestParam(name = "seat", defaultValue = "0") String seat,
+			ModelAndView mv) {
+		if (seat.equals("0")) {
+			mv.addObject("ERROR", "座席を選択してください。");
+			mv.setViewName("seat");
+		} else {
+
+			//			String date = (String) session.getAttribute("date");
+			//			String start = (String) session.getAttribute("start");
+			//			String finish = (String) session.getAttribute("finish");
+			//			String room = (String) session.getAttribute("roomname");
+			//
+			//
+			//			String url = "jdbc:postgresql:zaseki_db"; //接続するDBのURL
+			//			String user = "postgres"; //ユーザ名
+			//			String pass = "himitu"; //パスワード
+			//
+			//			try {
+			//				Class.forName("org.postgresql.Driver");
+			//			} catch (ClassNotFoundException e) {
+			//				e.printStackTrace();
+			//				System.out.println("JDBCドライバが登録されていないよ！");
+			//			}
+			//
+			//
+			////String sql = "SELECT * FROM reserve WHERE reservedate = ? and (start = ? or finish = ? or start < ? and finish > ?) and room = ? and seat = ?";//重複チェック
+			//			String sql = "SELECT * FROM reserve WHERE reservedate = ? and (start = ? or finish = ? or start < ? and finish > ?) and room = ?";//重複チェック
+			//
+			//			try (
+			//				//データベースへの接続
+			//				Connection con = DriverManager.getConnection(url, user, pass);
+			//				//SQL文の実行の準備をして実行に備える
+			//				PreparedStatement ps = con.prepareStatement(sql);
+			//			){
+			//				//プレースホルダの部分に値を設定
+			//				ps.setString(1,date);
+			//				ps.setString(2,start);
+			//				ps.setString(3,finish);
+			//				ps.setString(4,finish);
+			//				ps.setString(5,start);
+			//				ps.setString(6,room);
+			//			//	ps.setString(7,seat);
+			//				//SQL文の実行
+			//				//SELECT文を実行する
+			//				ResultSet rs = ps.executeQuery();
+			//
+			//
+			//
+			//				if (rs.next() == true) {        //データがあったら実行
+			//					mv.addObject("ERROR","この席はすでに予約が入っています。");
+			//					List<String> list = new ArrayList();
+			//					list.add(rs.getString("seat"));//reserveテーブルのseat列の値（席番号）をStringで取得
+			//
+			//					while(rs.next() == true) {
+			//						list.add(rs.getString("seat"));//reserveテーブルのseat列の値（席番号）をStringで取得
+			//
+			//					}
+			//
+			//					System.out.println(list);
+			//					mv.setViewName("seat");
+			//
+			//				}else {
+			//					session.setAttribute("seat", seat);
+			//					mv.setViewName("infoCheck");
+			//				}
+			//
+			//			} catch (SQLException e) {
+			//				e.printStackTrace();
+			//			}
+
+			session.setAttribute("seat", seat);
 
 		}
 		return mv;
@@ -189,7 +319,7 @@ String sql = "SELECT * FROM reserve WHERE reservedate = ? and (start = ? or fini
 	/**
 	 *予約確認画面を表示
 	 */
-	@RequestMapping(value="/infoconfirm")
+	@RequestMapping(value = "/infoconfirm")
 	public ModelAndView infoconfirm(ModelAndView mv) {
 
 		User user = (User) session.getAttribute("user");
@@ -202,28 +332,24 @@ String sql = "SELECT * FROM reserve WHERE reservedate = ? and (start = ? or fini
 
 		//今日（予約日）の日付を取得
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-        String str = sdf.format(timestamp);
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String str = sdf.format(timestamp);
 		Date today = Date.valueOf(str);
 
-
-		Reserve reserve = new Reserve(userscode,today,date,start,finish,room,seat);//引数に予約情報を格納
-
+		Reserve reserve = new Reserve(userscode, today, date, start, finish, room, seat);//引数に予約情報を格納
 
 		//予約実行　データベースに登録
 		reserveRepository.saveAndFlush(reserve);
-
 
 		mv.setViewName("infoConfirm");
 		return mv;
 	}
 
-	@RequestMapping(value="/main")
+	@RequestMapping(value = "/main")
 	public ModelAndView main(ModelAndView mv) {
 
 		mv.setViewName("main");
 		return mv;
 	}
-
 
 }
