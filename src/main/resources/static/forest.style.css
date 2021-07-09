@@ -23,95 +23,281 @@ border: 2px solid #008000;/* ボックスの境界線を実線で指定する */
 border-radius: 100px; /* 角丸を指定する */
 }
 
+.tree {
+	position:  absolute;        /* 要素の配置方法を指定 */
+    padding:  10px;             /* 余白指定 */
+    border: 1px solid #000000; /* ボックスの境界線を実線で指定する */
+    width: 120px; /* ボックスの横幅を指定する */
+	height: 100px; /* ボックスの高さを指定する */
+	left:  800px;                /* 左からの位置指定 */
+    top: 300px;                  /* 上からの位置指定 */
+    text-align: center;			/* テキストのセンタリングを指定する */
+    border-radius: 80px; /* 角丸を指定する */
+}
+.door {
+	position:  absolute;        /* 要素の配置方法を指定 */
+    padding:  10px;             /* 余白指定 */
+    border: 1px solid #000000; /* ボックスの境界線を実線で指定する */
+    width: 120px; /* ボックスの横幅を指定する */
+	height: 10px; /* ボックスの高さを指定する */
+	left:  50px;                /* 左からの位置指定 */
+    top: 100px;                  /* 上からの位置指定 */
+    text-align: center;			/* テキストのセンタリングを指定する */
+}
+.etc {
+	position:  absolute;        /* 要素の配置方法を指定 */
+    padding:  10px;             /* 余白指定 */
+    border: 1px solid #000000; /* ボックスの境界線を実線で指定する */
+    width: 90px; /* ボックスの横幅を指定する */
+	height: 400px; /* ボックスの高さを指定する */
+	left:  10px;                /* 左からの位置指定 */
+    top: 190px;                  /* 上からの位置指定 */
+    text-align: center;			/* テキストのセンタリングを指定する */
+}
+.waku {
+	position:  absolute;        /* 要素の配置方法を指定 */
+    padding:  10px;             /* 余白指定 */
+    border: 1px solid #000000; /* ボックスの境界線を実線で指定する */
+    width: 1500px; /* ボックスの横幅を指定する */
+	height: 550px; /* ボックスの高さを指定する */
 
+}
 
-.seat_1 {
-    position:  absolute;        /* 要素の配置方法を指定 */
-    padding:  0px;             /* 余白指定 */
-    left:  100px;                /* 左からの位置指定 */
-    top: 100px;                  /* 上からの位置指定 */
-}
-.seat_2 {
-    position:  absolute;        /* 要素の配置方法を指定 */
-    padding:  0px;             /* 余白指定 */
-    left: 180px;                /* 左からの位置指定 */
-    top: 100px;                  /* 上からの位置指定 */
-}
-.seat_3 {
-    position:  absolute;        /* 要素の配置方法を指定 */
-    padding:  0px;             /* 余白指定 */
-    left: 260px;                /* 左からの位置指定 */
-    top: 100px;                  /* 上からの位置指定 */
-}
-.seat_4 {
-    position:  absolute;        /* 要素の配置方法を指定 */
-    padding:  0px;             /* 余白指定 */
-    left: 340px;                /* 左からの位置指定 */
-    top: 100px;                  /* 上からの位置指定 */
-}
-.seat_5 {
-    position:  absolute;        /* 要素の配置方法を指定 */
-    padding:  0px;             /* 余白指定 */
-    left: 420px;                /* 左からの位置指定 */
-    top: 100px;                  /* 上からの位置指定 */
-}
-.seat_6 {
-    position:  absolute;        /* 要素の配置方法を指定 */
-    padding:  0px;             /* 余白指定 */
-    left: 180px;                /* 左からの位置指定 */
-    top: 100px;                  /* 上からの位置指定 */
-}
-.seat_7 {
-    position:  absolute;        /* 要素の配置方法を指定 */
-    padding:  0px;             /* 余白指定 */
-    left: 500px;                /* 左からの位置指定 */
-    top: 100px;                  /* 上からの位置指定 */
-}
-.seat_8 {
-    position:  absolute;        /* 要素の配置方法を指定 */
-    padding:  0px;             /* 余白指定 */
-    left: 580px;                /* 左からの位置指定 */
-    top: 100px;                  /* 上からの位置指定 */
-}
-.seat_9 {
-    position:  absolute;        /* 要素の配置方法を指定 */
-    padding:  0px;             /* 余白指定 */
-    left: 660px;                /* 左からの位置指定 */
-    top: 100px;                  /* 上からの位置指定 */
-}
-.seat_10 {
-    position:  absolute;        /* 要素の配置方法を指定 */
-    padding:  0px;             /* 余白指定 */
-    left: 740px;                /* 左からの位置指定 */
-    top: 100px;                  /* 上からの位置指定 */
-}
-.table_1 {
+.stair_1 {
 	position:  absolute;        /* 要素の配置方法を指定 */
     padding:  0px;             /* 余白指定 */
-    left: 90px;                /* 左からの位置指定 */
-    top: 150px;                  /* 上からの位置指定 */
-    background-color:  #ccc;
-    width:  700px;              /* 幅指定 */
-    height: 45px;               /* 高さ指定 */
-    text-align: center;
+    border-bottom: 80px solid orange;
+    border-left: 20px solid transparent;
+    border-right: 20px solid transparent;
+    border: 1px solid #000000;		/* ボックスの境界線を実線で指定する */
+    width: 800px;
+    height: 100px;
+	left: 300px;                /* 左からの位置指定 */
+    top: 500px;                  /* 上からの位置指定 */
+
 }
+.long_common{
+	position:  absolute;        /* 要素の配置方法を指定 */
+    padding:  0px;             /* 余白指定 */
+	width: 120px; /* ボックスの横幅を指定する */
+	height: 270px; /* ボックスの高さを指定する */
+	border: 1px solid #000000;		/* ボックスの境界線を実線で指定する */
+	border-radius: 10px; /* 角丸を指定する */
+}
+.long_1{
+	left: 300px;                /* 左からの位置指定 */
+    top: 255px;                  /* 上からの位置指定 */
+}
+.long_2{
+	left: 575px;                /* 左からの位置指定 */
+    top: 255px;                  /* 上からの位置指定 */
+}
+.long_3{
+	left: 1025px;                /* 左からの位置指定 */
+    top: 255px;                  /* 上からの位置指定 */
+}
+.long_4{
+	left: 1300px;                /* 左からの位置指定 */
+    top: 255px;                  /* 上からの位置指定 */
+}
+.table_common {
+	position:  absolute;        /* 要素の配置方法を指定 */
+    padding:  0px;             /* 余白指定 */
+    background-color: rgb(0, 128, 0);		/* 背景色を指定する */
+    width:  150px;              /* 幅指定 */
+    height: 70px;               /* 高さ指定 */
+    text-align: center;			/* テキストのセンタリングを指定する */
+    border: 1px solid #000000;		/* ボックスの境界線を実線で指定する */
+}
+.table_1 {
+    left: 250px;                /* 左からの位置指定 */
+    top: 100px;                  /* 上からの位置指定 */
+}
+.table_2 {
+    left: 400px;                /* 左からの位置指定 */
+    top: 100px;                  /* 上からの位置指定 */
+}
+.table_3 {
+    left: 550px;                /* 左からの位置指定 */
+    top: 100px;                  /* 上からの位置指定 */
+}
+.table_4 {
+    left: 700px;                /* 左からの位置指定 */
+    top: 100px;                  /* 上からの位置指定 */
+}
+.table_5 {
+    left: 850px;                /* 左からの位置指定 */
+    top: 100px;                  /* 上からの位置指定 */
+}
+.table_6 {
+    left: 1000px;                /* 左からの位置指定 */
+    top: 100px;                  /* 上からの位置指定 */
+}
+.table_7 {
+    left: 1150px;                /* 左からの位置指定 */
+    top: 100px;                  /* 上からの位置指定 */
+}
+.table_8 {
+    left: 1300px;                /* 左からの位置指定 */
+    top: 100px;                  /* 上からの位置指定 */
+}
+.seat_common {
+	position:  absolute;        /* 要素の配置方法を指定 */
+    padding:  0px;             /* 余白指定 */
+}
+.seat_1 {
+    left:  310px;                /* 左からの位置指定 */
+    top: 180px;                  /* 上からの位置指定 */
+}
+.seat_2 {
+    left: 460px;                /* 左からの位置指定 */
+    top: 180px;                  /* 上からの位置指定 */
+}
+.seat_3 {
+    left: 610px;                /* 左からの位置指定 */
+    top: 180px;                  /* 上からの位置指定 */
+}
+.seat_4 {
+    left: 760px;                /* 左からの位置指定 */
+    top: 180px;                  /* 上からの位置指定 */
+}
+.seat_5 {
+    left: 910px;                /* 左からの位置指定 */
+    top: 180px;                  /* 上からの位置指定 */
+}
+.seat_6 {
+    left: 1060px;                /* 左からの位置指定 */
+    top: 180px;                  /* 上からの位置指定 */
+}
+.seat_7 {
+    left: 1210px;                /* 左からの位置指定 */
+    top: 180px;                  /* 上からの位置指定 */
+}
+.seat_8 {
+    left: 1360px;                /* 左からの位置指定 */
+    top: 180px;                  /* 上からの位置指定 */
+}
+
+
+.seat_9 {
+    left: 250px;                /* 左からの位置指定 */
+    top: 290px;                  /* 上からの位置指定 */
+}
+.seat_10 {
+    left: 440px;                /* 左からの位置指定 */
+    top: 290px;              /* 上からの位置指定 */
+}
+.seat_11 {
+    left: 525px;                /* 左からの位置指定 */
+    top: 290px;              /* 上からの位置指定 */
+}
+.seat_12 {
+    left: 715px;                /* 左からの位置指定 */
+    top: 290px;              /* 上からの位置指定 */
+}
+.seat_13 {
+    left: 975px;                /* 左からの位置指定 */
+    top: 290px;              /* 上からの位置指定 */
+}
+.seat_14 {
+    left: 1165px;                /* 左からの位置指定 */
+    top: 290px;              /* 上からの位置指定 */
+}
+.seat_15 {
+    left: 1250px;                /* 左からの位置指定 */
+    top: 290px;              /* 上からの位置指定 */
+}
+.seat_16 {
+    left: 1440px;                /* 左からの位置指定 */
+    top: 290px;              /* 上からの位置指定 */
+}
+
+
+.seat_17 {
+    left: 250px;                /* 左からの位置指定 */
+    top: 375px;              /* 上からの位置指定 */
+}
+.seat_18 {
+    left: 440px;                /* 左からの位置指定 */
+    top: 375px;              /* 上からの位置指定 */
+}
+.seat_19 {
+    left: 525px;                /* 左からの位置指定 */
+    top: 375px;              /* 上からの位置指定 */
+}
+.seat_20 {
+    left: 715px;                /* 左からの位置指定 */
+    top: 375px;              /* 上からの位置指定 */
+}
+.seat_21 {
+    left: 975px;                /* 左からの位置指定 */
+    top: 375px;              /* 上からの位置指定 */
+}
+.seat_22 {
+    left: 1165px;                /* 左からの位置指定 */
+    top: 375px;              /* 上からの位置指定 */
+}
+.seat_23 {
+    left: 1250px;                /* 左からの位置指定 */
+    top: 375px;              /* 上からの位置指定 */
+}
+.seat_24 {
+    left: 1440px;                /* 左からの位置指定 */
+    top: 375px;              /* 上からの位置指定 */
+}
+
+
+.seat_25 {
+    left: 250px;                /* 左からの位置指定 */
+    top: 460px;              /* 上からの位置指定 */
+}
+.seat_26 {
+    left: 440px;                /* 左からの位置指定 */
+    top: 460px;              /* 上からの位置指定 */
+}
+.seat_27 {
+    left: 525px;                /* 左からの位置指定 */
+    top: 460px;              /* 上からの位置指定 */
+}
+.seat_28 {
+    left: 715px;                /* 左からの位置指定 */
+    top: 460px;              /* 上からの位置指定 */
+}
+.seat_29 {
+    left: 975px;                /* 左からの位置指定 */
+    top: 460px;              /* 上からの位置指定 */
+}
+.seat_30 {
+    left: 1165px;                /* 左からの位置指定 */
+    top: 460px;              /* 上からの位置指定 */
+}
+.seat_31 {
+    left: 1250px;                /* 左からの位置指定 */
+    top: 460px;              /* 上からの位置指定 */
+}
+.seat_32 {
+    left: 1440px;                /* 左からの位置指定 */
+    top: 460px;              /* 上からの位置指定 */
+}
+
+
+
 .ok {
 	position:  absolute;        /* 要素の配置方法を指定 */
     padding:  0px;             /* 余白指定 */
-    left: 420px;                /* 左からの位置指定 */
-    top: 350px;                  /* 上からの位置指定 */
+    top: 690px;                  /* 上からの位置指定 */
 }
 .table {
 	position:  absolute;        /* 要素の配置方法を指定 */
     padding:  0px;             /* 余白指定 */
     left: 300px;                /* 左からの位置指定 */
     top: 220px;                  /* 上からの位置指定 */
-    text-align: center;
+    text-align: center;			/* テキストのセンタリングを指定する */
 }
 .check {
 	position:  absolute;        /* 要素の配置方法を指定 */
     padding:  0px;             /* 余白指定 */
     left: 340px;                /* 左からの位置指定 */
-    top: 300px;                  /* 上からの位置指定 */
-    text-align: center;
+    top: 600px;                  /* 上からの位置指定 */
+    text-align: center;			/* テキストのセンタリングを指定する */
 }
