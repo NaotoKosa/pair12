@@ -1,6 +1,11 @@
 package com.example.demo;
 
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.DriverManager;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
@@ -79,20 +84,14 @@ public class RoomController {
 		int future = todaysDate.compareTo(dat);
 		System.out.println(future);
 
-		int s = Integer.parseInt(start);
-		int f = Integer.parseInt(finish);
-
-
 		if (date.equals("1000-01-01")) {
 			mv.addObject("ERROR", "日付けを選択してください。");
 			mv.setViewName("info");
 		} else if(past==true) {
 			mv.addObject("ERROR", "過去は選択できません。");
 			mv.setViewName("info");
-		} else if(s>= f) {
-			mv.addObject("TIMEERROR", "時間設定を見直してください。");
-			mv.setViewName("info");
 		} else {
+
 		//予約情報をセッションに格納
 		session.setAttribute("date", date);
 		session.setAttribute("start", start);
@@ -129,8 +128,60 @@ public class RoomController {
 			mv.addObject("ERROR", "座席を選択してください。");
 			mv.setViewName("seat");
 		} else {
+
+			String date = (String) session.getAttribute("date");
+			String start = (String) session.getAttribute("start");
+			String finish = (String) session.getAttribute("finish");
+			String room = (String) session.getAttribute("roomname");
+
+
+			String url = "jdbc:postgresql:zaseki_db"; //接続するDBのURL
+			String user = "postgres"; //ユーザ名
+			String pass = "himitu"; //パスワード
+
+			try {
+				Class.forName("org.postgresql.Driver");
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+				System.out.println("JDBCドライバが登録されていないよ！");
+			}
+
+
+String sql = "SELECT * FROM reserve WHERE reservedate = ? and (start = ? or finish = ? or start < ? and finish > ?) and room = ? and seat = ?";//重複チェック
+
+			try (
+				//データベースへの接続
+				Connection con = DriverManager.getConnection(url, user, pass);
+				//SQL文の実行の準備をして実行に備える
+				PreparedStatement ps = con.prepareStatement(sql);
+			){
+				//プレースホルダの部分に値を設定
+				ps.setString(1,date);
+				ps.setString(2,start);
+				ps.setString(3,finish);
+				ps.setString(4,finish);
+				ps.setString(5,start);
+				ps.setString(6,room);
+				ps.setString(7,seat);
+				//SQL文の実行
+				//SELECT文を実行する
+				ResultSet rs = ps.executeQuery();
+
+				if (rs.next() == true) {        //データがあったら実行
+					mv.addObject("ERROR","この席はすでに予約が入っています。");
+					mv.setViewName("seat");
+				}else {
+
+					mv.setViewName("infoCheck");
+				}
+
+			} catch (SQLException e) {
+				e.printStackTrace();
+			}
+
+
 		session.setAttribute("seat", seat);
-		mv.setViewName("infoCheck");
+
 		}
 		return mv;
 	}
