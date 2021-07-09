@@ -82,6 +82,7 @@ public class RoomController {
 		int s = Integer.parseInt(start);
 		int f = Integer.parseInt(finish);
 
+
 		if (date.equals("1000-01-01")) {
 			mv.addObject("ERROR", "日付けを選択してください。");
 			mv.setViewName("info");
