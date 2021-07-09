@@ -27,10 +27,10 @@ public class ReserveController {
 
 	//予約データベース（reserve）からデータを取得
 		User user = (User) session.getAttribute("user");
-		int id = user.getCode();
+		int userscode = user.getCode();
 
-		//Optional<Reserve> reserveList = reserveRepository.findById(id);
-		List<Reserve>reserveList =  reserveRepository.findAll();
+
+		List<Reserve> reserveList = reserveRepository.findByUserscode(userscode);
 		mv.addObject("reserveList", reserveList);
 
 		mv.setViewName("reserve");
