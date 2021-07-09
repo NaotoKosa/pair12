@@ -7,10 +7,12 @@
 <body>
 
 	<h1>情報入力画面</h1>
-	<span th:text="${ERROR}"></span>
+	<span th:text="${ERROR}"  style="color : red "></span>
 	<form action="/seat" method="get">
 	<input type="date" name="date">
 	<br>
+	<br>
+	<span th:text="${TIMEERROR}" style="color : red "></span>
 	<br>
 	START
 	<select name="start" size="1">

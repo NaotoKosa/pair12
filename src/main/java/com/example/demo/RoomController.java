@@ -79,11 +79,17 @@ public class RoomController {
 		int future = todaysDate.compareTo(dat);
 		System.out.println(future);
 
+		int s = Integer.parseInt(start);
+		int f = Integer.parseInt(finish);
+
 		if (date.equals("1000-01-01")) {
 			mv.addObject("ERROR", "日付けを選択してください。");
 			mv.setViewName("info");
 		} else if(past==true) {
 			mv.addObject("ERROR", "過去は選択できません。");
+			mv.setViewName("info");
+		} else if(s>= f) {
+			mv.addObject("TIMEERROR", "時間設定を見直してください。");
 			mv.setViewName("info");
 		} else {
 		//予約情報をセッションに格納
