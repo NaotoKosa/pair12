@@ -29,16 +29,18 @@
 	<td th:text="${session.finish}"></td>
 </tr>
 </table>
-<span class="check" th:text="上記内容でよろしいですか？"></span>
+<span class="check" th:text="この内容でよろしいですか？"></span>
 
-<div class="ok">
+<a class="ok">
 <form action="/infoconfirm" method="get">
 <input type="submit" value="確認">
 </form>
+</a>
+<a class="back">
 <form action="/seat" method="post">
 <input type="submit" value="戻る">
 </form>
-</div>
+</a>
 
 
 </body>

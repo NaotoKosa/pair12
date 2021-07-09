@@ -348,19 +348,25 @@ border-radius: 100px; /* 角丸を指定する */
 .ok {
 	position:  absolute;        /* 要素の配置方法を指定 */
     padding:  0px;             /* 余白指定 */
-    top: 690px;                  /* 上からの位置指定 */
+    top: 680px;                  /* 上からの位置指定 */
 }
+.back {
+	position:  absolute;        /* 要素の配置方法を指定 */
+    padding:  0px;             /* 余白指定 */
+    left: 50px;
+    top: 680px;                  /* 上からの位置指定 */
+}
+
 .table {
 	position:  absolute;        /* 要素の配置方法を指定 */
     padding:  0px;             /* 余白指定 */
-    left: 300px;                /* 左からの位置指定 */
-    top: 220px;                  /* 上からの位置指定 */
+    left: 120px;                /* 左からの位置指定 */
+    top: 680px;                  /* 上からの位置指定 */
     text-align: center;			/* テキストのセンタリングを指定する */
 }
 .check {
 	position:  absolute;        /* 要素の配置方法を指定 */
     padding:  0px;             /* 余白指定 */
-    left: 340px;                /* 左からの位置指定 */
-    top: 600px;                  /* 上からの位置指定 */
-    text-align: center;			/* テキストのセンタリングを指定する */
+    left: 550px;
+    top: 680px;                  /* 上からの位置指定 */
 }
