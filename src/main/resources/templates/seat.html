@@ -18,8 +18,8 @@ background-color: rgb(129, 129, 129); /* マウスオーバー時の背景色を
 <h1>座席表</h1>
 <form action="/infocheck" method="get">
 
-<span th:if="${session.roomcode == 1}" th:replace="forest"></span>
-<span th:if="${session.roomcode == 2}" replace="ocean"></span>
+<span th:if="${session.roomcode == 1}"><input th:replace="forest"></span>
+<span th:if="${session.roomcode == 2}"><input th:replace="ocean"></span>
 
 <span th:text="${ERROR}"></span>
 
