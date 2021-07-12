@@ -17,7 +17,6 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -361,13 +360,13 @@ public class RoomController {
 
 	}
 
-	@RequestMapping(value = "/seat", method = RequestMethod.POST)
-	public ModelAndView seat(ModelAndView mv) {
-
-		//座席選択画面へ
-		mv.setViewName("seat");
-		return mv;
-	}
+//	@RequestMapping(value = "/seat", method = RequestMethod.POST)
+//	public ModelAndView seat(ModelAndView mv) {
+//
+//		//座席選択画面へ
+//		mv.setViewName("seat");
+//		return mv;
+//	}
 
 	/**
 	 *予約確認画面を表示
