@@ -8,6 +8,11 @@ background: rgb(128, 64, 0);/* マウス選択時の背景色を指定する */
 color: #ffffff; /* マウス選択時のフォント色を指定する */
 }
 
+input[type="radio"]:disabled + label {
+background: #808080;/* マウス選択時の背景色を指定する */
+color: #ffffff; /* マウス選択時のフォント色を指定する */
+}
+
 .label {
 display: block; /* ブロックレベル要素化する */
 float: left; /* 要素の左寄せ・回り込を指定する */
