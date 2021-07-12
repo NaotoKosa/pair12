@@ -30,7 +30,7 @@ border-radius: 100px; /* 角丸を指定する */
 	left:  50px;                /* 左からの位置指定 */
     top: 100px;                  /* 上からの位置指定 */
     text-align: center;			/* テキストのセンタリングを指定する */
-    background-color: #008080;		/* 背景色を指定する */
+    background-color: #0099CC;		/* 背景色を指定する */
 }
 .etc {
 	position:  absolute;        /* 要素の配置方法を指定 */
@@ -41,21 +41,91 @@ border-radius: 100px; /* 角丸を指定する */
 	left:  10px;                /* 左からの位置指定 */
     top: 190px;                  /* 上からの位置指定 */
     text-align: center;			/* テキストのセンタリングを指定する */
-    background-color: #008080;		/* 背景色を指定する */
+    background-color: #0099CC;		/* 背景色を指定する */
 }
 .waku {
 	position:  absolute;        /* 要素の配置方法を指定 */
     padding:  10px;             /* 余白指定 */
     border: 1px solid #000000; /* ボックスの境界線を実線で指定する */
-    width: 1500px; /* ボックスの横幅を指定する */
+    width: 1485px; /* ボックスの横幅を指定する */
 	height: 550px; /* ボックスの高さを指定する */
 
 }
 
+
+.para_common {
+	position:  absolute;        /* 要素の配置方法を指定 */
+    padding:  0px;             /* 余白指定 */
+}
+.para_common div {
+	width: 100px; /* 辺の長さを調整 */
+	height: 180px; /* 辺の長さを調整 */
+	position: absolute;
+	left: 40px; /* 位置を調整 */
+	border-top: 3px solid #000; /* 辺の長さを調整 */
+	border-bottom: 3px solid #000; /* 辺の長さを調整 */
+	transform-origin: center; /* 初期値だけど必要な時用 */
+	box-sizing: border-box; /* 調節しやすくなる */
+	background-color: #0099CC;
+}
+.para_common div:nth-of-type(1) {
+	transform: rotate(0deg);
+	border-color: #FFD700;
+}
+.para_common div:nth-of-type(2) {
+	transform: rotate(60deg);
+	border-color: #FFD700;
+}
+
+.para_common div:nth-of-type(3) {
+	transform: rotate(120deg);
+	border-color: #FFD700;
+}
+.para_1 {
+	left: 500px;                /* 左からの位置指定 */
+    top: 285px;                  /* 上からの位置指定 */
+}
+.para_2 {
+	left: 900px;                /* 左からの位置指定 */
+    top: 285px;                  /* 上からの位置指定 */
+}
+
+
+.sofa_common {
+	position:  absolute;        /* 要素の配置方法を指定 */
+    padding:  0px;             /* 余白指定 */
+	width: 150px;
+  	height: 110px;
+  	border-radius : 80% 80% 80% 80% / 100% 100% 65% 65%;
+  	background-color: #ff7f50;
+  	border: 1px solid #000000;
+}
+.sofa_1 {
+	left: 300px;                /* 左からの位置指定 */
+    top: 550px;                  /* 上からの位置指定 */
+}
+.sofa_2 {
+	left: 500px;                /* 左からの位置指定 */
+    top: 550px;                  /* 上からの位置指定 */
+}
+.sofa_3 {
+	left: 700px;                /* 左からの位置指定 */
+    top: 550px;                  /* 上からの位置指定 */
+}
+.sofa_4 {
+	left: 900px;                /* 左からの位置指定 */
+    top: 550px;                  /* 上からの位置指定 */
+}
+.sofa_5 {
+	left: 1100px;                /* 左からの位置指定 */
+    top: 550px;                  /* 上からの位置指定 */
+}
+
+
 .table_common {
 	position:  absolute;        /* 要素の配置方法を指定 */
     padding:  0px;             /* 余白指定 */
-    background-color: #008080;		/* 背景色を指定する */
+    background-color: #0099CC;		/* 背景色を指定する */
     width:  150px;              /* 幅指定 */
     height: 70px;               /* 高さ指定 */
     text-align: center;			/* テキストのセンタリングを指定する */
@@ -93,7 +163,7 @@ border-radius: 100px; /* 角丸を指定する */
 .table_common2 {
 	position:  absolute;        /* 要素の配置方法を指定 */
     padding:  0px;             /* 余白指定 */
-    background-color: #008080;		/* 背景色を指定する */
+    background-color: #0099CC;		/* 背景色を指定する */
     width:  70px;              /* 幅指定 */
     height: 100px;               /* 高さ指定 */
     text-align: center;			/* テキストのセンタリングを指定する */
@@ -153,94 +223,94 @@ border-radius: 100px; /* 角丸を指定する */
 
 
 .seat_8 {
-    left: 1400px;                /* 左からの位置指定 */
-    top: 180px;                  /* 上からの位置指定 */
+    left: 1390px;                /* 左からの位置指定 */
+    top: 235px;                  /* 上からの位置指定 */
 }
 .seat_9 {
-    left: 250px;                /* 左からの位置指定 */
-    top: 280px;                  /* 上からの位置指定 */
+    left: 1390px;                /* 左からの位置指定 */
+    top: 335px;                  /* 上からの位置指定 */
 }
 .seat_10 {
-    left: 440px;                /* 左からの位置指定 */
-    top: 280px;              /* 上からの位置指定 */
+    left: 1390px;                /* 左からの位置指定 */
+    top: 435px;              /* 上からの位置指定 */
 }
 .seat_11 {
-    left: 525px;                /* 左からの位置指定 */
-    top: 280px;              /* 上からの位置指定 */
+    left: 1390px;                /* 左からの位置指定 */
+    top: 535px;              /* 上からの位置指定 */
 }
 
 
 .seat_12 {
-    left: 715px;                /* 左からの位置指定 */
-    top: 280px;              /* 上からの位置指定 */
+    left: 360px;                /* 左からの位置指定 */
+    top: 600px;              /* 上からの位置指定 */
 }
 .seat_13 {
-    left: 975px;                /* 左からの位置指定 */
-    top: 280px;              /* 上からの位置指定 */
+    left: 560px;                /* 左からの位置指定 */
+    top: 600px;              /* 上からの位置指定 */
 }
 .seat_14 {
-    left: 1165px;                /* 左からの位置指定 */
-    top: 280px;              /* 上からの位置指定 */
+    left: 760px;                /* 左からの位置指定 */
+    top: 600px;              /* 上からの位置指定 */
 }
 .seat_15 {
-    left: 1250px;                /* 左からの位置指定 */
-    top: 280px;              /* 上からの位置指定 */
+    left: 960px;                /* 左からの位置指定 */
+    top: 600px;              /* 上からの位置指定 */
 }
 .seat_16 {
-    left: 1440px;                /* 左からの位置指定 */
-    top: 280px;              /* 上からの位置指定 */
+    left: 1160px;                /* 左からの位置指定 */
+    top: 600px;              /* 上からの位置指定 */
 }
 
 
 .seat_17 {
-    left: 250px;                /* 左からの位置指定 */
-    top: 365px;              /* 上からの位置指定 */
+    left: 575px;                /* 左からの位置指定 */
+    top: 240px;              /* 上からの位置指定 */
 }
 .seat_18 {
-    left: 440px;                /* 左からの位置指定 */
-    top: 365px;              /* 上からの位置指定 */
+    left: 675px;                /* 左からの位置指定 */
+    top: 295px;              /* 上からの位置指定 */
 }
 .seat_19 {
-    left: 525px;                /* 左からの位置指定 */
-    top: 365px;              /* 上からの位置指定 */
+    left: 675px;                /* 左からの位置指定 */
+    top: 415px;              /* 上からの位置指定 */
 }
 .seat_20 {
-    left: 715px;                /* 左からの位置指定 */
-    top: 365px;              /* 上からの位置指定 */
+    left: 575px;                /* 左からの位置指定 */
+    top: 475px;              /* 上からの位置指定 */
 }
 .seat_21 {
-    left: 975px;                /* 左からの位置指定 */
-    top: 365px;              /* 上からの位置指定 */
+    left: 475px;                /* 左からの位置指定 */
+    top: 415px;              /* 上からの位置指定 */
 }
 .seat_22 {
-    left: 1165px;                /* 左からの位置指定 */
-    top: 365px;              /* 上からの位置指定 */
+    left: 475px;                /* 左からの位置指定 */
+    top: 295px;              /* 上からの位置指定 */
 }
+
+
 .seat_23 {
-    left: 1250px;                /* 左からの位置指定 */
-    top: 365px;              /* 上からの位置指定 */
+    left: 975px;                /* 左からの位置指定 */
+    top: 240px;              /* 上からの位置指定 */
 }
 .seat_24 {
-    left: 1440px;                /* 左からの位置指定 */
-    top: 365px;              /* 上からの位置指定 */
+    left: 1075px;                /* 左からの位置指定 */
+    top: 295px;              /* 上からの位置指定 */
 }
-
-
 .seat_25 {
-    left: 250px;                /* 左からの位置指定 */
-    top: 450px;              /* 上からの位置指定 */
+    left: 1075px;                /* 左からの位置指定 */
+    top: 415px;              /* 上からの位置指定 */
 }
 .seat_26 {
-    left: 440px;                /* 左からの位置指定 */
-    top: 450px;              /* 上からの位置指定 */
+    left: 975px;                /* 左からの位置指定 */
+    top: 475px;              /* 上からの位置指定 */
 }
 .seat_27 {
-    left: 525px;                /* 左からの位置指定 */
-    top: 450px;              /* 上からの位置指定 */
+    left: 875px;                /* 左からの位置指定 */
+    top: 415px;              /* 上からの位置指定 */
 }
 .seat_28 {
-    left: 715px;                /* 左からの位置指定 */
-    top: 450px;              /* 上からの位置指定 */
+    left: 875px;                /* 左からの位置指定 */
+    top: 295px;              /* 上からの位置指定 */
 }
 
 
