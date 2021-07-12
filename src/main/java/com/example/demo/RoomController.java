@@ -84,6 +84,7 @@ public class RoomController {
 		int s = Integer.parseInt(start);
 		int f = Integer.parseInt(finish);
 
+
 		if (date.equals("1000-01-01")) {
 			mv.addObject("ERROR", "日付けを選択してください。");
 			mv.setViewName("info");
@@ -93,7 +94,12 @@ public class RoomController {
 		} else if(s>= f) {
 			mv.addObject("TIMEERROR", "時間設定を見直してください。");
 			mv.setViewName("info");
-		} else {
+		}
+//		else if(list != null || list.size() != 0){
+//		mv.addObject("ERROR", "この時間はすでに予約しています。");
+//		mv.setViewName("info");
+//		}
+		else {
 
 //			String date = (String) session.getAttribute("date");
 //			String start = (String) session.getAttribute("start");
@@ -177,10 +183,12 @@ public class RoomController {
 				boolean s41 = false;
 				boolean s42 = false;
 
+				System.out.println(room);
 
 			if (rs.next() == true) {//データがあったら(同じ時間に予約が入っていたら)実行
 
-				while(rs.next() == true) {
+				do {
+					System.out.println(rs.getString("seat"));
 						if(rs.getString("seat").equals("1")) {
 							s1 = true;
 						}else if(rs.getString("seat").equals("2")) {
@@ -267,7 +275,7 @@ public class RoomController {
 							s42 = true;
 						}
 
-				}
+				}while(rs.next() == true);
 
 				mv.addObject("s1",s1);
 				mv.addObject("s2",s2);
