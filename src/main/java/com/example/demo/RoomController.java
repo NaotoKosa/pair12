@@ -145,6 +145,39 @@ public class RoomController {
 				boolean s8 = false;
 				boolean s9 = false;
 				boolean s10 = false;
+				boolean s11 = false;
+				boolean s12 = false;
+				boolean s13 = false;
+				boolean s14 = false;
+				boolean s15 = false;
+				boolean s16 = false;
+				boolean s17 = false;
+				boolean s18 = false;
+				boolean s19 = false;
+				boolean s20 = false;
+				boolean s21 = false;
+				boolean s22 = false;
+				boolean s23 = false;
+				boolean s24 = false;
+				boolean s25 = false;
+				boolean s26 = false;
+				boolean s27 = false;
+				boolean s28 = false;
+				boolean s29 = false;
+				boolean s30 = false;
+				boolean s31 = false;
+				boolean s32 = false;
+				boolean s33 = false;
+				boolean s34 = false;
+				boolean s35 = false;
+				boolean s36 = false;
+				boolean s37 = false;
+				boolean s38 = false;
+				boolean s39 = false;
+				boolean s40 = false;
+				boolean s41 = false;
+				boolean s42 = false;
+
 
 			if (rs.next() == true) {//データがあったら(同じ時間に予約が入っていたら)実行
 
@@ -169,20 +202,116 @@ public class RoomController {
 							s9 = true;
 						}else if(rs.getString("seat").equals("10")) {
 							s10 = true;
+						}else if(rs.getString("seat").equals("11")) {
+							s11 = true;
+						}else if(rs.getString("seat").equals("12")) {
+							s12 = true;
+						}else if(rs.getString("seat").equals("13")) {
+							s13 = true;
+						}else if(rs.getString("seat").equals("14")) {
+							s14 = true;
+						}else if(rs.getString("seat").equals("15")) {
+							s15 = true;
+						}else if(rs.getString("seat").equals("16")) {
+							s16 = true;
+						}else if(rs.getString("seat").equals("17")) {
+							s17 = true;
+						}else if(rs.getString("seat").equals("18")) {
+							s18 = true;
+						}else if(rs.getString("seat").equals("19")) {
+							s19 = true;
+						}else if(rs.getString("seat").equals("20")) {
+							s20 = true;
+						}else if(rs.getString("seat").equals("21")) {
+							s21 = true;
+						}else if(rs.getString("seat").equals("22")) {
+							s22 = true;
+						}else if(rs.getString("seat").equals("23")) {
+							s23 = true;
+						}else if(rs.getString("seat").equals("24")) {
+							s24 = true;
+						}else if(rs.getString("seat").equals("25")) {
+							s25 = true;
+						}else if(rs.getString("seat").equals("26")) {
+							s26 = true;
+						}else if(rs.getString("seat").equals("27")) {
+							s27 = true;
+						}else if(rs.getString("seat").equals("28")) {
+							s28 = true;
+						}else if(rs.getString("seat").equals("29")) {
+							s29 = true;
+						}else if(rs.getString("seat").equals("30")) {
+							s30 = true;
+						}else if(rs.getString("seat").equals("31")) {
+							s31 = true;
+						}else if(rs.getString("seat").equals("32")) {
+							s32 = true;
+						}else if(rs.getString("seat").equals("33")) {
+							s33 = true;
+						}else if(rs.getString("seat").equals("34")) {
+							s34 = true;
+						}else if(rs.getString("seat").equals("35")) {
+							s35 = true;
+						}else if(rs.getString("seat").equals("36")) {
+							s36 = true;
+						}else if(rs.getString("seat").equals("37")) {
+							s37 = true;
+						}else if(rs.getString("seat").equals("38")) {
+							s38 = true;
+						}else if(rs.getString("seat").equals("39")) {
+							s39 = true;
+						}else if(rs.getString("seat").equals("40")) {
+							s40 = true;
+						}else if(rs.getString("seat").equals("41")) {
+							s41 = true;
+						}else if(rs.getString("seat").equals("42")) {
+							s42 = true;
 						}
+
 				}
 
 				mv.addObject("s1",s1);
-				mv.addObject("s1",s1);
-				mv.addObject("s1",s1);
-				mv.addObject("s1",s1);
-				mv.addObject("s1",s1);
-				mv.addObject("s1",s1);
-				mv.addObject("s1",s1);
-				mv.addObject("s1",s1);
-				mv.addObject("s1",s1);
-				mv.addObject("s1",s1);
-				mv.addObject("s1",s1);
+				mv.addObject("s2",s2);
+				mv.addObject("s3",s3);
+				mv.addObject("s4",s4);
+				mv.addObject("s5",s5);
+				mv.addObject("s6",s6);
+				mv.addObject("s7",s7);
+				mv.addObject("s8",s8);
+				mv.addObject("s9",s9);
+				mv.addObject("s10",s10);
+				mv.addObject("s11",s11);
+				mv.addObject("s12",s12);
+				mv.addObject("s13",s13);
+				mv.addObject("s14",s14);
+				mv.addObject("s15",s15);
+				mv.addObject("s16",s16);
+				mv.addObject("s17",s17);
+				mv.addObject("s18",s18);
+				mv.addObject("s19",s19);
+				mv.addObject("s20",s20);
+				mv.addObject("s21",s21);
+				mv.addObject("s22",s22);
+				mv.addObject("s23",s23);
+				mv.addObject("s24",s24);
+				mv.addObject("s25",s25);
+				mv.addObject("s26",s26);
+				mv.addObject("s27",s27);
+				mv.addObject("s28",s28);
+				mv.addObject("s29",s29);
+				mv.addObject("s30",s30);
+				mv.addObject("s31",s31);
+				mv.addObject("s32",s32);
+				mv.addObject("s33",s33);
+				mv.addObject("s34",s34);
+				mv.addObject("s35",s35);
+				mv.addObject("s36",s36);
+				mv.addObject("s37",s37);
+				mv.addObject("s38",s38);
+				mv.addObject("s39",s39);
+				mv.addObject("s40",s40);
+				mv.addObject("s41",s41);
+				mv.addObject("s42",s42);
 
 //				if (rs.next() == true) {        //データがあったら(同じ時間に予約が入っていたら)実行
 //
