@@ -22,7 +22,7 @@ background-color: rgb(129, 129, 129); /* マウスオーバー時の背景色を
 <span th:if="${session.roomcode == 1}"><input th:replace="forest"></span>
 <span th:if="${session.roomcode == 2}"><input th:replace="ocean"></span>
 
-<span th:text="${ERROR}"></span>
+<span class="error" th:text="${ERROR}" style="color : red " ></span>
 
 <div class="ok">
 <input type="submit" value="確認">
