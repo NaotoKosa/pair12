@@ -7,6 +7,9 @@ input[type="radio"]:checked + label {
 background: rgb(128, 64, 0);/* マウス選択時の背景色を指定する */
 color: #ffffff; /* マウス選択時のフォント色を指定する */
 }
+input[type="radio"]:disabled + label {
+cursor: not-allowed;
+}
 
 .label {
 display: block; /* ブロックレベル要素化する */
