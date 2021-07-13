@@ -86,7 +86,30 @@ public class RoomController {
 		User _user = (User) session.getAttribute("user");
 		int userscode = _user.getCode();
 
-		List<Reserve> reserveList = reserveRepository.findByUserscode(userscode);
+
+		String reserReservedate = null;
+		String reserStart = "0";
+		String reserFinish = "0";
+		boolean re = false;
+		List<Reserve> reserve = reserveRepository.findByUserscode(userscode);
+		if(!reserve.isEmpty()) {
+
+			for(Reserve r: reserve) {
+				reserReservedate = r.getReservedate();
+				reserStart = r.getStart();
+				reserFinish = r.getFinish();
+				int reStart = Integer.parseInt(reserStart);
+				int reFinish = Integer.parseInt(reserFinish);
+
+				if(date.equals(reserReservedate) &&(s == reStart || f == reFinish || s < reFinish && f > reStart) ) {
+					mv.addObject("ERROR", "この時間はすでに予約しています。");
+					re = true;
+				}
+
+			}
+		}
+
+
 
 //		String url = "jdbc:postgresql:zaseki_db"; //接続するDBのURL
 //		String user = "postgres"; //ユーザ名
@@ -125,8 +148,6 @@ public class RoomController {
 //			reserved = true;
 //		}
 
-
-
 		if (date.equals("1000-01-01")) {
 			mv.addObject("ERROR", "日付けを選択してください。");
 			mv.setViewName("info");
@@ -136,16 +157,10 @@ public class RoomController {
 		} else if(s>= f) {
 			mv.addObject("TIMEERROR", "時間設定を見直してください。");
 			mv.setViewName("info");
+		} else if(re){
+			mv.setViewName("info");
 		}
-//		else if(reserveList.contains(date)){
-//			//	if(reserveList.contains(start) || reserveList.contains(finish)){
-//					System.out.println("この時間はすでに予約しています。");
-//			mv.addObject("ERROR", "この時間はすでに予約しています。");
-//				mv.setViewName("info");
-//		}
-		//}
 		else {
-
 		//	String date = (String) session.getAttribute("date");
 //			String start = (String) session.getAttribute("start");
 //			String finish = (String) session.getAttribute("finish");
@@ -392,6 +407,7 @@ public class RoomController {
 					mv.setViewName("seat");
 				}
 
+
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
@@ -409,7 +425,8 @@ public class RoomController {
 
 		//座席選択画面へ
 		mv.setViewName("seat");
-		}return mv;
+		}
+			return mv;
 
 	}
 
@@ -498,6 +515,7 @@ public class RoomController {
 			//			}
 
 			session.setAttribute("seat", seat);
+			mv.setViewName("infoCheck");
 
 		}
 		return mv;

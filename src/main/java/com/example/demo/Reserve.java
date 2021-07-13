@@ -143,4 +143,12 @@ public class Reserve {
 		this.seat = seat;
 	}
 
+	public String getReservedate() {
+		return reservedate;
+	}
+
+	public void setReservedate(String reservedate) {
+		this.reservedate = reservedate;
+	}
+
 }
