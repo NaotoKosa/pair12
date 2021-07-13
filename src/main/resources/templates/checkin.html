@@ -16,8 +16,11 @@
 			<th>予約日</th>
 			<th>開始時間</th>
 			<th>終了時間</th>
+			<th>開始</th>
+			<th>終了</th>
+			<th>利用開始時間</th>
+			<th>利用終了時間</th>
 
-			<th></th>
 		</tr>
 		<tr th:each="list:${reserveList}">
 
@@ -31,15 +34,21 @@
 			<td>
 			<form action="/start" method="get">
 			<input type="hidden" name="list.code" th:value="${list.code}">
-			<input type="submit" th:value="利用を開始する">
+			<input type="submit" th:value="利用を開始する"  th:disabled="${s==true}">
 			</form>
 			</td>
 			<td>
 				<form action="/finish" method="get">
 			<input type="hidden" name="list.code" th:value="${list.code}">
-			<input type="submit" th:value="利用を終了する">
+			<input type="submit" th:value="利用を終了する" th:disabled="${t==true}">
 			</form>
 			</td>
+			<td th:text="${session.START}">
+			</td>
+
+			<td th:text="${session.FINISH}">
+			</td>
+
 		</tr>
 
 	</table>

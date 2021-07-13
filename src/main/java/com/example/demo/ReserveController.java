@@ -2,6 +2,8 @@ package com.example.demo;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -71,29 +73,74 @@ public class ReserveController {
 				Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 				String str = sdf.format(timestamp);
-//				Date today = Date.valueOf(str);
-//
-//				String todaysDate = toStr(LocalDate.now(),"yyyy/MM/dd");
-//				LocalDate todaysDate = LocalDate.now();
-//				String _todaysDate = toString(todaysDate);
 
 				//List<Reserve> reserveList = reserveRepository.findByUserscode(userscode);
 				List<Reserve> reserveList = reserveRepository.findByUserscodeAndReservedate(userscode,str);
 				mv.addObject("reserveList", reserveList);
 
+				boolean s = false;
+				boolean t = true;
+				mv.addObject("s",s);
+				mv.addObject("t",t);
 				mv.setViewName("checkin");
 				return mv;
 	}
 
+	//利用開始
 	@RequestMapping(value="/start")
 	public ModelAndView start(ModelAndView mv) {
 
+		User user = (User) session.getAttribute("user");
+		int userscode = user.getCode();
 
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String str = sdf.format(timestamp);
+
+		List<Reserve> reserveList = reserveRepository.findByUserscodeAndReservedate(userscode,str);
+		mv.addObject("reserveList", reserveList);
+
+		//現在時刻を取得
+		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		Date start = new Date();
+
+		session.setAttribute("START", start);
+		mv.addObject("START",start);
+		boolean s  = true;
+		boolean t  = false;
+		mv.addObject("s",s);
+		mv.addObject("t",t);
+		mv.setViewName("checkin");
 				return mv;
 	}
+
+
+	//利用終了
 	@RequestMapping(value="/finish")
 	public ModelAndView finish(ModelAndView mv) {
+		User user = (User) session.getAttribute("user");
+		int userscode = user.getCode();
 
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String str = sdf.format(timestamp);
+
+		List<Reserve> reserveList = reserveRepository.findByUserscodeAndReservedate(userscode,str);
+		mv.addObject("reserveList", reserveList);
+
+		//現在時刻を取得
+		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
+		Date finish = new Date();
+
+		boolean s  = true;
+		boolean t  = true;
+		mv.addObject("s",s);
+		mv.addObject("t",t);
+
+		mv.addObject("FINISH",finish);
+
+		session.setAttribute("FINISH", finish);
+		mv.setViewName("checkin");
 				return mv;
 	}
 
