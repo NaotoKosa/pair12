@@ -5,17 +5,15 @@
 <title>SWAROID</title>
 </head>
 <body>
-<h1>座席管理アプリ「SUWAROID」</h1>
-<h2>ログイン</h2>
+<h1>管理者画面「SWAOROID」</h1>
 <br>
 <span th:text="${RESULT}" style="color:red"></span><br>
-<form action="/login" method="post">
-メールアドレス：<input type="text" name="email" th:value="${email}"><span th:text="${message1}" style="color:red"></span><br>
+<form action="/masterLogin" method="post">
+メールアドレス：<input type="text" name="account" th:value="${account}"><span th:text="${message1}" style="color:red"></span><br>
 パスワード：<input type="password" name="password"><span th:text="${message2}" style="color:red"></span><br>
 	<input type="submit" value="ログイン">
 </form>
 <br>
-<a href="/new">新規会員登録</a>
-<a href="/master">管理者用</a>
+<a href="/">ユーザ画面</a>
 </body>
 </html>

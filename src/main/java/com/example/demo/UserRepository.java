@@ -9,4 +9,6 @@ public interface UserRepository  extends JpaRepository<User, Integer> {
 	//メールアドレス検索
 	List<User> findByEmail(String email);
 
+	List<User> findByCode(int code);
+
 }
