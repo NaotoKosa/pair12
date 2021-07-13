@@ -20,6 +20,7 @@ public class Room {
 
 	}
 
+
 	//登録用
 	public Room(String name, String address, String seats) {
 		this.name = name;
@@ -34,6 +35,7 @@ public class Room {
 		this.address = address;
 		this.seats = seats;
 	}
+
 
 	public Integer getCode() {
 		return code;
@@ -66,5 +68,7 @@ public class Room {
 	public void setSeats(String seats) {
 		this.seats = seats;
 	}
+
+
 
 }

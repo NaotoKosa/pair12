@@ -6,6 +6,7 @@
 </head>
 <body>
 <h1>本日の予約</h1>
+
 	<table border="1">
 
 		<tr>
@@ -23,7 +24,6 @@
 
 		</tr>
 		<tr th:each="list:${reserveList}">
-
 			<td th:text="${list.code}"></td>
 			<td th:text="${list.ymd}"></td>
 			<td th:text="${list.room}"></td>
@@ -43,11 +43,9 @@
 			<input type="submit" th:value="利用を終了する" th:disabled="${t==true}">
 			</form>
 			</td>
-			<td th:text="${session.START}">
+			<td th:if="*{c==true}" th:text="${list.checkin}">
 			</td>
 
-			<td th:text="${session.FINISH}">
-			</td>
 
 		</tr>
 
