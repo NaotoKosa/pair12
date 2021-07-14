@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>SWAROID</title>
+</head>
+<body>
+	<h1>メッセージ</h1>
+
+	<table border="1">
+		<tr>
+			<th>NO</th>
+			<th>日時</th>
+			<th>会員番号</th>
+			<th>名前</th>
+			<th>メッセージ</th>
+			<th>返信</th>
+		</tr>
+		<tr th:each="m:${message}">
+			<td th:text="${m.code}"></td>
+			<td th:text="${m.ymd}"></td>
+			<td th:text="${m.userscode}"></td>
+			<td th:text="${m.name}"></td>
+			<td th:text="${m.message}"></td>
+			<td></td>
+		</tr>
+	</table>
+<a href="/composeMaster">新規作成</a>
+</body>
+</html>

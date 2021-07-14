@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>SWAOROID</title>
+</head>
+<body>
+<h1>メッセージの新規作成</h1>
+<form action="/send" method="get">
+<span class="error" th:text="${ERROR}" style="color : red " ></span>
+<table border="1">
+		<tr>
+			<th>会員番号</th>
+			<th>名前</th>
+			<th>メッセージ</th>
+		</tr>
+		<tr>
+
+			<td th:text="${code}"></td>
+			<td th:text="${name}"></td>
+			<td><input type="text" name="MESSAGE" th:value="${MESSAGE}"></td>
+
+		</tr>
+	</table>
+
+<input type="submit" value="送信">
+<span class="error" th:text="${RESULT}" style="color : red " ></span>
+</form>
+</body>
+</html>
