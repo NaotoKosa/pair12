@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>SWAROID</title>
+</head>
+<body>
+	<h1>送信先を選択</h1>
+
+	<table border="1">
+
+		<tr>
+			<th>ユーザコード</th>
+			<th>名前</th>
+			<th>メールアドレス</th>
+			<th>パスワード</th>
+			<th>電話番号</th>
+			<th>選択</th>
+		</tr>
+		<tr th:each="list:${userList}">
+			<td th:text="${list.code}"></td>
+			<td th:text="${list.name}"></td>
+			<td th:text="${list.email}"></td>
+			<td th:text="${list.password}"></td>
+			<td th:text="${list.tel}"></td>
+			<td><form action="/newMessage" method="post"><input type="submit" value="選択">
+			<input type="hidden" name="userscode" th:value="${list.code}">
+			<input type="hidden" name="to" th:value="${list.name}">
+			<input type="hidden" name="email" th:value="${list.email}">
+			</form>
+			</td>
+		</tr>
+
+	</table>
+<br>
+<a href="/masterMain">メイン画面</a>
+</body>
+</html>

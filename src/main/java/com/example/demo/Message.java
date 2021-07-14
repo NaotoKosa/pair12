@@ -18,14 +18,19 @@ public class Message {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer code;
 
+	private Date ymd;
+
+	@Column(name="message_to")
+	private String to;
+
+	@Column(name="message_from")
+	private String from;
+
 	@Column(name="userscode")
 	private Integer userscode;
 
-	@Column(name="name")
-	private String name;
-
-	private Date ymd;
-
+	@Column(name="email")
+	private String email;
 
 	@Column(name="message")
 	private String message;
@@ -34,21 +39,22 @@ public class Message {
 
 	}
 
-	public Message(Integer userscode, String name, Date ymd, String message) {
-
-		this.userscode = userscode;
-		this.name = name;
+	public Message(Date ymd, String to, String from, Integer userscode, String email, String message) {
 		this.ymd = ymd;
+		this.to = to;
+		this.from = from;
+		this.userscode = userscode;
+		this.email = email;
 		this.message = message;
 	}
 
-
-	public Message(Integer code, Integer userscode, String name, Date ymd, String message) {
-
+	public Message(Integer code, Date ymd, String to, String from, Integer userscode, String email, String message) {
 		this.code = code;
-		this.userscode = userscode;
-		this.name = name;
 		this.ymd = ymd;
+		this.to = to;
+		this.from = from;
+		this.userscode = userscode;
+		this.email = email;
 		this.message = message;
 	}
 
@@ -60,6 +66,30 @@ public class Message {
 		this.code = code;
 	}
 
+	public Date getYmd() {
+		return ymd;
+	}
+
+	public void setYmd(Date ymd) {
+		this.ymd = ymd;
+	}
+
+	public String getTo() {
+		return to;
+	}
+
+	public void setTo(String to) {
+		this.to = to;
+	}
+
+	public String getFrom() {
+		return from;
+	}
+
+	public void setFrom(String from) {
+		this.from = from;
+	}
+
 	public Integer getUserscode() {
 		return userscode;
 	}
@@ -68,20 +98,12 @@ public class Message {
 		this.userscode = userscode;
 	}
 
-	public String getName() {
-		return name;
+	public String getEmail() {
+		return email;
 	}
 
-	public void setName(String name) {
-		this.name = name;
-	}
-
-	public Date getYmd() {
-		return ymd;
-	}
-
-	public void setYmd(Date ymd) {
-		this.ymd = ymd;
+	public void setEmail(String email) {
+		this.email = email;
 	}
 
 	public String getMessage() {
@@ -91,8 +113,5 @@ public class Message {
 	public void setMessage(String message) {
 		this.message = message;
 	}
-
-
-
 
 }

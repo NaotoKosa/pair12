@@ -6,19 +6,24 @@
 </head>
 <body>
 <h1>メッセージの新規作成</h1>
-<form action="/send" method="get">
+<form action="/sendMaster" method="post">
 <span class="error" th:text="${ERROR}" style="color : red " ></span>
 <table border="1">
 		<tr>
 			<th>TO</th>
 			<th>会員番号</th>
+			<th>メールアドレス</th>
 			<th>メッセージ</th>
 		</tr>
 		<tr>
 
-			<td th:text="${name}"></td>
-			<td th:text="${code}"></td>
-			<td><input type="text" name="MESSAGE" th:value="${MESSAGE}"></td>
+			<td th:text="${to}" th:value="${to}"></td>
+			<td th:text="${userscode}"  th:value="${userscode}"></td>
+			<td th:text="${email}"  th:value="${email}"></td>
+			<td><input type="text" name="MESSAGE" th:value="${MESSAGE}">
+			<input type="hidden" name="to" th:value="${to}">
+			<input type="hidden" name="userscode" th:value="${userscode}">
+			<input type="hidden" name="email" th:value="${email}"></td>
 
 		</tr>
 	</table>
