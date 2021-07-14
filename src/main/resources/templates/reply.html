@@ -5,35 +5,35 @@
 <title>SWAOROID</title>
 </head>
 <body>
-<h1>返信</h1>
-<form action="/reply" method="post">
-<table border="1">
-<span class="error" th:text="${ERROR}" style="color : red " ></span>
+	<h1>返信</h1>
+	<form action="/reply" method="post">
+		<table border="1">
+			<span class="error" th:text="${ERROR}" style="color: red"></span>
 
-		<tr>
-			<th>No</th>
-			<th>TO</th>
-			<th>メールアドレス</th>
-			<th>元のメッセージ</th>
-			<th>メッセージ</th>
-		</tr>
-		<tr>
-			<td th:text="${code}" name="code" th:value="${code}"></td>
-			<td th:text="${to}" th:name="to" th:value="${to}"></td>
-			<td th:text="${email}" th:name="email" th:value="${email}"></td>
-			<td th:text="${message}" th:name="message" th:value="${message}"></td>
-			<td><input type="text" name="MESSAGE" th:value="${MESSAGE}"></td>
-		</tr>
-	</table>
-			<input type="hidden" name="to" th:value="${to}">
-			<input type="hidden" name="email" th:value="${email}">
-			<input type="hidden" name="message" th:value="${message}">
-<input type="submit" th:value="返信">
-</form>
+			<tr>
+				<th>No</th>
+				<th>TO</th>
+				<th>メールアドレス</th>
+				<th>元のメッセージ</th>
+				<th>メッセージ</th>
+			</tr>
+			<tr>
+				<td th:text="${code}" name="code" th:value="${code}"></td>
+				<td th:text="${to}" th:name="to" th:value="${to}"></td>
+				<td th:text="${email}" th:name="email" th:value="${email}"></td>
+				<td th:text="${message}" th:name="message" th:value="${message}"></td>
+				<td><input type="text" name="MESSAGE" th:value="${MESSAGE}"></td>
+			</tr>
+		</table>
+		<input type="hidden" name="to" th:value="${to}"> <input
+			type="hidden" name="email" th:value="${email}"> <input
+			type="hidden" name="message" th:value="${message}"> <input
+			type="submit" th:value="返信">
+	</form>
 
 
 
-<span class="error" th:text="${RESULT}" style="color : red " ></span>
+	<span class="error" th:text="${RESULT}" style="color: red"></span>
 
 </body>
 </html>

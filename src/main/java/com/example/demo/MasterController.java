@@ -19,10 +19,13 @@ public class MasterController {
 
 	@Autowired
 	MasterRepository masterRepository;
+
 	@Autowired
 	ReserveRepository reserveRepository;
+
 	@Autowired
 	UserRepository userRepository;
+
 	@Autowired
 	RoomRepository roomRepository;
 
@@ -75,7 +78,7 @@ public class MasterController {
 		List<Master> master = masterRepository.findByAccount(account);
 		// メールアドレスが存在したら
 		if (master.size() > 0) {
-			// リストの1件目をログインユーザとして取得する
+			//リストの1件目をログインユーザとして取得する
 			Master mster = master.get(0);
 
 			String _account = mster.getAccount();
@@ -156,7 +159,7 @@ public class MasterController {
 	@RequestMapping(value = "/search", method = RequestMethod.GET)
 	public ModelAndView generate(
 			@RequestParam(name = "forest", defaultValue = "") String forest,
-			@RequestParam(name = "ocean", defaultValue = "" ) String ocean,
+			@RequestParam(name = "ocean", defaultValue = "") String ocean,
 			ModelAndView mv) {
 
 		List<Reserve> reserveList = null;
@@ -176,8 +179,6 @@ public class MasterController {
 			mv.addObject("Forest", Forest);
 			mv.addObject("Ocean", Ocean);
 		}
-
-
 
 		mv.addObject("reserveList", reserveList);
 

@@ -8,35 +8,34 @@
 	<h1>メッセージ</h1>
 
 	<table border="1">
-	<form action="/reply" method="get">
-		<tr>
-			<th>NO</th>
-			<th>日時</th>
-			<th>TO</th>
-			<th>FROM</th>
-			<th>会員番号</th>
-			<th>メッセージ</th>
-			<th>返信</th>
-		</tr>
-		<tr th:each="m:${message}">
-			<td th:text="${m.code}"></td>
-			<td th:text="${m.ymd}"></td>
-			<td th:text="${m.to}"></td>
-			<td th:text="${m.from}"></td>
-			<td th:text="${m.userscode}"></td>
-			<td th:text="${m.message}"></td>
-			<td>
-			<form action="/reply" method="get">
-			<input type="submit" th:value="返信">
-			<input type="hidden" name="code" th:value="${m.code}">
-			<input type="hidden" name="userscode" th:value="${m.userscode}">
-			<input type="hidden" name="from" th:value="${m.from}">
-			<input type="hidden" name="message" th:value="${m.message}">
-			</form>
-			<td>
-		</tr>
-
+		<form action="/reply" method="get">
+			<tr>
+				<th>NO</th>
+				<th>日時</th>
+				<th>TO</th>
+				<th>FROM</th>
+				<th>会員番号</th>
+				<th>メッセージ</th>
+				<th>返信</th>
+			</tr>
+			<tr th:each="m:${message}">
+				<td th:text="${m.code}"></td>
+				<td th:text="${m.ymd}"></td>
+				<td th:text="${m.to}"></td>
+				<td th:text="${m.from}"></td>
+				<td th:text="${m.userscode}"></td>
+				<td th:text="${m.message}"></td>
+				<td>
+					<form action="/reply" method="get">
+						<input type="submit" th:value="返信"> <input type="hidden"
+							name="code" th:value="${m.code}"> <input type="hidden"
+							name="userscode" th:value="${m.userscode}"> <input
+							type="hidden" name="from" th:value="${m.from}"> <input
+							type="hidden" name="message" th:value="${m.message}">
+					</form>
+				</td>
+			</tr>
 	</table>
-<a href="/compose">新規作成</a>
+	<a href="/compose">新規作成</a>
 </body>
 </html>
