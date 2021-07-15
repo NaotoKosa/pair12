@@ -59,7 +59,7 @@ public class CheckOut {
 		this.reservecode = reservecode;
 	}
 
-	public LocalDateTime getfinish() {
+	public LocalDateTime getFinish() {
 		return finish;
 	}
 

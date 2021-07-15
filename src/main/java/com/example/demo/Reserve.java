@@ -1,6 +1,7 @@
 package com.example.demo;
 
 import java.sql.Date;
+import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 
 import javax.persistence.Column;
@@ -9,6 +10,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.persistence.Transient;
 
 @Entity
 @Table(name="reserve")
@@ -40,6 +42,12 @@ public class Reserve {
 
 	@Column(name="seat")
 	private String seat;
+
+	@Transient
+	private LocalDateTime checkinStart;
+
+	@Transient
+	private LocalDateTime checkoutFinish;
 
 	public Reserve() {
 
@@ -151,4 +159,34 @@ public class Reserve {
 		this.reservedate = reservedate;
 	}
 
+	public LocalDateTime getCheckinStart() {
+		return checkinStart;
+	}
+
+	public void setCheckinStart(LocalDateTime checkinStart) {
+		this.checkinStart = checkinStart;
+	}
+
+	public LocalDateTime getCheckoutFinish() {
+		return checkoutFinish;
+	}
+
+	public void setCheckoutFinish(LocalDateTime checkoutFinish) {
+		this.checkoutFinish = checkoutFinish;
+	}
+
+	public String getCheckinStartView() {
+		if(checkinStart == null) {
+			return "";
+		} else {
+			return checkinStart.format(DateTimeFormatter.ofPattern("yyyy.MM.dd  HH:mm:ss"));
+		}
+	}
+	public String getCheckoutFinishView() {
+		if(checkoutFinish == null) {
+			return "";
+		} else {
+			return checkoutFinish.format(DateTimeFormatter.ofPattern("yyyy.MM.dd  HH:mm:ss"));
+		}
+	}
 }

@@ -31,17 +31,17 @@
 			<td>
 			<form action="/start" method="post">
 			<input type="hidden" name="list.code" th:value="${list.code}">
-			<input type="submit" th:value="利用を開始する" th:disabled="${s==true}">
+			<input type="submit" th:value="利用を開始する" th:disabled="${list.checkinStart != null}">
 			</form>
 			</td>
 			<td>
 				<form action="/finish" method="post">
 			<input type="hidden" name="list.code" th:value="${list.code}">
-			<input type="submit" th:value="利用を終了する" th:disabled="${t==true}">
+			<input type="submit" th:value="利用を終了する" th:disabled="${list.checkoutFinish != null}">
 			</form>
 			</td>
-			<td th:each="listIn:${checkinList}" th:if="${list.code} == ${listIn.reservecode}" th:text="${listIn.startView}"></td>
-			<td th:each="listOut:${checkoutList}" th:if="${list.code} == ${listOut.reservecode}" th:text="${listOut.finishView}"></td>
+			<td th:text="${list.checkinStartView}"></td>
+			<td th:text="${list.checkoutFinishView}"></td>
 
 
 		</tr>
