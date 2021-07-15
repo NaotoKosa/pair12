@@ -1,9 +1,9 @@
 package com.example.demo;
 
+
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
-import java.time.format.DateTimeFormatter;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -11,6 +11,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -19,13 +20,14 @@ public class ReserveController {
 
 	@Autowired
 	HttpSession session;
-
 	@Autowired
 	ReserveRepository reserveRepository;
+	@Autowired
+	CheckInRepository checkinRepository;
+	@Autowired
+	CheckOutRepository checkoutRepository;
 
-	/**
-	 * 予約一覧を表示
-	 */
+	//予約一覧を表示
 	@RequestMapping(value="/reservation")
 	public ModelAndView reserve(ModelAndView mv) {
 
@@ -55,43 +57,59 @@ public class ReserveController {
 		return mv;
 	}
 
-//    public static String toStr(LocalDate localDate, String format) {
-//
-//        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern(format);
-//        return localDate.format(dateTimeFormatter);
-//
-//    }
-
 	//メイン画面から本日の予約一覧へ
 	@RequestMapping(value="/checkInOut")
 	public ModelAndView checkin(ModelAndView mv) {
 
 		//予約データベース（reserve）からデータを取得
-				User user = (User) session.getAttribute("user");
-				int userscode = user.getCode();
+		User user = (User) session.getAttribute("user");
+		int userscode = user.getCode();
 
-				Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-				SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-				String str = sdf.format(timestamp);
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String str = sdf.format(timestamp);
 
-				//List<Reserve> reserveList = reserveRepository.findByUserscode(userscode);
-				List<Reserve> reserveList = reserveRepository.findByUserscodeAndReservedate(userscode,str);
-				mv.addObject("reserveList", reserveList);
 
-				boolean s = false;
-				boolean t = true;
-				mv.addObject("s",s);
-				mv.addObject("t",t);
-				mv.setViewName("checkin");
-				return mv;
+
+		List<Reserve> reserveList = reserveRepository.findByUserscodeAndReservedate(userscode,str);
+		mv.addObject("reserveList", reserveList);
+
+		List<CheckIn> checkinList = checkinRepository.findAll();
+		mv.addObject("checkinList", checkinList);
+
+		for(Reserve r : reserveList) {
+			Integer c = r.getCode();
+			for(CheckIn m : checkinList) {
+				Integer rc = m.getReservecode();
+				LocalDateTime y = m.getStart();
+				if(c == rc && !y.equals("")){
+					boolean s  = true;
+					boolean t  = true;
+					mv.addObject("s",s);
+					mv.addObject("t",t);
+				}
+			}
+		}
+
+
+
+		List<CheckOut> checkoutList = checkoutRepository.findAll();
+		mv.addObject("checkoutList", checkoutList);
+
+
+		mv.setViewName("checkInOut");
+		return mv;
 	}
 
 	//利用開始
-	@RequestMapping(value="/start")
-	public ModelAndView start(ModelAndView mv) {
+	@RequestMapping(value="/start", method = RequestMethod.POST)
+	public ModelAndView start(
+			@RequestParam(name="list.code") Integer reservecode,
+			ModelAndView mv
+	) {
 
 		User user = (User) session.getAttribute("user");
-		int userscode = user.getCode();
+		Integer userscode = user.getCode();
 
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -101,25 +119,42 @@ public class ReserveController {
 		mv.addObject("reserveList", reserveList);
 
 		//現在時刻を取得
-		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-		Date start = new Date();
+		LocalDateTime start = LocalDateTime.now();
 
-		session.setAttribute("START", start);
-		mv.addObject("START",start);
-		boolean s  = true;
-		boolean t  = false;
-		mv.addObject("s",s);
-		mv.addObject("t",t);
-		mv.setViewName("checkin");
-				return mv;
+		for(Reserve r : reserveList){
+			String c = r.getStart();
+			if(!c.equals("")){
+				boolean s  = true;
+				boolean t  = true;
+				mv.addObject("s",s);
+				mv.addObject("t",t);
+			}
+		}
+
+		CheckIn in = new CheckIn(userscode, reservecode, start);
+		checkinRepository.saveAndFlush(in);
+
+		List<CheckIn> checkinList = checkinRepository.findByReservecode(reservecode);
+
+		mv.addObject("checkinList", checkinList);
+
+		List<CheckOut> checkoutList = checkoutRepository.findByReservecode(reservecode);
+		mv.addObject("checkoutList", checkoutList);
+
+		mv.setViewName("checkInOut");
+		return mv;
 	}
 
 
 	//利用終了
-	@RequestMapping(value="/finish")
-	public ModelAndView finish(ModelAndView mv) {
+	@RequestMapping(value="/finish" , method = RequestMethod.POST)
+	public ModelAndView finish(
+			@RequestParam(name="list.code") Integer reservecode,
+			ModelAndView mv
+	) {
+
 		User user = (User) session.getAttribute("user");
-		int userscode = user.getCode();
+		Integer userscode = user.getCode();
 
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
@@ -129,19 +164,29 @@ public class ReserveController {
 		mv.addObject("reserveList", reserveList);
 
 		//現在時刻を取得
-		DateTimeFormatter fmt = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
-		Date finish = new Date();
+		LocalDateTime finish = LocalDateTime.now();
 
-		boolean s  = true;
-		boolean t  = true;
-		mv.addObject("s",s);
-		mv.addObject("t",t);
+		for(Reserve r : reserveList){
+			String c = r.getStart();
+			if(!c.equals("")){
+				boolean s  = true;
+				boolean t  = true;
+				mv.addObject("s",s);
+				mv.addObject("t",t);
+			}
+		}
 
-		mv.addObject("FINISH",finish);
+		List<CheckIn> checkinList = checkinRepository.findByReservecode(reservecode);
+		mv.addObject("checkinList", checkinList);
 
-		session.setAttribute("FINISH", finish);
-		mv.setViewName("checkin");
-				return mv;
+		CheckOut out = new CheckOut(userscode, reservecode, finish);
+		checkoutRepository.saveAndFlush(out);
+
+		List<CheckOut> checkoutList = checkoutRepository.findByReservecode(reservecode);
+		mv.addObject("checkoutList", checkoutList);
+
+		mv.setViewName("checkInOut");
+		return mv;
 	}
 
 
