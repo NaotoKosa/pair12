@@ -3,6 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <title>SWAROID</title>
+<link rel="stylesheet" type="text/css" href="/style.css">
 </head>
 <body>
 	<h1>会議室</h1>
@@ -22,7 +23,7 @@
 			<td th:text="${room.seats}"></td>
 		<form action="/info" method="get">
 			<td><input type="submit" value="選択"></td>
-			<input type="hidden" name="CODE" th:value="${room.code}">
+			<input type="hidden" name="CODE" th:value="${room.code}" class="Button">
 		</form>
 		</tr>
 	</table>
