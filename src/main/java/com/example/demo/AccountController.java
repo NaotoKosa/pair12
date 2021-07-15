@@ -109,6 +109,13 @@ public class AccountController {
 			@RequestParam(name = "tel", defaultValue = "") String tel,
 			@RequestParam(name = "password", defaultValue = "") String password) {
 
+		//サニタイジング
+		Sanitizing sa = new Sanitizing();
+		sa.convert(name);
+		sa.convert(email);
+		sa.convert(tel);
+		sa.convert(password);
+
 		List<User> users = userRepository.findByEmail(email);
 
 		//未入力の項目がある時

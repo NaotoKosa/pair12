@@ -100,6 +100,10 @@ public class MessageController {
 	public ModelAndView send(ModelAndView mv,
 			@RequestParam("MESSAGE") String message) {
 
+		//メッセージのサニタイジング
+		Sanitizing sa = new Sanitizing();
+		sa.convert(message);
+
 		int userscode = (int) session.getAttribute("userscode");
 		String from = (String) session.getAttribute("name");
 		String to = (String) session.getAttribute("to");
@@ -132,6 +136,10 @@ public class MessageController {
 			@RequestParam("to") String to,
 			@RequestParam("email") String email,
 			@RequestParam("MESSAGE") String message) {
+
+		//メッセージのサニタイジング
+		Sanitizing sa = new Sanitizing();
+		sa.convert(message);
 
 		//今日（予約日）の日付を取得
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
@@ -206,6 +214,10 @@ public class MessageController {
 			@RequestParam("message") String message,
 			@RequestParam("MESSAGE") String newmessage) {
 
+		//メッセージのサニタイジング
+		Sanitizing sa = new Sanitizing();
+		sa.convert(message);
+
 		int userscode = (int) session.getAttribute("userscode");
 		String from = (String) session.getAttribute("name");
 
@@ -236,6 +248,10 @@ public class MessageController {
 			@RequestParam("email") String email,
 			@RequestParam("message") String message,
 			@RequestParam("MESSAGE") String newmessage) {
+
+		//メッセージのサニタイジング
+		Sanitizing sa = new Sanitizing();
+		sa.convert(message);
 
 		//今日（予約日）の日付を取得
 		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
