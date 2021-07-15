@@ -3,7 +3,29 @@
 <head>
 <meta charset="UTF-8">
 <title>SWAROID</title>
+<link rel="stylesheet" type="text/css" href="tag.css">
 <style>
+h1 {
+  position: relative;
+  padding: 1rem 2rem calc(1rem + 8px);
+  background: #CCFF66;
+  text-align: center;
+}
+
+h1:before {
+  position: absolute;
+  top: -5px;
+  left: -5px;
+  width: 100%;
+  height: 100%;
+  content: '';
+  border: 4px solid #000;
+}
+#container {
+  text-align: center;
+}
+
+
 /* Loading背景画面設定　*/
 #splash {
   /*fixedで全面に固定*/
@@ -24,18 +46,28 @@
 <!--/splash--></div>
 <div id="container">
 
-<h1>座席管理アプリ「SUWAROID」</h1>
-<h2>ログイン</h2>
-<br>
-<span th:text="${RESULT}" style="color:red"></span><br>
-<form action="/login" method="post">
-メールアドレス：<input type="text" name="email" th:value="${email}"><span th:text="${message1}" style="color:red"></span><br>
-パスワード：<input type="password" name="password"><span th:text="${message2}" style="color:red"></span><br>
-	<input type="submit" value="ログイン">
-</form>
-<br>
-<a href="/new">新規会員登録</a>
-<a href="/master">管理者用</a>
+<ul class="tab">
+<li><a href="#index">ログイン</a></li>
+<li><a href="#new">新規会員登録</a></li>
+<li><a href="#master">管理者</a></li>
+</ul>
+
+<div id="index" class="area">
+<input th:replace="indexmoto">
+
+<!--/area--></div>
+
+<div id="new" class="area">
+<input th:replace="new">
+
+<!--/area--></div>
+
+<div id="master" class="area">
+<input th:replace="masterIndex">
+
+<!--/area--></div>
+
+
 
 <!--/container--></div>
 
@@ -73,6 +105,41 @@ var bar = new ProgressBar.Line(splash_text, {//id名を指定
 //アニメーションスタート
 bar.animate(1.0, function () {//バーを描画する割合を指定します 1.0 なら100%まで描画します
 	$("#splash").delay(500).fadeOut(800);//アニメーションが終わったら#splashエリアをフェードアウト
+});
+</script>
+<script>
+//任意のタブにURLからリンクするための設定
+function GethashID (hashIDName){
+	if(hashIDName){
+		//タブ設定
+		$('.tab li').find('a').each(function() { //タブ内のaタグ全てを取得
+			var idName = $(this).attr('href'); //タブ内のaタグのリンク名（例）#lunchの値を取得
+			if(idName == hashIDName){ //リンク元の指定されたURLのハッシュタグ（例）http://example.com/#lunch←この#の値とタブ内のリンク名（例）#lunchが同じかをチェック
+				var parentElm = $(this).parent(); //タブ内のaタグの親要素（li）を取得
+				$('.tab li').removeClass("active"); //タブ内のliについているactiveクラスを取り除き
+				$(parentElm).addClass("active"); //リンク元の指定されたURLのハッシュタグとタブ内のリンク名が同じであれば、liにactiveクラスを追加
+				//表示させるエリア設定
+				$(".area").removeClass("is-active"); //もともとついているis-activeクラスを取り除き
+				$(hashIDName).addClass("is-active"); //表示させたいエリアのタブリンク名をクリックしたら、表示エリアにis-activeクラスを追加
+			}
+		});
+	}
+}
+
+//タブをクリックしたら
+$('.tab a').on('click', function() {
+	var idName = $(this).attr('href'); //タブ内のリンク名を取得
+	GethashID (idName);//設定したタブの読み込みと
+	return false;//aタグを無効にする
+});
+
+
+// 上記の動きをページが読み込まれたらすぐに動かす
+$(window).on('load', function () {
+    $('.tab li:first-of-type').addClass("active"); //最初のliにactiveクラスを追加
+    $('.area:first-of-type').addClass("is-active"); //最初の.areaにis-activeクラスを追加
+	var hashName = location.hash; //リンク元の指定されたURLのハッシュタグを取得
+	GethashID (hashName);//設定したタブの読み込み
 });
 </script>
 
