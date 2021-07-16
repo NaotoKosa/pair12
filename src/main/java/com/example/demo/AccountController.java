@@ -47,13 +47,13 @@ public class AccountController {
 			if (password == null || password.length() == 0) {
 				mv.addObject("message1", "メールアドレスを入力してください");
 				mv.addObject("message2", "パスワードを入力してください");
-				mv.setViewName("index");
+				mv.setViewName("home");
 				return mv;
 			}
 			//メールアドレスが空欄の時にエラーとする
 			else {
 				mv.addObject("message1", "メールアドレスを入力してください");
-				mv.setViewName("index");
+				mv.setViewName("home");
 				return mv;
 			}
 		}
@@ -61,7 +61,7 @@ public class AccountController {
 		if (password == null || password.length() == 0) {
 			mv.addObject("message2", "パスワードを入力してください");
 			mv.addObject("email", email);
-			mv.setViewName("index");
+			mv.setViewName("home");
 			return mv;
 		}
 
@@ -89,14 +89,14 @@ public class AccountController {
 				mv.setViewName("main");
 			} else { //メールアドレスとパスワードが不一致 ログインNG
 				mv.addObject("RESULT", "メールアドレスとパスワードが一致しませんでした。");
-				mv.setViewName("index");
+				mv.setViewName("home");
 			}
 
 		} else if (users.size() == 0) {
 			// メールアドレスが見つからなかった場合
 			// エラーメッセージをセット
 			mv.addObject("RESULT", "入力されたメールアドレスは登録されていません");
-			mv.setViewName("index");
+			mv.setViewName("home");
 		}
 
 		return mv;
