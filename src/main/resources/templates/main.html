@@ -1,29 +1,13 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" lang="ja">
 <head>
 <meta charset="UTF-8">
 <title>SWAOROID</title>
 <link rel="stylesheet" type="text/css" href="/style.css">
+<link rel="stylesheet" type="text/css" href="/headerTag.css">
 </head>
 <body>
-<h1>トップ</h1>
-<span th:text="'（'+${session.name}+' さんがログイン中）'"></span>
-<br>
-<form action="/room" method="get">
-<input type="submit" value="会議室の選択" class="Button">
-</form>
-<form action="/reservation" method="get">
-<input type="submit" value="予約状況・利用履歴">
-</form>
-<br>
-<form action="/checkInOut" method="get">
-<input type="submit" value="利用の開始・終了">
-</form>
-<br>
-<form action="/message" method="get">
-<input type="submit" value="メッセージ">
-</form>
-<br>
-<a href="/">ログアウト</a>
+<span><input th:replace="../static/headerTag.html"></span>
+
 </body>
 </html>
