@@ -4,9 +4,15 @@
 <meta charset="UTF-8">
 <title>SWAOROID</title>
 <link rel="stylesheet" type="text/css" href="/style.css">
+<link rel="stylesheet" type="text/css" href="/tag.css">
 </head>
 <body>
-	<h1>メッセージの新規作成</h1>
+<span><input th:replace="../static/reserveTag.html"></span>
+	<br>
+	<br>
+	<br>
+	<br>
+	<h2>メッセージの新規作成</h2>
 	<form action="/sendMaster" method="post">
 		<span class="error" th:text="${ERROR}" style="color: red"></span>
 		<table border="1">

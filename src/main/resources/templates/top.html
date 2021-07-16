@@ -12,7 +12,8 @@
 <link rel="stylesheet" type="text/css" href="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-1/css/6-1-1.css">
 <!--==============スクロールダウン===============-->
 <link rel="stylesheet" type="text/css" href="slide.css">
-<link rel="stylesheet" type="text/css" href="tag.css">
+<link rel="stylesheet" type="text/css" href="top.css">
+<link rel="stylesheet" type="text/css" href="loading.css">
 <style>
 h1 {
   position: relative;
@@ -22,11 +23,15 @@ h1 {
 </head>
 
 <body>
+<div id="splash">
+<div id="splash_text"></div>
+<!--/splash--></div>
+
 <header id="header">
 	<h1>SWAROID</h1>
 	<nav class="pc-nav">
         <ul>
-            <li><a href="/top">LOGIN</a></li>
+            <li><a href="/home">LOGIN</a></li>
             <li><a href="/new">NEW</a></li>
             <li><a href="/master">MASTER</a></li>
         </ul>
@@ -46,21 +51,20 @@ h1 {
 <script src="https://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/6-1-1/js/6-1-1.js"></script>
 
 
-<div id="splash">
-<div id="splash_text"></div>
-<!--/splash--></div>
 <div id="container">
 
 
 <!--/container--></div>
 
 
-<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
 <script src="https://rawgit.com/kimmobrunfeldt/progressbar.js/master/dist/progressbar.min.js"></script>
 <!--IE11用-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script><!--不必要なら削除してください-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script><!--不必要なら削除してください-->
 
+
+<!--自作のJS-->
+<script src="loading.js"></script>
 
 </body>
 </html>

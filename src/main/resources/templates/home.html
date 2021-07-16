@@ -1,6 +1,19 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
 
+<meta charset="UTF-8">
+<title>SWAROID</title>
+<link rel="stylesheet" type="text/css" href="/style.css">
+<link rel="stylesheet" type="text/css" href="tag.css">
+</head>
 
-<h1>座席管理アプリ「SUWAROID」</h1>
+<body>
+<span><input th:replace="../static/homeTag.html"></span>
+<br>
+<br>
+<br>
+<br>
 <h2>ログイン</h2>
 <br>
 <span th:text="${RESULT}" style="color:red"></span><br>
@@ -10,5 +23,5 @@
 	<input type="submit" value="ログイン">
 </form>
 <br>
-
-
+</body>
+</html>

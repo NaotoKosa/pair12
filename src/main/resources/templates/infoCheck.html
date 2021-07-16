@@ -4,10 +4,16 @@
 <meta charset="UTF-8">
 <link th:if="${session.roomcode == 1}" rel="stylesheet" href="forest.style.css">
 <link th:if="${session.roomcode == 2}" rel="stylesheet" href="ocean.style.css">
+<link rel="stylesheet" type="text/css" href="/tag.css">
 <title>SWAROID</title>
 </head>
 <body>
-<h1>確認画面</h1>
+<span><input th:replace="../static/reserveTag.html"></span>
+	<br>
+	<br>
+	<br>
+	<br>
+
 
 
 <span th:if="${session.roomcode == 1}"><input th:replace="forestcheck"></span>
