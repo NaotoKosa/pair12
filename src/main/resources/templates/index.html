@@ -1,45 +1,14 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
+
 <meta charset="UTF-8">
 <title>SWAROID</title>
 <link rel="stylesheet" type="text/css" href="tag.css">
-<style>
-h1 {
-  position: relative;
-  padding: 1rem 2rem calc(1rem + 8px);
-  background: #CCFF66;
-  text-align: center;
-}
-
-h1:before {
-  position: absolute;
-  top: -5px;
-  left: -5px;
-  width: 100%;
-  height: 100%;
-  content: '';
-  border: 4px solid #000;
-}
-#container {
-  text-align: center;
-}
-
-
-/* Loading背景画面設定　*/
-#splash {
-  /*fixedで全面に固定*/
-	position: fixed;
-	z-index: 999;
-	width: 100%;
-	height: 100%;
-	background:#333;
-	text-align:center;
-	color:#fff;
-}
-</style>
-
+<link rel="stylesheet" type="text/css" href="h1body.css">
+<link rel="stylesheet" type="text/css" href="loading.css">
 </head>
+
 <body>
 <div id="splash">
 <div id="splash_text"></div>
@@ -78,70 +47,8 @@ h1:before {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.min.js"></script><!--不必要なら削除してください-->
 <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-polyfill/6.26.0/polyfill.min.js"></script><!--不必要なら削除してください-->
 <!--自作のJS-->
-<script>
-//テキストのカウントアップの設定
-var bar = new ProgressBar.Line(splash_text, {//id名を指定
-	strokeWidth: 0,//進捗ゲージの太さ
-	duration: 1000,//時間指定(1000＝1秒)
-	trailWidth: 0,//線の太さ
-	text: {//テキストの形状を直接指定
-		style: {//天地中央に配置
-			position:'absolute',
-			left:'50%',
-			top:'50%',
-			padding:'0',
-			margin:'0',
-			transform:'translate(-50%,-50%)',
-			'font-size':'1.2rem',
-			color:'#fff',
-		},
-		autoStyleContainer: false //自動付与のスタイルを切る
-	},
-	step: function(state, bar) {
-		bar.setText(Math.round(bar.value() * 100) + ' %'); //テキストの数値
-	}
-});
-
-//アニメーションスタート
-bar.animate(1.0, function () {//バーを描画する割合を指定します 1.0 なら100%まで描画します
-	$("#splash").delay(500).fadeOut(800);//アニメーションが終わったら#splashエリアをフェードアウト
-});
-</script>
-<script>
-//任意のタブにURLからリンクするための設定
-function GethashID (hashIDName){
-	if(hashIDName){
-		//タブ設定
-		$('.tab li').find('a').each(function() { //タブ内のaタグ全てを取得
-			var idName = $(this).attr('href'); //タブ内のaタグのリンク名（例）#lunchの値を取得
-			if(idName == hashIDName){ //リンク元の指定されたURLのハッシュタグ（例）http://example.com/#lunch←この#の値とタブ内のリンク名（例）#lunchが同じかをチェック
-				var parentElm = $(this).parent(); //タブ内のaタグの親要素（li）を取得
-				$('.tab li').removeClass("active"); //タブ内のliについているactiveクラスを取り除き
-				$(parentElm).addClass("active"); //リンク元の指定されたURLのハッシュタグとタブ内のリンク名が同じであれば、liにactiveクラスを追加
-				//表示させるエリア設定
-				$(".area").removeClass("is-active"); //もともとついているis-activeクラスを取り除き
-				$(hashIDName).addClass("is-active"); //表示させたいエリアのタブリンク名をクリックしたら、表示エリアにis-activeクラスを追加
-			}
-		});
-	}
-}
-
-//タブをクリックしたら
-$('.tab a').on('click', function() {
-	var idName = $(this).attr('href'); //タブ内のリンク名を取得
-	GethashID (idName);//設定したタブの読み込みと
-	return false;//aタグを無効にする
-});
-
-
-// 上記の動きをページが読み込まれたらすぐに動かす
-$(window).on('load', function () {
-    $('.tab li:first-of-type').addClass("active"); //最初のliにactiveクラスを追加
-    $('.area:first-of-type').addClass("is-active"); //最初の.areaにis-activeクラスを追加
-	var hashName = location.hash; //リンク元の指定されたURLのハッシュタグを取得
-	GethashID (hashName);//設定したタブの読み込み
-});
-</script>
+<script><input th:replace="loading.html"></script>
+<script><input th:replace="tag.html"></script>
 
 </body>
 </body>
