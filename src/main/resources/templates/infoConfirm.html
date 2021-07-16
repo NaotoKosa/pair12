@@ -2,12 +2,18 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
 <meta charset="UTF-8">
-<link rel="stylesheet" href="forest.style.css">
+<link rel="stylesheet" type="text/css" href="/style.css">
+<link rel="stylesheet" type="text/css" href="/tag.css">
 <title>SWAOROID</title>
 </head>
 <body>
-<h1>予約完了</h1>
-<h2>予約が正常に完了しました。</h2>
+<span><input th:replace="../static/reserveTag.html"></span>
+	<br>
+	<br>
+	<br>
+	<br>
+	<h2>予約完了</h2>
+<h3>予約が正常に完了しました。</h3>
 メイン画面から予約情報の確認、キャンセルができます。<br>
 <hr>
 

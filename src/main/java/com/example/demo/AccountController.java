@@ -22,18 +22,18 @@ public class AccountController {
 
 	//トップページ（ログイン画面）を表示
 	@RequestMapping("/")
-	public String login() {
-		// セッション情報はクリアする
-		session.invalidate();
-		return "slide";
-	}
-
-	//トップページ（ログイン画面）を表示
-	@RequestMapping("/top")
 	public String top() {
 		// セッション情報はクリアする
 		session.invalidate();
-		return "index";
+		return "top";
+	}
+
+	//トップページ（ログイン画面）を表示
+	@RequestMapping("/home")
+	public String home() {
+		// セッション情報はクリアする
+		session.invalidate();
+		return "home";
 	}
 
 	//ログインを実行
