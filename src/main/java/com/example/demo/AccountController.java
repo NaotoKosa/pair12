@@ -25,6 +25,14 @@ public class AccountController {
 	public String login() {
 		// セッション情報はクリアする
 		session.invalidate();
+		return "slide";
+	}
+
+	//トップページ（ログイン画面）を表示
+	@RequestMapping("/top")
+	public String top() {
+		// セッション情報はクリアする
+		session.invalidate();
 		return "index";
 	}
 
