@@ -37,6 +37,24 @@ public class ReserveController {
 		List<Reserve> reserveList = reserveRepository.findByUserscode(userscode);
 		mv.addObject("reserveList", reserveList);
 
+//		for (Reserve r : reserveList) {
+//			Integer rc = r.getCode();
+//			for(Reserve rr : reserveList) {
+//				Integer rrc = rr.getCode();
+//				if(rc == rrc) {
+//					String rd = rr.getDate();
+//					LocalDate dat = LocalDate.parse(rd);
+//					LocalDate todaysDate = LocalDate.now();
+//					boolean past = todaysDate.isAfter(dat);
+//
+//					mv.addObject("past", past);
+//				}
+//			}
+//		}
+
+
+
+
 		mv.setViewName("reserve");
 		return mv;
 	}

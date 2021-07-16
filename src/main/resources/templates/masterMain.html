@@ -4,23 +4,10 @@
 <meta charset="UTF-8">
 <title>SWAOROID</title>
 <link rel="stylesheet" type="text/css" href="/style.css">
+<link rel="stylesheet" type="text/css" href="/tag.css">
 </head>
 <body>
-<h1>管理者メイン画面</h1>
-<span th:text="'（'+${session.name}+' さんがログイン中）'"></span>
+<span><input th:replace="../static/masterTag.html"></span>
 
-<br>
-<form action="/reserve" method="get">
-<input type="submit" value="予約管理">
-</form>
-<br>
-<form action="/user" method="get">
-<input type="submit" value="ユーザ管理">
-</form>
-<form action="/messageMaster" method="get">
-<input type="submit" value="メッセージ">
-</form>
-<br>
-<a href="/">ログアウト</a>
 </body>
 </html>
