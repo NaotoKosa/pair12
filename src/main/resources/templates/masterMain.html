@@ -5,6 +5,85 @@
 <title>SWAOROID</title>
 <link rel="stylesheet" type="text/css" href="/style.css">
 <link rel="stylesheet" type="text/css" href="/tag.css">
+<style>
+*,
+*:before,
+*:after {
+  -webkit-box-sizing: inherit;
+  box-sizing: inherit;
+}
+
+html {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+  font-size: 62.5%;
+}
+
+.btn,
+a.btn,
+button.btn {
+  font-size: 1.6rem;
+  font-weight: 700;
+  line-height: 1.5;
+  position: relative;
+  display: inline-block;
+  padding: 1rem 4rem;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  -webkit-transition: all 0.3s;
+  transition: all 0.3s;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  letter-spacing: 0.1em;
+  color: #212529;
+  border-radius: 0.5rem;
+}
+
+a.btn-svg {
+  font-weight: 700;
+  line-height: 54px;
+
+  width: 404px;
+  height: 104px;
+  padding: 0;
+
+  cursor: pointer;
+  text-decoration: none;
+
+  background-color: transparent;
+}
+
+a.btn-svg svg {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100%;
+}
+
+a.btn-svg svg rect {
+  -webkit-transition: all 400ms ease;
+  transition: all 400ms ease;
+
+  stroke: #000;
+  stroke-width: 2;
+  stroke-dasharray: 400px, 30px;
+  stroke-dashoffset: 140px;
+}
+
+a.btn-svg:hover svg rect {
+  stroke-dashoffset: 284px;
+}
+
+a.btn-svg span {
+  color: #000;
+}
+</style>
 </head>
 <body>
 <span><input th:replace="../static/masterTag.html"></span>
@@ -16,8 +95,36 @@
 <br>
 <br>
 <br>
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
 <img th:src="SWAROID.png" th:alt="logo">
-<img th:src="Forest.PNG" th:alt="log">
+
+<br>
+<a href="/reserve" class="btn btn-svg">
+  <svg>
+    <rect x="2" y="2" rx="0" fill="none" width=400 height="100"></rect>
+  </svg>
+  <span>Reserve Control<br>：予約管理</span>
+</a>
+
+<a href="/user" class="btn btn-svg">
+  <svg>
+    <rect x="2" y="2" rx="0" fill="none" width=400 height="100"></rect>
+  </svg>
+  <span>User Control<br>：ユーザー管理</span>
+</a>
+
+<a href="/messageMaster" class="btn btn-svg">
+  <svg>
+    <rect x="2" y="2" rx="0" fill="none" width=400 height="100"></rect>
+  </svg>
+  <span>Message<br>：メッセージ管理</span>
+</a>
+
 </body>
 </html>
