@@ -135,7 +135,7 @@ public class AccountController {
 		// メールアドレスがすでに登録されている時
 		else if (users.size() > 0) {
 			// エラーメッセージをセット
-			mv.addObject("RESULT", "入力されたメールアドレスはすでに登録されています");
+			mv.addObject("RESULT", "メールアドレスがすでに登録されています");
 			mv.setViewName("new");
 		}
 
@@ -147,7 +147,7 @@ public class AccountController {
 			//UserエンティティをUsersテーブルに登録
 			userRepository.saveAndFlush(user);
 
-			mv.addObject("message", name + "さん、登録が完了しました。ログイン画面に戻ってログインしてください。");
+			mv.addObject("RESULT", name + "さん、登録が完了しました。ログイン画面に戻ってログインしてください。");
 			mv.setViewName("new");
 		}
 		return mv;

@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <title>SWAROID</title>
 <link rel="stylesheet" type="text/css" href="/style.css">
+<link rel="stylesheet" type="text/css" href="home.css">
 <link rel="stylesheet" type="text/css" href="tag.css">
 </head>
 
@@ -14,13 +15,18 @@
 <br>
 <br>
 <br>
-<h2>ログイン：管理者用</h2>
 <br>
-<span th:text="${RESULT}" style="color:red"></span><br>
-<form action="/masterLogin" method="post">
-メールアドレス：<input type="text" name="account" th:value="${account}"><span th:text="${message1}" style="color:red"></span><br>
-パスワード：<input type="password" name="password"><span th:text="${message2}" style="color:red"></span><br>
-	<input type="submit" value="ログイン">
+<span class="fa-stack-1x error" th:text="${RESULT}" style="color:red"></span><br>
+<form action="/masterLogin" method="post" class="login-form">
+<p class="login-text">
+  <span class="fa-stack fa-lg">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-lock fa-stack-1x"></i>
+  </span>
+</p>
+<input type="email" name="account" th:value="${account}" class="login-username" autofocus="true" required="true" placeholder="Email" />
+<input type="password" name="password" class="login-password" required="true" placeholder="Password" />
+<input type="submit" name="Login" value="Login" class="login-submit" />
 </form>
 <br>
 </body>
