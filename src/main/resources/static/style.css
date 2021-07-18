@@ -5,3 +5,109 @@ table{text-align:center;
     margin-left: auto;
     margin-right: auto;}
 
+    /* vidualarea */
+#vidual-area{
+    position: relative;
+    height: 100vh;
+}
+
+body.appear #vidual-area::after{
+    content:'';
+    background:#960021;
+    width:0;
+    height: 12%;
+    position: absolute;
+    bottom:0;
+    right:0;
+    z-index: -1;
+	animation-name:vidualbgRLextendAnime;
+    animation-duration:.2s;
+	animation-fill-mode:forwards;
+    animation-timing-function: ease-in-out;
+    animation-delay: 1s;
+}
+
+@keyframes vidualbgRLextendAnime{
+	0% {
+		width:0;
+	}
+	100% {
+		width:40%;
+	}
+}
+
+#vidual-area h2{
+    line-height: 1.5;
+    text-transform: uppercase;
+    font-size: 3vw;
+    position: absolute;
+    top:36%;
+    left:5%;
+}
+
+
+
+
+@media screen and (max-width:450px) {
+#vidual-area h2{
+    font-size:7vw;
+    top: inherit;
+    bottom: 13%;
+}
+
+}
+/*スクロールダウン全体の場所*/
+.scrolldown1{
+    /*描画位置※位置は適宜調整してください*/
+  position:absolute;
+  left:50%;
+  bottom:10px;
+    /*全体の高さ*/
+  height:50px;
+}
+
+/*Scrollテキストの描写*/
+.scrolldown1 span{
+    /*描画位置*/
+  position: absolute;
+  left:-15px;
+  top: -15px;
+    /*テキストの形状*/
+  color: black;
+  font-size: 0.7rem;
+  letter-spacing: 0.05em;
+}
+
+/* 線の描写 */
+.scrolldown1::after{
+  content: "";
+    /*描画位置*/
+  position: absolute;
+  top: 0;
+    /*線の形状*/
+  width: 1px;
+  height: 30px;
+  background: #eee;
+    /*線の動き1.4秒かけて動く。永遠にループ*/
+  animation: pathmove 1.4s ease-in-out infinite;
+  opacity:0;
+  color: black;
+}
+
+/*高さ・位置・透過が変化して線が上から下に動く*/
+@keyframes pathmove{
+  0%{
+    height:0;
+    top:0;
+    opacity: 0;
+  }
+  30%{
+    height:30px;
+    opacity: 1;
+  }
+  100%{
+    height:0;
+    top:50px;
+    opacity: 0;
+  }
+}

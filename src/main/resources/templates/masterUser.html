@@ -20,14 +20,12 @@
 			<th>ユーザコード</th>
 			<th>名前</th>
 			<th>メールアドレス</th>
-			<th>パスワード</th>
 			<th>電話番号</th>
 		</tr>
 		<tr th:each="list:${userList}">
 			<td th:text="${list.code}"></td>
 			<td th:text="${list.name}"></td>
 			<td th:text="${list.email}"></td>
-			<td th:text="${list.password}"></td>
 			<td th:text="${list.tel}"></td>
 		</tr>
 
