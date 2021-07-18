@@ -16,7 +16,7 @@
 
 	<span th:text="${ERROR}"  style="color : red "></span>
 	<form action="/seat" method="get">
-	<input type="date" name="date" th:value="calendarDate">
+	<input type="date" name="date" th:value="${calendarDate}">
 	<br>
 	<br>
 	<span th:text="${TIMEERROR}" style="color : red "></span>

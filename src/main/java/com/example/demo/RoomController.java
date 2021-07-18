@@ -62,6 +62,11 @@ public class RoomController {
 			session.setAttribute("roomname", roomname);
 		}
 
+		SimpleDateFormat df = new SimpleDateFormat("yyyy/MM/dd");
+		LocalDate calendarDate = LocalDate.now();
+		mv.addObject("calendarDate", calendarDate);
+
+
 		mv.setViewName("info");
 		return mv;
 	}
