@@ -50,9 +50,9 @@ border-radius: 100px; /* 角丸を指定する */
 	position:  absolute;        /* 要素の配置方法を指定 */
     padding:  10px;             /* 余白指定 */
     border: 1px solid #000000; /* ボックスの境界線を実線で指定する */
-    width: 1485px; /* ボックスの横幅を指定する */
-	height: 550px; /* ボックスの高さを指定する */
-
+    width: 1500px; /* ボックスの横幅を指定する */
+	height: 565px; /* ボックスの高さを指定する */
+	left:  10px;                /* 左からの位置指定 */
 }
 
 
