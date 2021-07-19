@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>SWAROID</title>
+<link rel="stylesheet" type="text/css" href="/style.css">
+<link rel="stylesheet" type="text/css" href="/tag.css">
+</head>
+<body>
+<span><input th:replace="../static/reserveTag.html"></span>
+	<br>
+	<br>
+	<br>
+	<br>
+	<h2>ユーザ情報の変更</h2>
+	<form action="/modify" method="post">
+	<table border="1">
+		<tr>
+			<th>ユーザコード</th><td th:text="${user.code}"></td><input type="hidden" name="code" th:value="${user.code}">
+		</tr>
+		<tr>
+			<th>名前</th><td><input type="text" name="name" th:value="${user.name}"></td>
+		</tr>
+		<tr>
+			<th>メールアドレス</th><td><input type="text" name="email" th:value="${user.email}"></td>
+		</tr>
+		<tr>
+		<th>電話番号</th><td><input type="text" name="tel" th:value="${user.tel}"></td>
+		</tr>
+		<tr>
+			<th>パスワード</th><td><input type="password" name="password" th:value="${user.password}"></td>
+		</tr>
+	</table>
+	<br>
+	<input type="submit" th:value="変更">
+	</form>
+	<br>
+	<span th:text="${RESULT}" style="color:red"></span>
+</body>
+</html>

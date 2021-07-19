@@ -153,5 +153,64 @@ public class AccountController {
 		return mv;
 	}
 
+	//ユーザ情報の確認
+	@RequestMapping(value = "/userInfo")
+	public ModelAndView userInfo(ModelAndView mv) {
+		User user = (User) session.getAttribute("user");
+		int code = user.getCode();
+
+		List<User> list = userRepository.findByCode(code);
+		mv.addObject("user",list);
+		mv.setViewName("userInfo");
+		return mv;
+	}
+	//ユーザ情報の変更
+	@RequestMapping(value = "/modify")
+	public ModelAndView modify(ModelAndView mv) {
+		User user = (User) session.getAttribute("user");
+
+		mv.addObject("user",user);
+		mv.setViewName("userInfoModify");
+		return mv;
+	}
+	//ユーザ情報の変更実施
+	@PostMapping(value = "/modify")
+	public ModelAndView domodify(ModelAndView mv,
+			@RequestParam(name = "code", defaultValue = "") int code,
+			@RequestParam(name = "name", defaultValue = "") String name,
+			@RequestParam(name = "email", defaultValue = "") String email,
+			@RequestParam(name = "tel", defaultValue = "") String tel,
+			@RequestParam(name = "password", defaultValue = "") String password) {
+
+		List<User> users = userRepository.findByEmail(email);
+		User user = (User) session.getAttribute("user");
+		String _email = user.getEmail();//今の登録メールアドレス
+
+		//未入力の項目がある時
+			if (name == "" || name.length() == 0 || email == "" || email.length() == 0 || tel == "" || tel.length() == 0
+					|| password == "" || password.length() == 0) {
+
+				mv.addObject("user",user);
+				mv.addObject("RESULT", "未入力の項目があります");
+				mv.setViewName("userInfoModify");
+			}
+		//メールアドレスが他のアカウントですでに登録されている時
+			else if(!email.equals(_email) && users.size() > 0) {
+
+				mv.addObject("user",user);
+				mv.addObject("RESULT", "メールアドレスが他のアカウントですでに登録されています");
+				mv.setViewName("userInfoModify");
+			}
+			else {
+		User _user = new User(code,name,email,password,tel);
+
+		userRepository.saveAndFlush(_user);//変更
+
+		mv.addObject("user",user);
+		mv.addObject("RESULT","ユーザ情報を変更しました。");
+		mv.setViewName("userInfoModify");
+			}
+		return mv;
+	}
 
 }
