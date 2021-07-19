@@ -73,13 +73,11 @@ h1{
 }
 
 h2{
-  position: fixed;
+  position: absolute;
   top: 40%;
-  left: 50%;
-  transform: translateY(-50%) translateX(-50%);
-  color:#eee;
+  left: 30%;
+  color:rgb(128, 128, 128);
   text-shadow: 0 0 15px #666;
-	text-align: center;
 }
 #header{
 	width:100%;
