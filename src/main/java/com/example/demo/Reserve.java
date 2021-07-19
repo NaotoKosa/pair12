@@ -84,9 +84,6 @@ public class Reserve {
 		this.seat = seat;
 	}
 
-
-
-
 	public Integer getCode() {
 		return code;
 	}
@@ -182,6 +179,7 @@ public class Reserve {
 			return checkinStart.format(DateTimeFormatter.ofPattern("yyyy.MM.dd  HH:mm:ss"));
 		}
 	}
+
 	public String getCheckoutFinishView() {
 		if(checkoutFinish == null) {
 			return "";

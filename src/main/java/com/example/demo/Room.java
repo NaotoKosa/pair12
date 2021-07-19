@@ -28,14 +28,12 @@ public class Room {
 		this.seats = seats;
 	}
 
-
 	public Room(Integer code, String name, String address, String seats) {
 		this.code = code;
 		this.name = name;
 		this.address = address;
 		this.seats = seats;
 	}
-
 
 	public Integer getCode() {
 		return code;
@@ -68,7 +66,5 @@ public class Room {
 	public void setSeats(String seats) {
 		this.seats = seats;
 	}
-
-
 
 }

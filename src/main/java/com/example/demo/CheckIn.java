@@ -34,8 +34,6 @@ public class CheckIn {
 		this.start = start;
 	}
 
-
-
 	public Integer getCode() {
 		return code;
 	}
@@ -71,7 +69,5 @@ public class CheckIn {
 	public String getStartView() {
 		return start.format(DateTimeFormatter.ofPattern("yyyy.MM.dd  HH:mm:ss"));
 	}
-
-
 
 }

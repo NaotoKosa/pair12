@@ -185,5 +185,4 @@ public class MasterController {
 		mv.setViewName("/masterReserve");
 		return mv;
 	}
-
 }

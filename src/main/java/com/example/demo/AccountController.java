@@ -66,7 +66,6 @@ public class AccountController {
 		}
 
 		//ログイン処理
-
 		List<User> users = userRepository.findByEmail(email);
 		// メールアドレスが存在したら
 		if (users.size() > 0) {
