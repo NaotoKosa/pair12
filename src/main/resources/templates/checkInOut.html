@@ -47,15 +47,12 @@
 				<form action="/finish" method="post">
 			<input type="hidden" name="list.code" th:value="${list.code}">
 			<input type="hidden" name="list.finish" th:value="${list.finish}">
-			<input type="submit" th:value="利用を終了する" th:disabled="${list.checkoutFinish != null || d == true}">
+			<input type="submit" th:value="利用を終了する" th:disabled="${list.checkoutFinish != null || list.checkinStart == null}">
 			</form>
 			</td>
 			<td th:text="${list.checkinStartView}"></td>
 			<td th:text="${list.checkoutFinishView}"></td>
-
-
 		</tr>
-
 	</table>
 <br>
 <a href="/main">メイン画面</a>
