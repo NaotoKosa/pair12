@@ -3,12 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <title>SWAOROID</title>
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 <link rel="stylesheet" type="text/css" href="/style.css">
+<link rel="stylesheet" type="text/css" href="/main.css">
+<link rel="stylesheet" type="text/css" href="http://coco-factory.jp/ugokuweb/wp-content/themes/ugokuweb/data/move02/6-1/css/reset.css">
+<link rel="stylesheet" type="text/css" href="/page.css">
+<link rel="stylesheet" type="text/css" href="/welcome.css">
+<link rel="stylesheet" type="text/css" href="/text.css">
 <link rel="stylesheet" type="text/css" href="/tag.css">
 </head>
 <body>
 <span><input th:replace="../static/reserveTag.html"></span>
-
 <br>
 <br>
 <br>
@@ -17,34 +22,272 @@
 <br>
 <br>
 <br>
-
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<main>
+<section id="box1" class="box" data-section-name="top"><!--data-section-nameはページネーションを表示させた際、現在地に現れるテキスト-->
 <img th:src="SWAROID.png" th:alt="logo">
+<br>
+<span th:text="'（'+${session.name}+' さんがログイン中）'"></span>
+<div class="reveal-text">WELCOME!</div>
+<!--/box--></section>
 
-<div class="scrolldown1"><span>Scroll</span></div>
+<section id="box2" class="box" data-section-name="Reserve">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<a href="/room" class="btn btn-svg">
+  <svg>
+    <rect x="2" y="2" rx="0" fill="none" width=400 height="100"></rect>
+  </svg>
+  <span>Reserve<br>：座席予約</span>
+</a>
+<br>
+<br>
+<section class="early">
 
-<h2>～SWAROIDの使い方～</h2>
-各タブの説明<br>
-RESERVE：座席予約<br>
-RECORD：予約履歴を参照<br>
-CHECKIN・OUT：<br>
-CONTACT：<br>
+<article>
+   <p class="example-right">SWAROID利用方法　SWAROID利用方法　SWAROID利用方法　SWAROID利用方法</p>
+</article>
 <br>
-予約の流れ<br>
-RESERVEタブから、利用する会議室を選択<br>
-↓<br>
+<article>
+    <p class="example-left">1 会議室の選択 1 会議室の選択 1 会議室の選択 1 会議室の選択 1 会議室の選択 1 会議室の選択 1 会議室の選択 1 会議室の選択 1 会議室の選択 1 会議室の選択 1 会議室の選択 1 会議室の選択 1 会議室の選択 1 会議室の選択 1 会議室の選択 1 会議室の選択 </p>
+
+   <p class="example-right">2 日時の選択 2 日時の選択 2 日時の選択 2 日時の選択 2 日時の選択 2 日時の選択 2 日時の選択 2 日時の選択 2 日時の選択 2 日時の選択 2 日時の選択 2 日時の選択 2 日時の選択 2 日時の選択 2 日時の選択 2 日時の選択 2 日時の選択 2 日時の選択 2 日時の選択</p>
+
+  </article>
 
 
-  <div class="scrolldown1"><span>Scroll</span></div>
+<article>
+<marquee behavior="scroll" direction="left">3 座席の選択 3 座席の選択 3 座席の選択 3 座席の選択 3 座席の選択 3 座席の選択 3 座席の選択 3 座席の選択 3 座席の選択 3 座席の選択 3 座席の選択 3 座席の選択 3 座席の選択 3 座席の選択 3 座席の選択 3 座席の選択 3 座席の選択 3 座席の選択 3 座席の選択 3 座席の選択 3 座席の選択 3 座席の選択 3 座席の選択 3 座席の選択 3 座席の選択 3 座席の選択 3 座席の選択 3 座席の選択 3 座席の選択 </marquee>
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<h2>～About SWAROID～</h2>
-「キャッチコピー」<br>
-<h3>特徴</h3>
+<marquee behavior="scroll" direction="right">4 予約情報の確認 4 予約情報の確認 4 予約情報の確認 4 予約情報の確認 4 予約情報の確認 4 予約情報の確認 4 予約情報の確認 4 予約情報の確認 4 予約情報の確認 4 予約情報の確認 4 予約情報の確認 4 予約情報の確認 4 予約情報の確認 4 予約情報の確認 4 予約情報の確認 4 予約情報の確認 4 予約情報の確認 4 予約情報の確認 4 予約情報の確認 4 予約情報の確認 4 予約情報の確認 4 予約情報の確認 4 予約情報の確認 4 予約情報の確認 </marquee>
+</article>
 
+  <article>
+    <p class="example-left">5 予約完了の案内 5 予約完了の案内 5 予約完了の案内 5 予約完了の案内 5 予約完了の案内 5 予約完了の案内 5 予約完了の案内 5 予約完了の案内 5 予約完了の案内</p>
+  </article>
+  </section>
+<!--/box--></section>
+
+
+<section id="box3" class="box" data-section-name="Record">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<a href="/reservation" class="btn btn-svg">
+  <svg>
+    <rect x="2" y="2" rx="0" fill="none" width=400 height="100"></rect>
+  </svg>
+  <span>Record<br>：予約状況・利用履歴</span>
+</a>
+<br>
+<br>
+<section class="early">
+
+<article>
+   <p class="example-right">SWAROID利用方法　SWAROID利用方法　SWAROID利用方法　SWAROID利用方法</p>
+</article>
+<br>
+<article>
+    <p class="example-left">1 予約の確認 1 予約の確認 1 予約の確認 1 予約の確認 1 予約の確認 1 予約の確認 1 予約の確認 1 予約の確認 1 予約の確認 1 予約の確認 1 予約の確認 1 予約の確認 1 予約の確認 1 予約の確認 1 予約の確認 1 予約の確認 1 予約の確認 1 予約の確認 1 予約の確認 1 予約の確認 </p>
+
+   <p class="example-right">2 キャンセル機能 2 キャンセル機能 2 キャンセル機能 2 キャンセル機能 2 キャンセル機能 2 キャンセル機能 2 キャンセル機能 2 キャンセル機能 2 キャンセル機能 2 キャンセル機能 2 キャンセル機能 2 キャンセル機能 2 キャンセル機能 2 キャンセル機能 2 キャンセル機能 </p>
+
+  </article>
+
+
+<article>
+<marquee behavior="scroll" direction="left">★キャンセルの取り消し不可 ★キャンセルの取り消し不可 ★キャンセルの取り消し不可 ★キャンセルの取り消し不可 ★キャンセルの取り消し不可 ★キャンセルの取り消し不可 ★キャンセルの取り消し不可 ★キャンセルの取り消し不可 ★キャンセルの取り消し不可 ★キャンセルの取り消し不可 ★キャンセルの取り消し不可 ★キャンセルの取り消し不可 ★キャンセルの取り消し不可 ★キャンセルの取り消し不可 ★キャンセルの取り消し不可 ★キャンセルの取り消し不可 </marquee>
+
+<marquee behavior="scroll" direction="right">☆利用時CHECKIN要確認 ☆利用時CHECKIN要確認 ☆利用時CHECKIN要確認 ☆利用時CHECKIN要確認 ☆利用時CHECKIN要確認 ☆利用時CHECKIN要確認 ☆利用時CHECKIN要確認 ☆利用時CHECKIN要確認 ☆利用時CHECKIN要確認 ☆利用時CHECKIN要確認 ☆利用時CHECKIN要確認 ☆利用時CHECKIN要確認 ☆利用時CHECKIN要確認 ☆利用時CHECKIN要確認 ☆利用時CHECKIN要確認 ☆利用時CHECKIN要確認 ☆利用時CHECKIN要確認 ☆利用時CHECKIN要確認 ☆利用時CHECKIN要確認 ☆利用時CHECKIN要確認 </marquee>
+</article>
+
+  </section>
+<!--/box--></section>
+
+<section id="box4" class="box" data-section-name="CheckIn・Out">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<a href="/checkInOut" class="btn btn-svg">
+  <svg>
+    <rect x="2" y="2" rx="0" fill="none" width=400 height="100"></rect>
+  </svg>
+  <span>CheckIn・CheckOut<br>：利用の開始・終了</span>
+</a>
+<br>
+<br>
+<section class="early">
+
+<article>
+   <p class="example-right">SWAROID利用方法　SWAROID利用方法　SWAROID利用方法　SWAROID利用方法</p>
+</article>
+<br>
+<article>
+    <p class="example-left">1 本日の予約確認 1 本日の予約確認 1 本日の予約確認 1 本日の予約確認 1 本日の予約確認 1 本日の予約確認 1 本日の予約確認 1 本日の予約確認 1 本日の予約確認 1 本日の予約確認 1 本日の予約確認 1 本日の予約確認 1 本日の予約確認 1 本日の予約確認 </p>
+
+   <p class="example-right">2 利用開始時間にCHECKIN 2 利用開始時間にCHECKIN 2 利用開始時間にCHECKIN 2 利用開始時間にCHECKIN 2 利用開始時間にCHECKIN 2 利用開始時間にCHECKIN 2 利用開始時間にCHECKIN 2 利用開始時間にCHECKIN 2 利用開始時間にCHECKIN 2 利用開始時間にCHECKIN </p>
+
+  </article>
+
+
+<article>
+<marquee behavior="scroll" direction="left">3 利用終了時間にCHECKOUT 3 利用終了時間にCHECKOUT 3 利用終了時間にCHECKOUT 3 利用終了時間にCHECKOUT 3 利用終了時間にCHECKOUT 3 利用終了時間にCHECKOUT 3 利用終了時間にCHECKOUT 3 利用終了時間にCHECKOUT 3 利用終了時間にCHECKOUT 3 利用終了時間にCHECKOUT 3 利用終了時間にCHECKOUT 3 利用終了時間にCHECKOUT 3 利用終了時間にCHECKOUT 3 利用終了時間にCHECKOUT 3 利用終了時間にCHECKOUT 3 利用終了時間にCHECKOUT 3 利用終了時間にCHECKOUT </marquee>
+
+<marquee behavior="scroll" direction="right">★ 一度押したら変更不可 ★ 一度押したら変更不可 ★ 一度押したら変更不可 ★ 一度押したら変更不可 ★ 一度押したら変更不可 ★ 一度押したら変更不可 ★ 一度押したら変更不可 ★ 一度押したら変更不可 ★ 一度押したら変更不可 ★ 一度押したら変更不可 ★ 一度押したら変更不可 ★ 一度押したら変更不可 ★ 一度押したら変更不可 ★ 一度押したら変更不可 ★ 一度押したら変更不可 ★ 一度押したら変更不可 ★ 一度押したら変更不可 </marquee>
+</article>
+
+  <article>
+  	<p class="example-left">☆ 忘れずお願いします ☆ 忘れずお願いします ☆ 忘れずお願いします ☆ 忘れずお願いします ☆ 忘れずお願いします ☆ 忘れずお願いします ☆ 忘れずお願いします ☆ 忘れずお願いします </p>
+  </article>
+  </section>
+<!--/box--></section>
+
+<section id="box5" class="box" data-section-name="Message">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<a href="/message" class="btn btn-svg">
+  <svg>
+    <rect x="2" y="2" rx="0" fill="none" width=400 height="100"></rect>
+  </svg>
+  <span>Message<br>：メッセージ</span>
+</a>
+<br>
+<br>
+<section class="early">
+
+<article>
+   <p class="example-right">SWAROID利用方法　SWAROID利用方法　SWAROID利用方法　SWAROID利用方法</p>
+</article>
+<br>
+<article>
+    <p class="example-left">1 新規作成 1 新規作成 1 新規作成 1 新規作成 1 新規作成 1 新規作成 1 新規作成 1 新規作成 1 新規作成 1 新規作成 1 新規作成 1 新規作成 1 新規作成 1 新規作成 1 新規作成 1 新規作成 1 新規作成 1 新規作成 1 新規作成 1 新規作成 1 新規作成 1 新規作成</p>
+
+   <p class="example-right">2 ご意見・ご質問内容の記入 2 ご意見・ご質問内容の記入 2 ご意見・ご質問内容の記入 2 ご意見・ご質問内容の記入 2 ご意見・ご質問内容の記入 2 ご意見・ご質問内容の記入 2 ご意見・ご質問内容の記入 2 ご意見・ご質問内容の記入 2 ご意見・ご質問内容の記入 </p>
+
+  </article>
+
+
+<article>
+<marquee behavior="scroll" direction="left">3 送信ボタンで完了確認 3 送信ボタンで完了確認 3 送信ボタンで完了確認 3 送信ボタンで完了確認 3 送信ボタンで完了確認 3 送信ボタンで完了確認 3 送信ボタンで完了確認 3 送信ボタンで完了確認 3 送信ボタンで完了確認 3 送信ボタンで完了確認 3 送信ボタンで完了確認 3 送信ボタンで完了確認 3 送信ボタンで完了確認 3 送信ボタンで完了確認 3 送信ボタンで完了確認 3 送信ボタンで完了確認 3 送信ボタンで完了確認 3 送信ボタンで完了確認 3 送信ボタンで完了確認 </marquee>
+
+<marquee behavior="scroll" direction="right">4 管理者からのメッセージもこちらで確認 4 管理者からのメッセージもこちらで確認 4 管理者からのメッセージもこちらで確認 4 管理者からのメッセージもこちらで確認 4 管理者からのメッセージもこちらで確認 4 管理者からのメッセージもこちらで確認 4 管理者からのメッセージもこちらで確認 4 管理者からのメッセージもこちらで確認 4 管理者からのメッセージもこちらで確認 4 管理者からのメッセージもこちらで確認 4 管理者からのメッセージもこちらで確認 </marquee>
+</article>
+
+  <article>
+  	<p class="example-left">5 返信ボタンでやり取りを 5 返信ボタンでやり取りを 5 返信ボタンでやり取りを 5 返信ボタンでやり取りを 5 返信ボタンでやり取りを 5 返信ボタンでやり取りを </p>
+  </article>
+  </section>
+<!--/box--></section>
+
+<section id="box6" class="box" data-section-name="User-Infomation">
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<a href="/userInfo" class="btn btn-svg">
+  <svg>
+    <rect x="2" y="2" rx="0" fill="none" width=400 height="100"></rect>
+  </svg>
+  <span>User-Infomation<br>：ユーザ情報</span>
+</a>
+<br>
+<br>
+<section class="early">
+
+<article>
+   <p class="example-right">SWAROID利用方法　SWAROID利用方法　SWAROID利用方法　SWAROID利用方法</p>
+</article>
+<br>
+<article>
+    <p class="example-left">1 ユーザ情報の確認 1 ユーザ情報の確認 1 ユーザ情報の確認 1 ユーザ情報の確認 1 ユーザ情報の確認 1 ユーザ情報の確認 1 ユーザ情報の確認 1 ユーザ情報の確認 1 ユーザ情報の確認 1 ユーザ情報の確認 1 ユーザ情報の確認 1 ユーザ情報の確認 </p>
+
+   <p class="example-right">2 名前・メールアドレス・電話番号・パスワードの変更 2 名前・メールアドレス・電話番号・パスワードの変更 2 名前・メールアドレス・電話番号・パスワードの変更 2 名前・メールアドレス・電話番号・パスワードの変更 2 名前・メールアドレス・電話番号・パスワードの変更 </p>
+
+  </article>
+
+
+<article>
+<marquee behavior="scroll" direction="left">★入力ミスにご注意ください ★入力ミスにご注意ください ★入力ミスにご注意ください ★入力ミスにご注意ください ★入力ミスにご注意ください ★入力ミスにご注意ください ★入力ミスにご注意ください ★入力ミスにご注意ください ★入力ミスにご注意ください ★入力ミスにご注意ください ★入力ミスにご注意ください ★入力ミスにご注意ください ★入力ミスにご注意ください ★入力ミスにご注意ください ★入力ミスにご注意ください</marquee>
+
+</article>
+
+  </section>
+<!--/box--></section>
+</main>
+<br>
+<br>
+<br>
+<br>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js" integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/scrollify/1.0.21/jquery.scrollify.min.js"></script>
+<!--自作のJS-->
+<script src="page.js"></script>
 </body>
 </html>
