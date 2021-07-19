@@ -3,6 +3,7 @@ package com.example.demo;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDateTime;
+import java.time.LocalTime;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -37,23 +38,20 @@ public class ReserveController {
 		List<Reserve> reserveList = reserveRepository.findByUserscode(userscode);
 		mv.addObject("reserveList", reserveList);
 
-//		for (Reserve r : reserveList) {
-//			Integer rc = r.getCode();
-//			for(Reserve rr : reserveList) {
-//				Integer rrc = rr.getCode();
-//				if(rc == rrc) {
-//					String rd = rr.getDate();
-//					LocalDate dat = LocalDate.parse(rd);
-//					LocalDate todaysDate = LocalDate.now();
-//					boolean past = todaysDate.isAfter(dat);
-//
-//					mv.addObject("past", past);
-//				}
-//			}
-//		}
-
-
-
+		//		for (Reserve r : reserveList) {
+		//			Integer rc = r.getCode();
+		//			for(Reserve rr : reserveList) {
+		//				Integer rrc = rr.getCode();
+		//				if(rc == rrc) {
+		//					String rd = rr.getDate();
+		//					LocalDate dat = LocalDate.parse(rd);
+		//					LocalDate todaysDate = LocalDate.now();
+		//					boolean past = todaysDate.isAfter(dat);
+		//
+		//					mv.addObject("past", past);
+		//				}
+		//			}
+		//		}
 
 		mv.setViewName("reserve");
 		return mv;
@@ -109,7 +107,8 @@ public class ReserveController {
 				}
 			}
 		}
-
+		boolean d = true;//終了ボタンをdisabledに
+		mv.addObject("d",d);
 		mv.setViewName("checkInOut");
 		return mv;
 	}
@@ -118,7 +117,12 @@ public class ReserveController {
 	@RequestMapping(value = "/start", method = RequestMethod.POST)
 	public ModelAndView start(
 			@RequestParam(name = "list.code") Integer reservecode,
+			@RequestParam(name = "list.start") String _start,
+			@RequestParam(name = "list.finish") String _finish,
 			ModelAndView mv) {
+
+		int startTime = Integer.parseInt(_start);
+		int finishTime = Integer.parseInt(_finish);
 
 		//予約データベース（reserve）からデータを取得
 		User user = (User) session.getAttribute("user");
@@ -133,34 +137,57 @@ public class ReserveController {
 
 		List<CheckOut> checkoutList = checkoutRepository.findAll();
 
-		//現在時刻を取得
-		LocalDateTime start = LocalDateTime.now();
+		LocalTime a = LocalTime.of(startTime, 0, 0); //予約した開始時間
+		LocalTime b = LocalTime.of(finishTime, 0, 0); //予約した終了時間
+		LocalTime n = LocalTime.now(); //現在時刻
 
-		CheckIn in = new CheckIn(userscode, reservecode, start);
-		checkinRepository.saveAndFlush(in);
+		boolean x = n.isBefore(a);
+		boolean y = n.isAfter(b);
 
-		List<CheckIn> checkinList = checkinRepository.findAll();
+		//現在時刻が開始予約時間より早い時
+		if (x == true) {
+			mv.addObject("ERROR", "この時間はまだ利用できません");
+			boolean time = true;
+			session.setAttribute("time", time);
+			mv.setViewName("checkInOut");
+		}
+		//現在時刻が終了予約時間より過ぎていた時
+			else if (y == true) {
+			mv.addObject("ERROR", "予約時間を過ぎているため利用できません");
+			boolean time = true;
+			session.setAttribute("time", time);
+			mv.setViewName("checkInOut");
+		} else {
+			LocalDateTime start = LocalDateTime.now();
+			CheckIn in = new CheckIn(userscode, reservecode, start);
+			checkinRepository.saveAndFlush(in);
 
-		for (CheckIn c : checkinList) {
-			for (Reserve r : reserveList) {
-				Integer rc = r.getCode();
-				Integer cc = c.getReservecode();
-				if (rc == cc) {
-					r.setCheckinStart(c.getStart());
+			List<CheckIn> checkinList = checkinRepository.findAll();
+
+			for (CheckIn c : checkinList) {
+				for (Reserve r : reserveList) {
+					Integer rc = r.getCode();
+					Integer cc = c.getReservecode();
+					if (rc == cc) {
+						r.setCheckinStart(c.getStart());
+					}
 				}
 			}
-		}
-		for (CheckOut c : checkoutList) {
-			for (Reserve r : reserveList) {
-				Integer rc = r.getCode();
-				Integer cc = c.getReservecode();
-				if (rc == cc) {
-					r.setCheckoutFinish(c.getFinish());
+			for (CheckOut c : checkoutList) {
+				for (Reserve r : reserveList) {
+					Integer rc = r.getCode();
+					Integer cc = c.getReservecode();
+					if (rc == cc) {
+						r.setCheckoutFinish(c.getFinish());
+					}
 				}
 			}
+			boolean time = false;
+			session.setAttribute("time", time);
+			boolean d = false;//終了ボタンが押せるように
+			mv.addObject("d",d);
+			mv.setViewName("checkInOut");
 		}
-
-		mv.setViewName("checkInOut");
 		return mv;
 	}
 
@@ -170,46 +197,61 @@ public class ReserveController {
 			@RequestParam(name = "list.code") Integer reservecode,
 			ModelAndView mv) {
 
-		//予約データベース（reserve）からデータを取得
-		User user = (User) session.getAttribute("user");
-		int userscode = user.getCode();
+		boolean time = (boolean) session.getAttribute("time");
+		if (time == true) {
+			//予約データベース（reserve）からデータを取得
+			User user = (User) session.getAttribute("user");
+			int userscode = user.getCode();
+			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String str = sdf.format(timestamp);
+//			List<Reserve> reserveList = reserveRepository.findByUserscodeAndReservedate(userscode, str);
+//			mv.addObject("reserveList", reserveList);
+			mv.addObject("ERROR", "予約時間を過ぎているため利用できません");
+			mv.setViewName("checkInOut");
+		} else {
 
-		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-		String str = sdf.format(timestamp);
+			//予約データベース（reserve）からデータを取得
+			User user = (User) session.getAttribute("user");
+			int userscode = user.getCode();
 
-		List<Reserve> reserveList = reserveRepository.findByUserscodeAndReservedate(userscode, str);
-		mv.addObject("reserveList", reserveList);
+			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+			String str = sdf.format(timestamp);
 
-		List<CheckIn> checkinList = checkinRepository.findAll();
+			List<Reserve> reserveList = reserveRepository.findByUserscodeAndReservedate(userscode, str);
+			mv.addObject("reserveList", reserveList);
 
-		//現在時刻を取得
-		LocalDateTime finish = LocalDateTime.now();
+			List<CheckIn> checkinList = checkinRepository.findAll();
 
-		CheckOut out = new CheckOut(userscode, reservecode, finish);
-		checkoutRepository.saveAndFlush(out);
-		List<CheckOut> checkoutList = checkoutRepository.findAll();
+			//現在時刻を取得
+			LocalDateTime finish = LocalDateTime.now();
 
-		for (CheckIn c : checkinList) {
-			for (Reserve r : reserveList) {
-				Integer rc = r.getCode();
-				Integer cc = c.getReservecode();
-				if (rc == cc) {
-					r.setCheckinStart(c.getStart());
+			CheckOut out = new CheckOut(userscode, reservecode, finish);
+			checkoutRepository.saveAndFlush(out);
+			List<CheckOut> checkoutList = checkoutRepository.findAll();
+
+			for (CheckIn c : checkinList) {
+				for (Reserve r : reserveList) {
+					Integer rc = r.getCode();
+					Integer cc = c.getReservecode();
+					if (rc == cc) {
+						r.setCheckinStart(c.getStart());
+					}
 				}
 			}
-		}
-		for (CheckOut c : checkoutList) {
-			for (Reserve r : reserveList) {
-				Integer rc = r.getCode();
-				Integer cc = c.getReservecode();
-				if (rc == cc) {
-					r.setCheckoutFinish(c.getFinish());
+			for (CheckOut c : checkoutList) {
+				for (Reserve r : reserveList) {
+					Integer rc = r.getCode();
+					Integer cc = c.getReservecode();
+					if (rc == cc) {
+						r.setCheckoutFinish(c.getFinish());
+					}
 				}
 			}
-		}
 
-		mv.setViewName("checkInOut");
+			mv.setViewName("checkInOut");
+		}
 		return mv;
 	}
 

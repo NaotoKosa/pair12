@@ -13,7 +13,7 @@
 	<br>
 	<br>
 	<h2>本日の予約</h2>
-
+<span th:text="${ERROR}" style="color:red"></span>
 	<table border="1">
 
 		<tr>
@@ -38,13 +38,16 @@
 			<td>
 			<form action="/start" method="post">
 			<input type="hidden" name="list.code" th:value="${list.code}">
+			<input type="hidden" name="list.start" th:value="${list.start}">
+			<input type="hidden" name="list.finish" th:value="${list.finish}">
 			<input type="submit" th:value="利用を開始する" th:disabled="${list.checkinStart != null}">
 			</form>
 			</td>
 			<td>
 				<form action="/finish" method="post">
 			<input type="hidden" name="list.code" th:value="${list.code}">
-			<input type="submit" th:value="利用を終了する" th:disabled="${list.checkoutFinish != null}">
+			<input type="hidden" name="list.finish" th:value="${list.finish}">
+			<input type="submit" th:value="利用を終了する" th:disabled="${list.checkoutFinish != null || d == true}">
 			</form>
 			</td>
 			<td th:text="${list.checkinStartView}"></td>
