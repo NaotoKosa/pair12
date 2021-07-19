@@ -14,7 +14,7 @@
 	<br>
 	<h2>ユーザ情報の変更</h2>
 	<form action="/modify" method="post">
-	<table border="1">
+	<table border="0" class="table">
 		<tr>
 			<th>ユーザコード</th><td th:text="${user.code}"></td><input type="hidden" name="code" th:value="${user.code}">
 		</tr>
