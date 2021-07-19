@@ -2,6 +2,7 @@ package com.example.demo;
 
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
+import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.util.List;
@@ -60,8 +61,33 @@ public class ReserveController {
 	//予約キャンセル
 	@RequestMapping(value = "/cancel")
 	public ModelAndView cancel(ModelAndView mv,
-			@RequestParam("list.code") int code) {
+			@RequestParam("list.code") int code,
+			@RequestParam("list.date") String date,
+			@RequestParam("list.start") String start,
+			@RequestParam("list.finish") String finish
+			) {
 
+		LocalDate dat = LocalDate.parse(date);
+		LocalDate todaysDate = LocalDate.now();
+		boolean past = todaysDate.isAfter(dat);
+		boolean today = todaysDate.isEqual(dat);
+
+		int s = Integer.parseInt(start);
+		int f = Integer.parseInt(finish);
+
+		LocalTime a = LocalTime.of(f, 0, 0); //予約した終了時間
+		LocalTime n = LocalTime.now(); //現在時刻
+
+		boolean x = n.isAfter(a);
+
+		if(past==true || today == true && x == true) {//選択した日にちが過去or今日のもう終了した時間帯
+			mv.addObject("ERROR","この予約はすでに終了しています");
+			//予約データベース（reserve）からデータを取得
+			User user = (User) session.getAttribute("user");
+			int userscode = user.getCode();
+			List<Reserve> reserveList = reserveRepository.findByUserscode(userscode);
+			mv.addObject("reserveList", reserveList);
+		}else {
 		reserveRepository.deleteById(code);
 		//予約データベース（reserve）からデータを取得
 		User user = (User) session.getAttribute("user");
@@ -69,7 +95,7 @@ public class ReserveController {
 
 		List<Reserve> reserveList = reserveRepository.findByUserscode(userscode);
 		mv.addObject("reserveList", reserveList);
-
+		}
 		mv.setViewName("reserve");
 		return mv;
 	}

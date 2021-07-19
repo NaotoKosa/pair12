@@ -13,7 +13,7 @@
 	<br>
 	<br>
 	<h2>予約一覧</h2>
-
+	<span th:text="${ERROR}" style="color:red"></span>
 	<table border="1">
 
 		<tr>
@@ -38,6 +38,9 @@
 			<td th:text="${list.finish}"></td>
 			<td>
 			<input type="hidden" name="list.code" th:value="${list.code}">
+			<input type="hidden" name="list.date" th:value="${list.date}">
+			<input type="hidden" name="list.start" th:value="${list.start}">
+			<input type="hidden" name="list.finish" th:value="${list.finish}">
 			<input type="submit" th:value="キャンセル">
 			</td>
 		</form>

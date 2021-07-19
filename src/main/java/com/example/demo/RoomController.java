@@ -9,6 +9,7 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.SimpleDateFormat;
 import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
@@ -83,14 +84,20 @@ public class RoomController {
 		LocalDate dat = LocalDate.parse(date);
 		LocalDate todaysDate = LocalDate.now();
 		boolean past = todaysDate.isAfter(dat);
+		boolean today = todaysDate.isEqual(dat);
 		int future = todaysDate.compareTo(dat);
 		System.out.println(future);
 
 		int s = Integer.parseInt(start);
 		int f = Integer.parseInt(finish);
+
+		LocalTime a = LocalTime.of(f, 0, 0); //予約した終了時間
+		LocalTime n = LocalTime.now(); //現在時刻
+
+		boolean x = n.isAfter(a);
+
 		User _user = (User) session.getAttribute("user");
 		int userscode = _user.getCode();
-
 
 		String reserReservedate = null;
 		String reserStart = "0";
@@ -114,49 +121,10 @@ public class RoomController {
 			}
 		}
 
-
-
-//		String url = "jdbc:postgresql:zaseki_db"; //接続するDBのURL
-//		String user = "postgres"; //ユーザ名
-//		String pass = "himitu"; //パスワード
-//
-//		try {
-//			Class.forName("org.postgresql.Driver");
-//		} catch (ClassNotFoundException e) {
-//			e.printStackTrace();
-//			System.out.println("JDBCドライバが登録されていないよ！");
-//		}
-//
-//
-//		String sql = "SELECT * FROM reserve WHERE reservedate = ? and (start = ? or finish = ? or start < ? and finish > ?) and userscode = ?";//重複チェック
-//
-//		try (
-//			//データベースへの接続
-//			Connection con = DriverManager.getConnection(url, user, pass);
-//			//SQL文の実行の準備をして実行に備える
-//			PreparedStatement ps = con.prepareStatement(sql);
-//		){	ps.setString(1,date);
-//		ps.setString(2,start);
-//		ps.setString(3,finish);
-//		ps.setString(4,finish);
-//		ps.setString(5,start);
-//		ps.setInt(6,userscode);
-//
-//		boolean reserved = false;
-//
-//		//SQL文の実行
-//		//SELECT文を実行する
-//		ResultSet rs = ps.executeQuery();
-//
-//		if (rs.next() == true) {
-//
-//			reserved = true;
-//		}
-
 		if (date.equals("1000-01-01")) {
 			mv.addObject("ERROR", "日付けを選択してください。");
 			mv.setViewName("info");
-		} else if(past==true) {
+		} else if(past==true || today == true && x == true) {//選択した日にちが過去or今日のもう終了した時間帯
 			mv.addObject("ERROR", "過去は選択できません。");
 			mv.setViewName("info");
 		} else if(s>= f) {
@@ -166,11 +134,8 @@ public class RoomController {
 			mv.setViewName("info");
 		}
 		else {
-		//	String date = (String) session.getAttribute("date");
-//			String start = (String) session.getAttribute("start");
-//			String finish = (String) session.getAttribute("finish");
-			String room = (String) session.getAttribute("roomname");
 
+			String room = (String) session.getAttribute("roomname");
 
 			String url = "jdbc:postgresql:zaseki_db"; //接続するDBのURL
 			String user = "postgres"; //ユーザ名
