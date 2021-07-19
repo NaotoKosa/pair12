@@ -63,7 +63,11 @@ public class ReserveController {
 			@RequestParam("list.code") int code) {
 
 		reserveRepository.deleteById(code);
-		List<Reserve> reserveList = reserveRepository.findAll();
+		//予約データベース（reserve）からデータを取得
+		User user = (User) session.getAttribute("user");
+		int userscode = user.getCode();
+
+		List<Reserve> reserveList = reserveRepository.findByUserscode(userscode);
 		mv.addObject("reserveList", reserveList);
 
 		mv.setViewName("reserve");
@@ -146,6 +150,25 @@ public class ReserveController {
 
 		//現在時刻が開始予約時間より早い時
 		if (x == true) {
+			List<CheckIn> checkinList = checkinRepository.findAll();
+			for (CheckIn c : checkinList) {
+				for (Reserve r : reserveList) {
+					Integer rc = r.getCode();
+					Integer cc = c.getReservecode();
+					if (rc == cc) {
+						r.setCheckinStart(c.getStart());
+					}
+				}
+			}
+			for (CheckOut c : checkoutList) {
+				for (Reserve r : reserveList) {
+					Integer rc = r.getCode();
+					Integer cc = c.getReservecode();
+					if (rc == cc) {
+						r.setCheckoutFinish(c.getFinish());
+					}
+				}
+			}
 			mv.addObject("ERROR", "この時間はまだ利用できません");
 			boolean time = true;
 			session.setAttribute("time", time);
@@ -153,6 +176,25 @@ public class ReserveController {
 		}
 		//現在時刻が終了予約時間より過ぎていた時
 			else if (y == true) {
+				List<CheckIn> checkinList = checkinRepository.findAll();
+				for (CheckIn c : checkinList) {
+					for (Reserve r : reserveList) {
+						Integer rc = r.getCode();
+						Integer cc = c.getReservecode();
+						if (rc == cc) {
+							r.setCheckinStart(c.getStart());
+						}
+					}
+				}
+				for (CheckOut c : checkoutList) {
+					for (Reserve r : reserveList) {
+						Integer rc = r.getCode();
+						Integer cc = c.getReservecode();
+						if (rc == cc) {
+							r.setCheckoutFinish(c.getFinish());
+						}
+					}
+				}
 			mv.addObject("ERROR", "予約時間を過ぎているため利用できません");
 			boolean time = true;
 			session.setAttribute("time", time);
@@ -196,28 +238,40 @@ public class ReserveController {
 	public ModelAndView finish(
 			@RequestParam(name = "list.code") Integer reservecode,
 			ModelAndView mv) {
+		//予約データベース（reserve）からデータを取得
+		User user = (User) session.getAttribute("user");
+		int userscode = user.getCode();
+		Timestamp timestamp = new Timestamp(System.currentTimeMillis());
+		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
+		String str = sdf.format(timestamp);
 
 		boolean time = (boolean) session.getAttribute("time");
 		if (time == true) {
-			//予約データベース（reserve）からデータを取得
-			User user = (User) session.getAttribute("user");
-			int userscode = user.getCode();
-			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			String str = sdf.format(timestamp);
-//			List<Reserve> reserveList = reserveRepository.findByUserscodeAndReservedate(userscode, str);
-//			mv.addObject("reserveList", reserveList);
+			List<CheckIn> checkinList = checkinRepository.findAll();
+			List<CheckOut> checkoutList = checkoutRepository.findAll();
+			List<Reserve> reserveList = reserveRepository.findByUserscodeAndReservedate(userscode, str);
+			for (CheckIn c : checkinList) {
+				for (Reserve r : reserveList) {
+					Integer rc = r.getCode();
+					Integer cc = c.getReservecode();
+					if (rc == cc) {
+						r.setCheckinStart(c.getStart());
+					}
+				}
+			}
+			for (CheckOut c : checkoutList) {
+				for (Reserve r : reserveList) {
+					Integer rc = r.getCode();
+					Integer cc = c.getReservecode();
+					if (rc == cc) {
+						r.setCheckoutFinish(c.getFinish());
+					}
+				}
+			}
+			mv.addObject("reserveList", reserveList);
 			mv.addObject("ERROR", "予約時間を過ぎているため利用できません");
 			mv.setViewName("checkInOut");
 		} else {
-
-			//予約データベース（reserve）からデータを取得
-			User user = (User) session.getAttribute("user");
-			int userscode = user.getCode();
-
-			Timestamp timestamp = new Timestamp(System.currentTimeMillis());
-			SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-			String str = sdf.format(timestamp);
 
 			List<Reserve> reserveList = reserveRepository.findByUserscodeAndReservedate(userscode, str);
 			mv.addObject("reserveList", reserveList);
