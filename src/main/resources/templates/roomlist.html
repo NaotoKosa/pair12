@@ -5,16 +5,19 @@
 <title>SWAROID</title>
 <link rel="stylesheet" type="text/css" href="/style.css">
 <link rel="stylesheet" type="text/css" href="/tag.css">
+<link rel="stylesheet" type="text/css" href="/room.css">
 </head>
-<body>
-<span><input th:replace="../static/reserveTag.html"></span>
-	<br>
-	<br>
-	<br>
-	<br>
-	<h2>会議室</h2>
 
-	<table border="1">
+<body>
+<input th:replace="../static/reserveTag.html">
+<br>
+<br>
+<section class="section1">
+<div class="container">
+<img src="forest.jpg" width="600" height="300">
+</div>
+</section>
+	<table border="0" class="table">
 		<tr>
 			<th>NO</th>
 			<th>会議室名</th>
@@ -33,6 +36,11 @@
 		</form>
 		</tr>
 	</table>
+<section class="section2">
+<div class="container">
+<img src="ocean.jpg" width="600" height="300">
+</div>
+</section>
 
 </body>
 </html>

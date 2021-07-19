@@ -1,0 +1,17 @@
+@charset "UTF-8";
+
+
+.section1 {
+	margin-left: 10%;
+	width:50px;
+ 	display:flex;
+ 	transform:skewX(30deg);
+}
+.section2 {
+	width:50px;
+ 	display:inline-block;
+ 	transform:skewX(-30deg);
+}
+
+
+
