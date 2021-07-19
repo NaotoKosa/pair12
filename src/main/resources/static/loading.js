@@ -26,10 +26,3 @@ bar.animate(1.0, function () {//バーを描画する割合を指定します 1.
 	$("#splash").delay(500).fadeOut(800);//アニメーションが終わったら#splashエリアをフェードアウト
 });
 
-// #page-topをクリックした際の設定
-$('#page-top').click(function () {
-    $('body,html').animate({
-        scrollTop: 0//ページトップまでスクロール
-    }, 500);//ページトップスクロールの速さ。数字が大きいほど遅くなる
-    return false;//リンク自体の無効化
-});
