@@ -39,21 +39,6 @@ public class ReserveController {
 		List<Reserve> reserveList = reserveRepository.findByUserscode(userscode);
 		mv.addObject("reserveList", reserveList);
 
-		//		for (Reserve r : reserveList) {
-		//			Integer rc = r.getCode();
-		//			for(Reserve rr : reserveList) {
-		//				Integer rrc = rr.getCode();
-		//				if(rc == rrc) {
-		//					String rd = rr.getDate();
-		//					LocalDate dat = LocalDate.parse(rd);
-		//					LocalDate todaysDate = LocalDate.now();
-		//					boolean past = todaysDate.isAfter(dat);
-		//
-		//					mv.addObject("past", past);
-		//				}
-		//			}
-		//		}
-
 		mv.setViewName("reserve");
 		return mv;
 	}
@@ -137,8 +122,7 @@ public class ReserveController {
 				}
 			}
 		}
-		boolean d = true;//終了ボタンをdisabledに
-		mv.addObject("d",d);
+
 		mv.setViewName("checkInOut");
 		return mv;
 	}
@@ -223,6 +207,8 @@ public class ReserveController {
 				}
 			mv.addObject("ERROR", "予約時間を過ぎているため利用できません");
 			boolean time = true;
+//			boolean d = true;
+//			mv.addObject("d",d);
 			session.setAttribute("time", time);
 			mv.setViewName("checkInOut");
 		} else {
@@ -252,8 +238,6 @@ public class ReserveController {
 			}
 			boolean time = false;
 			session.setAttribute("time", time);
-			boolean d = false;//終了ボタンが押せるように
-			mv.addObject("d",d);
 			mv.setViewName("checkInOut");
 		}
 		return mv;
