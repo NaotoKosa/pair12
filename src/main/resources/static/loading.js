@@ -6,7 +6,6 @@ var myYear = String(myD.getFullYear());//年
 var myMonth = String(myD.getMonth() + 1);//月
 var myDate = String(myD.getDate());//日
 
-document.write(splash_tt + myYear + myMonth + myDate);
 if (splash_tt != myYear + myMonth + myDate) {//cookieデータとアクセスした日付を比較↓
         //テキストのカウントアップの設定
 			var bar = new ProgressBar.Line(splash_text, {//id名を指定
