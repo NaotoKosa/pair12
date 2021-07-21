@@ -20,6 +20,13 @@ public class AccountController {
 	@Autowired
 	UserRepository userRepository;
 
+	@Autowired
+	MessageRepository messageRepository;
+
+	@Autowired
+	LastMessageRepository lastmessageRepository;
+
+
 	//トップページ（ログイン画面）を表示
 	@RequestMapping("/")
 	public String top() {
@@ -65,11 +72,6 @@ public class AccountController {
 			return mv;
 		}
 
-//		//管理者ログイン
-//		if(email.equals("master@aaa.com") && password.equals("master")) {
-//			mv.setViewName("masterMain");
-//
-//		}
 	//管理者ログイン
 				if(email.equals("master@aaa.com") && password.equals("master")) {
 					mv.setViewName("masterMain");
@@ -95,8 +97,32 @@ public class AccountController {
 				mv.addObject("name", name);
 				mv.addObject("user", user);
 
-				mv.setViewName("main");
+				int userscode = user.getCode();
 
+				boolean n = false;
+
+				//最後に送られてきたメッセージのCodeを取得
+				List<Message> list = messageRepository.findByUserscodeOrderByCodeAsc(userscode);
+				Message last = list.get(list.size() - 1);
+				int lastCode = last.getCode();
+
+				System.out.println(lastCode);
+				//前回見たメッセージ一覧の最後のCodeを取得
+				List<LastMessage> list2 = lastmessageRepository.findByUserscode(userscode);
+				int s = list2.size();
+					if(s!=0) {
+						LastMessage _last = list2.get(0);
+						int _lastCode = _last.getLast();
+						System.out.println(_lastCode);
+						//見ていないメッセージがあったとき
+						if(lastCode > _lastCode) {
+							n = true;
+
+							System.out.println("新しいメッセージがあります。");
+						}
+					}
+				session.setAttribute("n", n);
+				mv.setViewName("main");
 
 			} else { //メールアドレスとパスワードが不一致 ログインNG
 				mv.addObject("RESULT", "メールアドレスとパスワードが一致しませんでした。");

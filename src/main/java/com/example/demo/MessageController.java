@@ -26,12 +26,22 @@ public class MessageController {
 	@Autowired
 	UserRepository userRepository;
 
+	@Autowired
+	LastMessageRepository lastmessageRepository;
+
 	//メッセージ一覧を表示
 	@RequestMapping("/message")
 	public ModelAndView message(ModelAndView mv) {
 		User user = (User) session.getAttribute("user");
 		int userscode = user.getCode();
 		List<Message> message = messageRepository.findByUserscode(userscode);//ログインしているユーザ宛のメッセージのみ表示
+
+		lastmessageRepository.deleteAll();
+		List<Message> list = messageRepository.findByUserscodeOrderByCodeAsc(userscode);
+		Message last = list.get(list.size() - 1);
+		int _last = last.getCode();
+		LastMessage l = new LastMessage(userscode,_last);
+		lastmessageRepository.saveAndFlush(l);
 
 		session.setAttribute("userscode", userscode);
 		mv.addObject("message", message);
@@ -118,6 +128,7 @@ public class MessageController {
 		//データベースに登録
 		Message newMessage = new Message(today, to, from, userscode, email, message);
 		messageRepository.saveAndFlush(newMessage);
+
 
 		mv.addObject("code", userscode);
 		mv.addObject("to", to);

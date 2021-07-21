@@ -33,6 +33,11 @@ public class RoomController {
 	@Autowired
 	ReserveRepository reserveRepository;
 
+	@Autowired
+	MessageRepository messageRepository;
+
+	@Autowired
+	LastMessageRepository lastmessageRepository;
 	/**
 	 * 全会議室を表示
 	 */
