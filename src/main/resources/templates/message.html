@@ -19,8 +19,8 @@
 			<tr>
 				<th>NO</th>
 				<th>日時</th>
-				<th>TO</th>
 				<th>FROM</th>
+				<th>TO</th>
 				<th>会員番号</th>
 				<th>メッセージ</th>
 				<th>返信</th>
@@ -28,8 +28,8 @@
 			<tr th:each="m:${message}">
 				<td th:text="${m.code}"></td>
 				<td th:text="${m.ymd}"></td>
-				<td th:text="${m.to}"></td>
 				<td th:text="${m.from}"></td>
+				<td th:text="${m.to}"></td>
 				<td th:text="${m.userscode}"></td>
 				<td th:text="${m.message}"></td>
 				<td>
