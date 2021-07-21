@@ -23,7 +23,7 @@
 <input type="email" name="email" th:value="${email}" placeholder="Email address" required />
 
 <span class="input"></span>
-<input type="tel" name="tel" th:value="${tel}" placeholder="Tel number" title="Format: (e.g. 000-0000-0000)" pattern="[0-9]{3}-[0-9]{4}-[0-9]{4}" required />
+<input type="tel" name="tel" th:value="${tel}" placeholder="Tel number" title="only number : without (-), min 10" pattern="(?=^.{10,}$)(^[\d]+$)" required />
 
 <span id="passwordMeter"></span>
 <input type="password" name="password" id="password" placeholder="Password" title="Password min 8 characters. At least one UPPERCASE and one lowercase letter" required pattern="(?=^.{8,}$)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"/>
