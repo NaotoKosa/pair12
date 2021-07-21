@@ -65,6 +65,16 @@ public class AccountController {
 			return mv;
 		}
 
+//		//管理者ログイン
+//		if(email.equals("master@aaa.com") && password.equals("master")) {
+//			mv.setViewName("masterMain");
+//
+//		}
+	//管理者ログイン
+				if(email.equals("master@aaa.com") && password.equals("master")) {
+					mv.setViewName("masterMain");
+
+				}else {
 		//ログイン処理
 		List<User> users = userRepository.findByEmail(email);
 		// メールアドレスが存在したら
@@ -76,7 +86,7 @@ public class AccountController {
 			String _password = user.getPassword();
 
 			if (email.equals(_email) && password.equals(_password)) {
-				//ログイン成功
+				//ユーザログイン成功
 				String name = user.getName();
 
 				session.setAttribute("name", name);
@@ -86,6 +96,8 @@ public class AccountController {
 				mv.addObject("user", user);
 
 				mv.setViewName("main");
+
+
 			} else { //メールアドレスとパスワードが不一致 ログインNG
 				mv.addObject("RESULT", "メールアドレスとパスワードが一致しませんでした。");
 				mv.setViewName("home");
@@ -97,6 +109,7 @@ public class AccountController {
 			mv.addObject("RESULT", "入力されたメールアドレスは登録されていません");
 			mv.setViewName("home");
 		}
+	}
 
 		return mv;
 	}
