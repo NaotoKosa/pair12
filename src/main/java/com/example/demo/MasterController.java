@@ -145,7 +145,7 @@ public class MasterController {
 			if(s!=0) {
 				MasterLastMessage _last = list2.get(0);
 				int _lastCode = _last.getLast();
-				System.out.println(_lastCode);
+
 				//見ていないメッセージがあったとき
 				if(lastCode > _lastCode) {
 					n = true;
