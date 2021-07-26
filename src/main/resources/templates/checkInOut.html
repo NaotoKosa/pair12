@@ -5,6 +5,23 @@
 <title>SWAROID</title>
 <link rel="stylesheet" type="text/css" href="/style.css">
 <link rel="stylesheet" type="text/css" href="/tag.css">
+<script>
+function chIn(code){
+	var result = confirm("チェックインされますか？");
+	if(result == true){
+		var form = document.querySelector("#form" + code);
+		form.submit();
+	}
+}
+
+function chOut(code){
+	var result = confirm("チェックインされますか？");
+	if(result == true){
+		var form = document.querySelector("#form" + code);
+		form.submit();
+	}
+}
+</script>
 </head>
 <body>
 <span><input th:replace="../static/reserveTag.html"></span>
@@ -28,7 +45,7 @@
 			<th>利用開始時間</th>
 			<th>利用終了時間</th>
 		</tr>
-		<tr th:each="list:${reserveList}">
+		<tr th:each="list:${reserveList}" th:id="'form' + ${list.code}">
 			<td th:text="${list.code}"></td>
 			<td th:text="${list.room}"></td>
 			<td th:text="${list.seat}"></td>
@@ -40,14 +57,14 @@
 			<input type="hidden" name="list.code" th:value="${list.code}">
 			<input type="hidden" name="list.start" th:value="${list.start}">
 			<input type="hidden" name="list.finish" th:value="${list.finish}">
-			<input type="submit" th:value="利用を開始する" th:disabled="${list.checkinStart != null}">
+			<input type="submit" th:value="利用を開始する" th:attr="onclick='chIn(' + ${list.code} + ')'" th:disabled="${list.checkinStart != null}">
 			</form>
 			</td>
 			<td>
 				<form action="/finish" method="post">
 			<input type="hidden" name="list.code" th:value="${list.code}">
 			<input type="hidden" name="list.finish" th:value="${list.finish}">
-			<input type="submit" th:value="利用を終了する" th:disabled="${list.checkoutFinish != null || list.checkinStart == null}">
+			<input type="submit" th:value="利用を終了する" th:attr="onclick='chOut(' + ${list.code} + ')'" th:disabled="${list.checkoutFinish != null || list.checkinStart == null}">
 			</form>
 			</td>
 			<td th:text="${list.checkinStartView}"></td>
