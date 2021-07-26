@@ -132,7 +132,7 @@ public class AccountController {
 		} else if (users.size() == 0) {
 			// メールアドレスが見つからなかった場合
 			// エラーメッセージをセット
-			mv.addObject("RESULT", "入力されたメールアドレスは登録されていません");
+			mv.addObject("RESULT", "メールアドレスとパスワードが一致しませんでした。");
 			mv.setViewName("home");
 		}
 	}
