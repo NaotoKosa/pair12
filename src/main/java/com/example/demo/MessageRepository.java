@@ -6,5 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface MessageRepository extends JpaRepository<Message, Integer> {
 	List<Message> findByUserscode(Integer userscode);
+	List<Message> findByUserscodeOrderByCodeAsc(Integer userscode);
 
 }
