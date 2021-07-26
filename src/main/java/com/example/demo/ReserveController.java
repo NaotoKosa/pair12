@@ -32,12 +32,20 @@ public class ReserveController {
 	@RequestMapping(value = "/reservation")
 	public ModelAndView reserve(ModelAndView mv) {
 
+		LocalDate todaysDate = LocalDate.now();
+		mv.addObject("todaysDate", todaysDate.toString());
+
+		LocalTime n = LocalTime.now(); //現在時刻
+		mv.addObject("n", n.toString());
+
+
 		//予約データベース（reserve）からデータを取得
 		User user = (User) session.getAttribute("user");
 		int userscode = user.getCode();
 
 		List<Reserve> reserveList = reserveRepository.findByUserscode(userscode);
 		mv.addObject("reserveList", reserveList);
+
 
 		mv.setViewName("reserve");
 		return mv;
@@ -54,16 +62,21 @@ public class ReserveController {
 
 		LocalDate dat = LocalDate.parse(date);
 		LocalDate todaysDate = LocalDate.now();
+		mv.addObject("todaysDate", todaysDate.toString());
 		boolean past = todaysDate.isAfter(dat);
 		boolean today = todaysDate.isEqual(dat);
+
 
 		int s = Integer.parseInt(start);
 		int f = Integer.parseInt(finish);
 
 		LocalTime a = LocalTime.of(f, 0, 0); //予約した終了時間
 		LocalTime n = LocalTime.now(); //現在時刻
+		mv.addObject("n", n.toString());
 
 		boolean x = n.isAfter(a);
+
+
 
 		if(past==true || today == true && x == true) {//選択した日にちが過去or今日のもう終了した時間帯
 			mv.addObject("ERROR","この予約はすでに終了しています");
@@ -72,16 +85,18 @@ public class ReserveController {
 			int userscode = user.getCode();
 			List<Reserve> reserveList = reserveRepository.findByUserscode(userscode);
 			mv.addObject("reserveList", reserveList);
-		}else {
-		reserveRepository.deleteById(code);
-		//予約データベース（reserve）からデータを取得
-		User user = (User) session.getAttribute("user");
-		int userscode = user.getCode();
+		} else {
+				reserveRepository.deleteById(code);
+				//予約データベース（reserve）からデータを取得
+				User user = (User) session.getAttribute("user");
+				int userscode = user.getCode();
 
-		List<Reserve> reserveList = reserveRepository.findByUserscode(userscode);
-		mv.addObject("reserveList", reserveList);
+				List<Reserve> reserveList = reserveRepository.findByUserscode(userscode);
+				mv.addObject("reserveList", reserveList);
+				mv.setViewName("reserve");
+
 		}
-		mv.setViewName("reserve");
+
 		return mv;
 	}
 
