@@ -14,6 +14,18 @@ function f(code){
 	}
 }
 </script>
+<style>
+#myTable .tablesorter-header.sort {
+	cursor: pointer;
+	outline: none;
+}
+#myTable .tablesorter-header.sort .tablesorter-header-inner::after {
+	content: '▼';
+	font-size: 12px;
+	margin-left: 5px;
+}
+
+</style>
 </head>
 <body>
 <span><input th:replace="../static/masterTag.html"></span>
@@ -30,39 +42,57 @@ function f(code){
 	</form>
 	<br>
 
-	<table border="0" class="table">
-
-		<tr>
-			<th>予約番号</th>
-			<th>ユーザコード</th>
-			<th>登録日</th>
-			<th>会議室</th>
-			<th>座席</th>
-			<th>予約日</th>
-			<th>開始時間</th>
-			<th>終了時間</th>
-
-			<th></th>
-		</tr>
-		<tr th:each="list:${reserveList}">
-		<form action="/masterCancel" method="get" th:id="'form' + ${list.code}">
-			<td th:text="${list.code}"></td>
-			<td><a th:href="'/user/' + ${list.userscode}" th:text="${list.userscode}"></td>
-			<td th:text="${list.ymd}"></td>
-			<td th:text="${list.room}"></td>
-			<td th:text="${list.seat}"></td>
-			<td th:text="${list.date}"></td>
-			<td th:text="${list.start}"></td>
-			<td th:text="${list.finish}"></td>
-			<td>
-			<input type="hidden" name="list.code" th:value="${list.code}">
-			<input type="button" th:value="キャンセル" th:attr="onclick='f(' + ${list.code} + ')'" >
-			</td>
-		</form>
-		</tr>
-
+	<table border="0" class="table tablesorter" id="myTable">
+		<thead>
+			<tr>
+				<th class="sort">予約番号</th>
+				<th class="sort">ユーザコード</th>
+				<th class="sort">登録日</th>
+				<th class="no-sort">会議室</th>
+				<th class="sort">座席</th>
+				<th class="no-sort">予約日</th>
+				<th class="no-sort">開始時間</th>
+				<th class="no-sort">終了時間</th>
+				<th class="no-sort"></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="list:${reserveList}">
+			<form action="/masterCancel" method="get" th:id="'form' + ${list.code}">
+				<td th:text="${list.code}"></td>
+				<td><a th:href="'/user/' + ${list.userscode}" th:text="${list.userscode}"></td>
+				<td th:text="${list.ymd}"></td>
+				<td th:text="${list.room}"></td>
+				<td th:text="${list.seat}"></td>
+				<td th:text="${list.date}"></td>
+				<td th:text="${list.start}"></td>
+				<td th:text="${list.finish}"></td>
+				<td>
+				<input type="hidden" name="list.code" th:value="${list.code}">
+				<input type="button" th:value="キャンセル" th:attr="onclick='f(' + ${list.code} + ')'" >
+				</td>
+			</form>
+			</tr>
+		</tbody>
 	</table>
 <br>
 <a href="/masterMain">メイン画面</a>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js"></script>
+<script>
+$(document).ready(function(){
+	$("#myTable").tablesorter({
+		headers: {
+			3: { sorter: false },
+			5: { sorter: false },
+			6: { sorter: false },
+			7: { sorter: false }
+		}
+	});
+});
+</script>
 </body>
 </html>
