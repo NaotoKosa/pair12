@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org" lang="ja">
+<html xmlns:th="http://www.thymeleaf.org" lang="ja" >
 <head>
 <meta charset="UTF-8">
 <title>SWAROID</title>
@@ -16,6 +16,17 @@ function f(code){
 
 
 </script>
+<style>
+#myTable .tablesorter-header {
+	cursor: pointer;
+	outline: none;
+}
+#myTable .tablesorter-header-inner::after {
+	content: '▼';
+	font-size: 12px;
+	margin-left: 5px;
+}
+</style>
 </head>
 <body>
 <span><input th:replace="../static/reserveTag.html"></span>
@@ -25,40 +36,50 @@ function f(code){
 	<br>
 	<h2>予約一覧</h2>
 	<span th:text="${ERROR}" style="color:red"></span>
-	<table border="0" class="table">
-
-		<tr>
-			<th>予約番号</th>
-			<th>登録日</th>
-			<th>会議室</th>
-			<th>座席</th>
-			<th>予約日</th>
-			<th>開始時間</th>
-			<th>終了時間</th>
-
-			<th></th>
-		</tr>
-		<tr th:each="list:${reserveList}">
-		<form action="/cancel" method="get" th:id="'form' + ${list.code}">
-			<td th:text="${list.code}"></td>
-			<td th:text="${list.ymd}"></td>
-			<td th:text="${list.room}"></td>
-			<td th:text="${list.seat}"></td>
-			<td th:text="${list.date}"></td>
-			<td th:text="${list.start}"></td>
-			<td th:text="${list.finish}"></td>
-			<td>
-			<input type="hidden" name="list.code" th:value="${list.code}">
-			<input type="hidden" name="list.date" th:value="${list.date}">
-			<input type="hidden" name="list.start" th:value="${list.start}">
-			<input type="hidden" name="list.finish" th:value="${list.finish}">
-			<input type="button" th:value="キャンセル" th:attr="onclick='f(' + ${list.code} + ')'" th:disabled="${todaysDate > list.date || todaysDate == list.date && n > list.finish}">
-			</td>
-		</form>
-		</tr>
-
+	<table border="0" class="table tablesorter" id="myTable">
+		<thead>
+			<tr>
+				<th>予約番号</th>
+				<th>登録日</th>
+				<th>会議室</th>
+				<th>座席</th>
+				<th>予約日</th>
+				<th>開始時間</th>
+				<th>終了時間</th>
+				<th></th>
+			</tr>
+		</thead>
+		<tbody>
+			<tr th:each="list:${reserveList}">
+			<form action="/cancel" method="get" th:id="'form' + ${list.code}">
+				<td th:text="${list.code}"></td>
+				<td th:text="${list.ymd}"></td>
+				<td th:text="${list.room}"></td>
+				<td th:text="${list.seat}"></td>
+				<td th:text="${list.date}"></td>
+				<td th:text="${list.start}"></td>
+				<td th:text="${list.finish}"></td>
+				<td>
+				<input type="hidden" name="list.code" th:value="${list.code}">
+				<input type="hidden" name="list.date" th:value="${list.date}">
+				<input type="hidden" name="list.start" th:value="${list.start}">
+				<input type="hidden" name="list.finish" th:value="${list.finish}">
+				<input type="button" th:value="キャンセル" th:attr="onclick='f(' + ${list.code} + ')'" th:disabled="${todaysDate > list.date || todaysDate == list.date && n > list.finish}">
+				</td>
+			</form>
+			</tr>
+		</tbody>
 	</table>
 <br>
 <a href="/main">メイン画面</a>
+<script
+  src="https://code.jquery.com/jquery-3.6.0.js"
+  integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
+  crossorigin="anonymous"></script>
+<script>
+$(document).ready(function() {
+	$("#myTable").tablesorter();
+});
+</script>
 </body>
 </html>
