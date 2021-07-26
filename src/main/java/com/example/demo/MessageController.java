@@ -29,6 +29,9 @@ public class MessageController {
 	@Autowired
 	LastMessageRepository lastmessageRepository;
 
+	@Autowired
+	MasterLastMessageRepository masterlastmessageRepository;
+
 	//メッセージ一覧を表示
 	@RequestMapping("/message")
 	public ModelAndView message(ModelAndView mv) {
@@ -53,11 +56,17 @@ public class MessageController {
 	@RequestMapping("/messageMaster")
 	public ModelAndView message_master(ModelAndView mv) {
 
-		//User user = (User) session.getAttribute("user");
-		List<Message> message = messageRepository.findAll();//全件検索
+		List<Message> list = messageRepository.findAll();//全件検索
+
+		masterlastmessageRepository.deleteAll();
+
+		Message last = list.get(list.size() - 1);
+		int _last = last.getCode();
+		MasterLastMessage l = new MasterLastMessage(_last);
+		masterlastmessageRepository.saveAndFlush(l);
 
 		session.setAttribute("userscode", 0);
-		mv.addObject("message", message);
+		mv.addObject("message", list);
 		mv.setViewName("messageMaster");
 		return mv;
 	}

@@ -26,6 +26,9 @@ public class AccountController {
 	@Autowired
 	LastMessageRepository lastmessageRepository;
 
+	@Autowired
+	MasterLastMessageRepository masterlastmessageRepository;
+
 
 	//トップページ（ログイン画面）を表示
 	@RequestMapping("/")
@@ -74,6 +77,7 @@ public class AccountController {
 
 	//管理者ログイン
 				if(email.equals("master@aaa.com") && password.equals("master")) {
+					messageCheckMaster();
 					mv.setViewName("masterMain");
 
 				}else {
@@ -250,7 +254,6 @@ public class AccountController {
 		Message last = list.get(list.size() - 1);
 		int lastCode = last.getCode();
 
-		System.out.println(lastCode);
 		//前回見たメッセージ一覧の最後のCodeを取得
 		List<LastMessage> list2 = lastmessageRepository.findByUserscode(userscode);
 		int s = list2.size();
@@ -265,5 +268,30 @@ public class AccountController {
 			}
 		session.setAttribute("n", n);
 	}
+
+	//管理者用新着メッセージが来ているかチェック
+	public void messageCheckMaster() {
+		boolean n = false;
+
+		//最後に送られてきたメッセージのCodeを取得
+		List<Message> list = messageRepository.findAll();//全件検索
+		Message last = list.get(list.size() - 1);
+		int lastCode = last.getCode();
+
+		//前回見たメッセージ一覧の最後のCodeを取得
+		List<MasterLastMessage> list2 = masterlastmessageRepository.findAll();
+		int s = list2.size();
+			if(s!=0) {
+				MasterLastMessage _last = list2.get(0);
+				int _lastCode = _last.getLast();
+				System.out.println(_lastCode);
+				//見ていないメッセージがあったとき
+				if(lastCode > _lastCode) {
+					n = true;
+				}
+			}
+		session.setAttribute("n", n);
+	}
+
 
 }

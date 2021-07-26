@@ -29,6 +29,15 @@ public class MasterController {
 	@Autowired
 	RoomRepository roomRepository;
 
+	@Autowired
+	MessageRepository messageRepository;
+
+	@Autowired
+	LastMessageRepository lastmessageRepository;
+
+	@Autowired
+	MasterLastMessageRepository masterlastmessageRepository;
+
 	//管理者ログイン画面表示
 	@RequestMapping(value = "/master", method = RequestMethod.GET)
 	public ModelAndView master(ModelAndView mv) {
@@ -40,73 +49,8 @@ public class MasterController {
 	//管理メイン画面表示
 	@RequestMapping(value = "/masterMain", method = RequestMethod.GET)
 	public ModelAndView masterMain(ModelAndView mv) {
-
+		messageCheckMaster();
 		mv.setViewName("masterMain");
-		return mv;
-	}
-
-	//ログインを実行
-	@RequestMapping(value = "/masterLogin", method = RequestMethod.POST)
-	public ModelAndView masterLogin(
-			@RequestParam(name = "account", defaultValue = "") String account,
-			@RequestParam(name = "password", defaultValue = "") String password,
-			ModelAndView mv) {
-		//メールアドレス、パスワードが空欄の時にエラーとする
-		if (account == null || account.length() == 0) {
-			if (password == null || password.length() == 0) {
-				mv.addObject("message1", "アカウントを入力してください");
-				mv.addObject("message2", "パスワードを入力してください");
-				mv.setViewName("masterIndex");
-				return mv;
-			}
-			//メールアドレスが空欄の時にエラーとする
-			else {
-				mv.addObject("message1", "アカウントを入力してください");
-				mv.setViewName("masterIndex");
-				return mv;
-			}
-		}
-		//パスワードが空欄の時にエラーとする
-		if (password == null || password.length() == 0) {
-			mv.addObject("message2", "パスワードを入力してください");
-			mv.addObject("account", account);
-			mv.setViewName("masterIndex");
-			return mv;
-		}
-
-		//ログイン処理
-		List<Master> master = masterRepository.findByAccount(account);
-		// メールアドレスが存在したら
-		if (master.size() > 0) {
-			//リストの1件目をログインユーザとして取得する
-			Master mster = master.get(0);
-
-			String _account = mster.getAccount();
-			String _password = mster.getPassword();
-
-			if (account.equals(_account) && password.equals(_password)) {
-				//ログイン成功
-				String name = mster.getName();
-
-				session.setAttribute("name", name);
-				session.setAttribute("master", master);
-
-				mv.addObject("name", name);
-				mv.addObject("master", master);
-
-				mv.setViewName("masterMain");
-			} else { //メールアドレスとパスワードが不一致 ログインNG
-				mv.addObject("RESULT", "メールアドレスとパスワードが一致しませんでした。");
-				mv.setViewName("masterIndex");
-			}
-
-		} else if (master.size() == 0) {
-			// メールアドレスが見つからなかった場合
-			// エラーメッセージをセット
-			mv.addObject("RESULT", "入力されたメールアドレスは登録されていません");
-			mv.setViewName("masterIndex");
-		}
-
 		return mv;
 	}
 
@@ -185,4 +129,29 @@ public class MasterController {
 		mv.setViewName("/masterReserve");
 		return mv;
 	}
+
+	//管理者用新着メッセージが来ているかチェック
+	public void messageCheckMaster() {
+		boolean n = false;
+
+		//最後に送られてきたメッセージのCodeを取得
+		List<Message> list = messageRepository.findAll();//全件検索
+		Message last = list.get(list.size() - 1);
+		int lastCode = last.getCode();
+
+		//前回見たメッセージ一覧の最後のCodeを取得
+		List<MasterLastMessage> list2 = masterlastmessageRepository.findAll();
+		int s = list2.size();
+			if(s!=0) {
+				MasterLastMessage _last = list2.get(0);
+				int _lastCode = _last.getLast();
+				System.out.println(_lastCode);
+				//見ていないメッセージがあったとき
+				if(lastCode > _lastCode) {
+					n = true;
+				}
+			}
+		session.setAttribute("n", n);
+	}
+
 }
