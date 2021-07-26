@@ -430,12 +430,4 @@ public class RoomController {
 		mv.setViewName("infoConfirm");
 		return mv;
 	}
-
-	@RequestMapping(value = "/main")
-	public ModelAndView main(ModelAndView mv) {
-
-		mv.setViewName("main");
-		return mv;
-	}
-
 }

@@ -83,5 +83,4 @@ public class User {
 		this.tel = tel;
 	}
 
-
 }

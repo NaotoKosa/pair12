@@ -11,7 +11,6 @@ import javax.persistence.Table;
 @Table(name="lastmessage")
 public class LastMessage {
 
-
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer code;
@@ -55,7 +54,5 @@ public class LastMessage {
 	public void setLast(Integer last) {
 		this.last = last;
 	}
-
-
 
 }

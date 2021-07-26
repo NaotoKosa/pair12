@@ -99,29 +99,9 @@ public class AccountController {
 
 				int userscode = user.getCode();
 
-				boolean n = false;
+				//新着メッセージを調べる
+				messageCheck(userscode);
 
-				//最後に送られてきたメッセージのCodeを取得
-				List<Message> list = messageRepository.findByUserscodeOrderByCodeAsc(userscode);
-				Message last = list.get(list.size() - 1);
-				int lastCode = last.getCode();
-
-				System.out.println(lastCode);
-				//前回見たメッセージ一覧の最後のCodeを取得
-				List<LastMessage> list2 = lastmessageRepository.findByUserscode(userscode);
-				int s = list2.size();
-					if(s!=0) {
-						LastMessage _last = list2.get(0);
-						int _lastCode = _last.getLast();
-						System.out.println(_lastCode);
-						//見ていないメッセージがあったとき
-						if(lastCode > _lastCode) {
-							n = true;
-
-							System.out.println("新しいメッセージがあります。");
-						}
-					}
-				session.setAttribute("n", n);
 				mv.setViewName("main");
 
 			} else { //メールアドレスとパスワードが不一致 ログインNG
@@ -249,6 +229,41 @@ public class AccountController {
 		mv.setViewName("userInfoModify");
 			}
 		return mv;
+	}
+
+	@RequestMapping(value = "/main")
+	public ModelAndView main(ModelAndView mv) {
+		//新着メッセージを調べる
+		User user = (User) session.getAttribute("user");
+		int userscode = user.getCode();
+		messageCheck(userscode);
+		mv.setViewName("main");
+		return mv;
+	}
+
+	//新着メッセージが来ているかチェック
+	public void messageCheck(int userscode) {
+		boolean n = false;
+
+		//最後に送られてきたメッセージのCodeを取得
+		List<Message> list = messageRepository.findByUserscodeOrderByCodeAsc(userscode);
+		Message last = list.get(list.size() - 1);
+		int lastCode = last.getCode();
+
+		System.out.println(lastCode);
+		//前回見たメッセージ一覧の最後のCodeを取得
+		List<LastMessage> list2 = lastmessageRepository.findByUserscode(userscode);
+		int s = list2.size();
+			if(s!=0) {
+				LastMessage _last = list2.get(0);
+				int _lastCode = _last.getLast();
+				System.out.println(_lastCode);
+				//見ていないメッセージがあったとき
+				if(lastCode > _lastCode) {
+					n = true;
+				}
+			}
+		session.setAttribute("n", n);
 	}
 
 }

@@ -8,7 +8,12 @@
             <li><a href="/room">RESERVE</a></li>
             <li><a href="/reservation">RECORD</a></li>
             <li><a href="/checkInOut">CHECKIN・OUT</a></li>
-            <li><a href="/message" id="new">CONTACT</a></li>
+            <th:block th:if="${session.n==true}">
+            <li><a href="/message" id="new">MESSAGE</a></li>
+            </th:block>
+             <th:block th:unless="${session.n==true}">
+            <li><a href="/message">MESSAGE</a></li>
+            </th:block>
             <li><a href="/userInfo">USER-INFORMATION</a></li>
             <li><a href="/">LOGOUT</a></li>
         </ul>
