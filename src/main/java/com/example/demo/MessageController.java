@@ -56,6 +56,7 @@ public class MessageController {
 	@RequestMapping("/messageMaster")
 	public ModelAndView message_master(ModelAndView mv) {
 
+		//User user = (User) session.getAttribute("user");
 		List<Message> list = messageRepository.findAll();//全件検索
 
 		masterlastmessageRepository.deleteAll();
