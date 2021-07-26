@@ -5,6 +5,10 @@
 <title>SWAROID</title>
 <link rel="stylesheet" type="text/css" href="/style.css">
 <link rel="stylesheet" type="text/css" href="/tag.css">
+<link rel="stylesheet" type="text/css" href="/sort.css">
+
+
+
 <script>
 function f(code){
 	var result = confirm("キャンセルを確定しますか？");
@@ -13,21 +17,7 @@ function f(code){
 		form.submit();
 	}
 }
-
-
 </script>
-<style>
-#myTable .tablesorter-header.sort {
-	cursor: pointer;
-	outline: none;
-}
-#myTable .tablesorter-header.sort .tablesorter-header-inner::after {
-	content: '▼';
-	font-size: 12px;
-	margin-left: 5px;
-}
-
-</style>
 </head>
 <body>
 <span><input th:replace="../static/reserveTag.html"></span>
@@ -37,22 +27,21 @@ function f(code){
 	<br>
 	<h2>予約一覧</h2>
 	<span th:text="${ERROR}" style="color:red"></span>
-	<table border="0" class="table tablesorter" id="myTable">
+	<table border="0" class="table table-condensed table-hover table-striped" id="grid-basic">
 		<thead>
 			<tr>
-				<th class="sort">予約番号</th>
-				<th class="sort">登録日</th>
-				<th class="sort">会議室</th>
-				<th class="no-sort">座席</th>
-				<th class="sort">予約日</th>
-				<th class="no-sort">開始時間</th>
-				<th class="no-sort">終了時間</th>
-				<th class="no-sort"></th>
+				<th data-column-id="id1">予約番号</th>
+				<th data-column-id="id2">登録日</th>
+				<th data-column-id="id3">会議室</th>
+				<th data-column-id="id4">座席</th>
+				<th data-column-id="id5" data-order="desc">予約日</th>
+				<th data-column-id="id6">開始時間</th>
+				<th data-column-id="id7">終了時間</th>
+				<th data-column-id="id8"></th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="list:${reserveList}">
-			<form action="/cancel" method="get" th:id="'form' + ${list.code}">
 				<td th:text="${list.code}"></td>
 				<td th:text="${list.ymd}"></td>
 				<td th:text="${list.room}"></td>
@@ -61,33 +50,37 @@ function f(code){
 				<td th:text="${list.start}"></td>
 				<td th:text="${list.finish}"></td>
 				<td>
+			<form action="/cancel" method="get" th:id="'form' + ${list.code}">
 				<input type="hidden" name="list.code" th:value="${list.code}">
 				<input type="hidden" name="list.date" th:value="${list.date}">
 				<input type="hidden" name="list.start" th:value="${list.start}">
 				<input type="hidden" name="list.finish" th:value="${list.finish}">
 				<input type="button" th:value="キャンセル" th:attr="onclick='f(' + ${list.code} + ')'" th:disabled="${todaysDate > list.date || todaysDate == list.date && n > list.finish}">
-				</td>
 			</form>
+				</td>
 			</tr>
 		</tbody>
 	</table>
-<br>
+
+	<br>
 <a href="/main">メイン画面</a>
 <script
   src="https://code.jquery.com/jquery-3.6.0.js"
   integrity="sha256-H+K7U5CnXl1h5ywQfKtSj8PCmoN9aaq30gDh27Xc0jk="
   crossorigin="anonymous"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.tablesorter/2.31.1/js/jquery.tablesorter.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.2/Chart.bundle.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/js/bootstrap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-bootgrid/1.3.1/jquery.bootgrid.min.js" ></script>
 <script>
-$(document).ready(function(){
-	$("#myTable").tablesorter({
-		headers: {
-			3: { sorter: false },
-			5: { sorter: false },
-			6: { sorter: false },
-			7: { sorter: false }
-		}
-	});
+$(function() {
+  $("#grid-basic").bootgrid({
+    labels: {
+        noResults: "検索結果 0件",
+        infos: "全 {{ctx.total}}件中 / {{ctx.start}}～{{ctx.end}}まで表示"
+
+    }
+
+ } );
 });
 </script>
 </body>
