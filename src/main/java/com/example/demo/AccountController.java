@@ -1,5 +1,7 @@
 package com.example.demo;
 
+import java.time.LocalDate;
+import java.time.Period;
 import java.util.List;
 
 import javax.servlet.http.HttpSession;
@@ -19,6 +21,9 @@ public class AccountController {
 
 	@Autowired
 	UserRepository userRepository;
+
+	@Autowired
+	ReserveRepository reserveRepository;
 
 	@Autowired
 	MessageRepository messageRepository;
@@ -105,6 +110,9 @@ public class AccountController {
 
 				//新着メッセージを調べる
 				messageCheck(userscode);
+
+				//30日以上前のレコードを削除
+				oldRecord(userscode);
 
 				mv.setViewName("main");
 
@@ -293,5 +301,20 @@ public class AccountController {
 		session.setAttribute("n", n);
 	}
 
+	//30日前の予約履歴は消去
+	public void oldRecord(int userscode) {
+		LocalDate today = LocalDate.now();
+		LocalDate past = today.minus(Period.ofDays(30));//30日前の日付を取得
+
+		List<Reserve> reserveList = reserveRepository.findByUserscodeOrderByCodeDesc(userscode);
+		for(Reserve r:reserveList) {
+			String reservedate = r.getReservedate();
+			LocalDate d = LocalDate.parse(reservedate);
+			if(d.isBefore(past)) {//予約日が今日から30日以上前だったら削除
+				int code = r.getCode();
+				reserveRepository.deleteById(code);
+			}
+		}
+	}
 
 }

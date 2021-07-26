@@ -129,13 +129,13 @@ public class RoomController {
 		if (date.equals("1000-01-01")) {
 			mv.addObject("ERROR", "日付けを選択してください。");
 			mv.setViewName("info");
-		} else if(past==true || today == true && x == true) {//選択した日にちが過去or今日のもう終了した時間帯
-			mv.addObject("ERROR", "過去は選択できません。");
-			mv.setViewName("info");
 		} else if(s>= f) {
 			mv.addObject("TIMEERROR", "時間設定を見直してください。");
 			mv.setViewName("info");
-		} else if(re){
+		} else if(past==true || today == true && x == true) {//選択した日にちが過去or今日のもう終了した時間帯
+			mv.addObject("ERROR", "過去は選択できません。");
+			mv.setViewName("info");
+		}  else if(re){
 			mv.setViewName("info");
 		}
 		else {

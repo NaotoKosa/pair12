@@ -38,7 +38,6 @@ public class ReserveController {
 		LocalTime n = LocalTime.now(); //現在時刻
 		mv.addObject("n", n.toString());
 
-
 		//予約データベース（reserve）からデータを取得
 		User user = (User) session.getAttribute("user");
 		int userscode = user.getCode();
