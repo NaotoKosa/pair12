@@ -43,7 +43,7 @@ public class ReserveController {
 		User user = (User) session.getAttribute("user");
 		int userscode = user.getCode();
 
-		List<Reserve> reserveList = reserveRepository.findByUserscode(userscode);
+		List<Reserve> reserveList = reserveRepository.findByUserscodeOrderByCodeDesc(userscode);
 		mv.addObject("reserveList", reserveList);
 
 
