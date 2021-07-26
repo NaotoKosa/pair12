@@ -38,13 +38,11 @@
 			<input type="hidden" name="to" th:value="${to}">
 			<input type="hidden" name="email" th:value="${email}">
 			<input type="hidden" name="message" th:value="${message}">
+			<br>
 <input type="submit" th:value="返信">
 </form>
-
-
-
-<span class="error" th:text="${RESULT}" style="color : red " ></span>
 <br>
-<a href="/masterMain">メイン画面</a>
+<span class="error" th:text="${RESULT}" style="color : red " ></span>
+
 </body>
 </html>

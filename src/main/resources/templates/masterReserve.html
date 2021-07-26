@@ -5,6 +5,15 @@
 <title>SWAROID</title>
 <link rel="stylesheet" type="text/css" href="/style.css">
 <link rel="stylesheet" type="text/css" href="/tag.css">
+<script>
+function f(code){
+	var result = confirm("キャンセルを確定しますか？");
+	if(result == true){
+		var form = document.querySelector("#form" + code);
+		form.submit();
+	}
+}
+</script>
 </head>
 <body>
 <span><input th:replace="../static/masterTag.html"></span>
@@ -36,7 +45,7 @@
 			<th></th>
 		</tr>
 		<tr th:each="list:${reserveList}">
-		<form action="/masterCancel" method="get">
+		<form action="/masterCancel" method="get" th:id="'form' + ${list.code}">
 			<td th:text="${list.code}"></td>
 			<td><a th:href="'/user/' + ${list.userscode}" th:text="${list.userscode}"></td>
 			<td th:text="${list.ymd}"></td>
@@ -47,7 +56,7 @@
 			<td th:text="${list.finish}"></td>
 			<td>
 			<input type="hidden" name="list.code" th:value="${list.code}">
-			<input type="submit" th:value="キャンセル">
+			<input type="button" th:value="キャンセル" th:attr="onclick='f(' + ${list.code} + ')'" >
 			</td>
 		</form>
 		</tr>
